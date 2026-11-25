@@ -381,6 +381,17 @@ p, li, .lede, .file span, .needs span, .tip, .beta-note span, .role-card p, .cal
 .code.cite { max-width: none; }
 .code.cite pre { white-space: pre; overflow-x: auto; overflow-wrap: normal; }
 .cite-note { margin-top: 14px; font-size: .92rem; color: var(--ink-2); }
+.disclaimer { padding: 72px 0; background: var(--gold-soft); border-top: 1px solid color-mix(in srgb, var(--gold) 35%, var(--line)); border-bottom: 1px solid color-mix(in srgb, var(--gold) 35%, var(--line)); position: relative; overflow: hidden; }
+.disclaimer::before { content: ""; position: absolute; inset: auto auto -50% -10%; width: 620px; height: 620px; background: radial-gradient(closest-side, color-mix(in srgb, var(--gold) 16%, transparent), transparent); pointer-events: none; }
+.disclaimer .wrap { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: start; }
+.disclaimer .shield { width: 64px; height: 64px; border-radius: 16px; display: grid; place-items: center; background: var(--surface); color: var(--gold); border: 1px solid color-mix(in srgb, var(--gold) 40%, var(--line)); }
+.disclaimer h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); margin: 6px 0 16px; }
+.disclaimer h2 em { font-style: italic; color: var(--gold); }
+.disclaimer p { max-width: 44em; font-size: 1.05rem; color: var(--ink); margin: 0; }
+.disclaimer ul { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.disclaimer li { font: 500 .8rem var(--mono); padding: 7px 12px; border-radius: 999px; background: var(--surface); border: 1px solid color-mix(in srgb, var(--gold) 40%, var(--line)); color: var(--ink); }
+.disclaimer li::before { content: "✕ "; color: var(--gold); }
+@media (max-width: 700px) { .disclaimer { padding: 52px 0; } .disclaimer .wrap { grid-template-columns: 1fr; gap: 16px; } .disclaimer .shield { width: 52px; height: 52px; } }
 </style>
 </head>
 <body>
@@ -1032,6 +1043,21 @@ uv run $S/cep_tutor.py planejar --output-dir cep_tutor/plan --nivel graduacao --
         <p lang="pt">Protocolos são inéditos e podem ter dados pessoais. Use o tutor com os seus documentos ou com autorização. Texto oculto e instruções à IA dentro dos documentos são ignorados e aparecem como alerta.</p><p lang="en">Protocols are unpublished and may hold personal data. Use the tutor with your own documents or with permission. Hidden text and instructions to the AI inside documents are ignored and flagged.</p><p lang="es">Los protocolos son inéditos y pueden tener datos personales. Use el tutor con sus documentos o con autorización. El texto oculto y las instrucciones a la IA dentro de los documentos se ignoran y se señalan.</p></div>
       <div><h3 lang="pt">Limites</h3><h3 lang="en">Limits</h3><h3 lang="es">Límites</h3>
         <p lang="pt">A IA pode ler mal um trecho. A triagem e os sinais automáticos são heurísticos, e a base reflete os documentos do <span class="nw">CEP-UMC</span> de 2022 e 2025. As sugestões acadêmicas se discutem com o orientador.</p><p lang="en">The AI can misread a passage. Screening and automatic signals are heuristic, and the base reflects the 2022 and 2025 <span class="nw">CEP-UMC</span> documents. Academic suggestions are for discussion with the supervisor.</p><p lang="es">La IA puede leer mal un fragmento. El cribado y las señales automáticas son heurísticos, y la base refleja los documentos del <span class="nw">CEP-UMC</span> de 2022 y 2025. Las sugerencias académicas se discuten con el director.</p></div>
+    </div>
+  </div>
+</section>
+<section class="disclaimer" id="aviso" role="note">
+  <div class="wrap">
+    <div class="shield" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M12 8v5M12 16.5v.01"/></svg></div>
+    <div>
+      <div class="eyebrow"><span lang="pt">Antes de submeter</span><span lang="en">Before you submit</span><span lang="es">Antes de enviar</span></div>
+      <h2 lang="pt">Um <em>auxílio</em>, não uma garantia.</h2><h2 lang="en">An <em>aid</em>, not a guarantee.</h2><h2 lang="es">Una <em>ayuda</em>, no una garantía.</h2>
+      <p lang="pt">O <span class="nw">cep-umc-tutor</span> ajuda a preparar o protocolo, mas não garante que ele chegue ao CEP sem pendências nem que seja aprovado. Quem analisa e decide é o <span class="nw">CEP-UMC</span>, que pode pedir ajustes que o tutor não apontou. Revise tudo com o orientador antes de submeter.</p>
+      <p lang="en">The <span class="nw">cep-umc-tutor</span> helps you prepare the protocol, but it does not guarantee that it reaches the committee without pending items, or that it will be approved. The <span class="nw">CEP-UMC</span> reviews and decides, and may ask for changes the tutor did not point out. Go over everything with your supervisor before submitting.</p>
+      <p lang="es">El <span class="nw">cep-umc-tutor</span> ayuda a preparar el protocolo, pero no garantiza que llegue al comité sin pendientes ni que sea aprobado. Quien analiza y decide es el <span class="nw">CEP-UMC</span>, que puede pedir ajustes que el tutor no señaló. Revise todo con su director antes de enviarlo.</p>
+      <ul lang="pt"><li>Não emite parecer</li><li>Não garante zero pendências</li><li>Não prevê aprovação</li><li>Não substitui o CEP</li></ul>
+      <ul lang="en"><li>Issues no ethics opinion</li><li>Does not rule out pending items</li><li>Does not predict approval</li><li>Does not replace the committee</li></ul>
+      <ul lang="es"><li>No emite dictamen</li><li>No descarta pendientes</li><li>No anticipa la aprobación</li><li>No sustituye al comité</li></ul>
     </div>
   </div>
 </section>

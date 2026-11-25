@@ -6,6 +6,8 @@ e as versões seguem o [SemVer](https://semver.org/lang/pt-BR/).
 ## [Não publicado]
 
 ### Documentação
+- Site: faixa de aviso perto do fim ("Um auxílio, não uma garantia"): o tutor não garante ausência de pendências
+  nem aprovação no CEP.
 - Como citar: `CITATION.cff` (botão "Cite this repository" do GitHub), seção nos READMEs e no site, com BibTeX
   em nome do LaBiOmicS.
 - Site e READMEs (PT, EN, ES): seção "Bases de conhecimento" explica como as duas bases foram construídas e como
