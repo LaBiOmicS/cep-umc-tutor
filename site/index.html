@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="pt-BR" data-os="win" data-ai="claude">
+<html lang="pt-BR" data-lang="pt" data-os="win" data-ai="claude">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>cep-umc-tutor · LaBiOmicS</title>
-<meta name="description" content="Tutor de pré-submissão ao Comitê de Ética em Pesquisa da UMC, para Claude Code e Antigravity: confere documentos e exigências éticas e separa as sugestões de metodologia, estatística e escrita, calibradas pelo nível do trabalho.">
+<meta name="description" content="Tutor de pré-submissão ao Comitê de Ética em Pesquisa da UMC para Claude Code e Antigravity: confere documentos e exigências éticas e separa as sugestões de metodologia, estatística e escrita, calibradas pelo nível do trabalho.">
 <meta property="og:title" content="cep-umc-tutor — chegue ao CEP-UMC com o protocolo pronto">
 <meta property="og:description" content="Revisão do protocolo antes da Plataforma Brasil: Parte 1 com o que o CEP cobra, Parte 2 com sugestões acadêmicas, relatório do orientador e no máximo três rodadas.">
 <meta property="og:image" content="https://labiomics.github.io/cep-umc-tutor/assets/logo-180.png">
@@ -359,23 +359,23 @@ footer .wrap { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space
 footer b { color: var(--ink); font-weight: 600; }
 footer a { color: var(--ink-2); white-space: nowrap; }
 </style>
-<style>
-.a-card .lbl { margin-bottom: 10px; }
-.report ol li { margin: 4px 0; font-size: .88rem; }
-.term .body > div { white-space: pre-wrap; }
-</style>
 </head>
 <body>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#"><img src="assets/logo-180.png" alt="" width="30" height="30"><span>cep-umc-tutor</span></a>
     <nav class="links">
-      <a href="#guia">Guia</a>
+      <a href="#guia"><span lang="pt">Guia</span><span lang="en">Guide</span><span lang="es">Guía</span></a>
       <a href="#prompts">Prompts</a>
+      <a href="#como"><span lang="pt">Como funciona</span><span lang="en">How it works</span><span lang="es">Cómo funciona</span></a>
+      <a href="#faq"><span lang="pt">Dúvidas</span><span lang="en">FAQ</span><span lang="es">Preguntas</span></a>
       <a href="https://github.com/LaBiOmicS/cep-umc-tutor">GitHub</a>
     </nav>
     <div class="toggles">
-      <button class="chip-btn" id="theme-btn" type="button" aria-label="Alternar modo escuro">◐</button>
+      <div class="seg" role="group" aria-label="Language">
+        <button type="button" data-set="lang" data-val="pt">PT</button><button type="button" data-set="lang" data-val="en">EN</button><button type="button" data-set="lang" data-val="es">ES</button>
+      </div>
+      <button class="chip-btn" id="theme-btn" type="button" aria-label="Toggle dark mode">◐</button>
     </div>
   </div>
 </header>
@@ -384,205 +384,245 @@ footer a { color: var(--ink-2); white-space: nowrap; }
 <section class="hero">
   <div class="wrap">
     <div>
-      <div class="eyebrow">Tutor de pré-submissão · CEP-UMC</div>
-      <h1>Chegue ao CEP com o protocolo <em>pronto</em>.</h1>
-      <p class="lede">Revisão do protocolo de pesquisa <b>antes</b> da submissão ao Comitê de Ética em Pesquisa da Universidade de Mogi das Cruzes, com assistência de IA. Confere os documentos exigidos, aponta o que costuma gerar pendência, com o requisito e a fonte, e separa as exigências éticas das sugestões de metodologia, estatística e escrita. Para alunos de graduação e de pós, orientadores e docentes. Não é preciso saber programar.</p>
+      <div class="eyebrow"><span lang="pt">Plugin para Claude Code e Antigravity</span><span lang="en">Plugin for Claude Code and Antigravity</span><span lang="es">Plugin para Claude Code y Antigravity</span></div>
+      <h1 lang="pt">Chegue ao CEP com o protocolo <em>pronto</em>.</h1>
+      <h1 lang="en">Reach the ethics committee <em>ready</em>.</h1>
+      <h1 lang="es">Llegue al comité de ética con el protocolo <em>listo</em>.</h1>
+      <p class="lede" lang="pt">Revisão do protocolo de pesquisa <b>antes</b> da submissão ao Comitê de Ética em Pesquisa da Universidade de Mogi das Cruzes (CEP-UMC), com assistência de IA. Confere os documentos exigidos, aponta o que costuma gerar pendência, com o requisito e a fonte, e separa as exigências éticas das sugestões de metodologia, estatística e escrita, calibradas pelo nível do trabalho. Para alunos de graduação e de pós, orientadores e docentes. Não é preciso saber programar.</p>
+      <p class="lede" lang="en">AI-assisted review of a research protocol <b>before</b> it is submitted to the Research Ethics Committee of the University of Mogi das Cruzes (CEP-UMC, Brazil). It checks the required documents, points out what usually leads to a pending decision, with the requirement and its source, and keeps ethics requirements apart from suggestions on methods, statistics and writing, calibrated to the level of the work. For undergraduate and graduate students, supervisors and faculty. No programming needed.</p>
+      <p class="lede" lang="es">Revisión del protocolo de investigación <b>antes</b> de enviarlo al Comité de Ética en Investigación de la Universidad de Mogi das Cruzes (CEP-UMC, Brasil), con asistencia de IA. Verifica los documentos exigidos, señala lo que suele generar pendientes, con el requisito y la fuente, y separa las exigencias éticas de las sugerencias de metodología, estadística y redacción, calibradas por el nivel del trabajo. Para estudiantes de grado y posgrado, directores y docentes. No hace falta saber programar.</p>
       <div class="cta">
-        <a class="btn primary" href="#guia">Começar pelo guia</a>
-        <a class="btn ghost" href="#prompts">Ver prompts prontos</a>
+        <a class="btn primary" href="#guia"><span lang="pt">Começar pelo guia</span><span lang="en">Start with the guide</span><span lang="es">Empezar por la guía</span> →</a>
+        <a class="btn ghost" href="#prompts"><span lang="pt">Ver prompts prontos</span><span lang="en">See ready prompts</span><span lang="es">Ver prompts listos</span></a>
       </div>
       <div class="beta-note" role="note"><b>BETA</b>
-        <span>O tutor pode errar, tanto ao ler os documentos quanto nos apontamentos. Ele <b>não emite parecer</b> e não substitui o CEP-UMC. Confira cada resultado com o orientador e <a href="https://github.com/LaBiOmicS/cep-umc-tutor/issues">relate problemas</a>.</span>
-      </div>
-      <div class="meta-row"><span class="tag beta">BETA</span><span class="tag">v0.2.0</span><span class="tag">MIT</span><span class="tag">Windows · macOS · Linux</span><span class="tag">Claude Code · Antigravity</span></div>
+        <span lang="pt">A ferramenta ainda está em versão beta e pode apresentar erros, tanto de funcionamento quanto nos apontamentos que gera. Ela <strong>não emite parecer</strong> e não substitui o CEP-UMC. Confira cada resultado com o orientador e <a href="https://github.com/LaBiOmicS/cep-umc-tutor/issues">relate problemas</a>.</span>
+        <span lang="en">The tool is still in beta and may contain errors, both in how it runs and in the findings it produces. It <strong>does not issue an opinion</strong> and does not replace the CEP-UMC. Check every result with your supervisor and <a href="https://github.com/LaBiOmicS/cep-umc-tutor/issues">report problems</a>.</span>
+        <span lang="es">La herramienta todavía está en versión beta y puede presentar errores, tanto de funcionamiento como en los señalamientos que genera. <strong>No emite dictamen</strong> y no sustituye al CEP-UMC. Verifique cada resultado con su director e <a href="https://github.com/LaBiOmicS/cep-umc-tutor/issues">informe los problemas</a>.</span></div>
+      <div class="meta-row"><span class="tag beta">BETA</span><span class="tag">v0.2.0</span><span class="tag">MIT</span><span class="tag">Windows · macOS · Linux</span><span class="tag">PT · EN · ES</span></div>
     </div>
-    <div class="term" aria-label="Exemplo de uso no terminal">
-      <div class="bar"><i></i><i></i><i></i><span>~/Documentos/tcc — claude</span></div>
+    <div class="term" id="term" aria-label="Exemplo de uso no terminal">
+      <div class="bar"><i></i><i></i><i></i><span>~/Documentos/tcc — claude</span><button class="replay" type="button" data-replay="term" aria-label="Replay" title="Replay">↻</button></div>
       <div class="body">
-        <div><span class="u">&gt;</span> Revise meu protocolo da pasta protocolo/ antes de submeter ao CEP-UMC</div>
+        <div class="ln" data-s="0"><span class="u">&gt; </span><span class="u type" lang="pt">Revise meu protocolo da pasta protocolo/ antes de submeter ao CEP-UMC.</span><span class="u type" lang="en">Review my protocol in protocolo/ before I submit it to the CEP-UMC.</span><span class="u type" lang="es">Revisa mi protocolo de la carpeta protocolo/ antes de enviarlo al CEP-UMC.</span></div>
         <div class="gap"></div>
-        <div class="d">Lendo 4 documentos · nível: graduação (TCC)</div>
-        <div><span class="ok">✓</span> projeto.docx <span class="d">· projeto detalhado</span></div>
-        <div><span class="ok">✓</span> tcle.docx <span class="d">· TCLE</span></div>
-        <div><span class="ok">✓</span> TAI_clinica.pdf <span class="d">· autorização institucional</span></div>
-        <div><span class="w">✗</span> folha de rosto <span class="d">· não recebida</span></div>
-        <div class="gap"></div>
-        <div class="d">Trilha A · ética e documentos      <span class="ok">✓</span></div>
-        <div class="d">Trilha B · metodologia e escrita   <span class="ok">✓</span></div>
-        <div class="gap"></div>
-        <div>Parte 1 (CEP): <span class="w">1 bloqueante</span> · 3 pendências · 2 recomendações</div>
-        <div>Parte 2 (sugestões): 4 essenciais · 2 para aprofundar</div>
-        <div>Submeter até <span class="u">10/01/2027</span> para coletar em 01/03</div>
-        <div class="gap"></div>
-        <div><span class="ok">✓</span> relatorio.pdf  <span class="ok">✓</span> relatorio_orientador.pdf</div>
-        <div class="cap">Rodada 1 de 3 · exemplo ilustrativo</div>
+        <div class="ln" data-s="1"><span class="ok">✓</span> <span lang="pt">4 documentos · projeto, TCLE, TAI, roteiro · nível: TCC</span><span lang="en">4 documents · project, consent form, site permit, interview guide · level: undergraduate</span><span lang="es">4 documentos · proyecto, consentimiento, autorización, guion · nivel: grado</span></div>
+        <div class="ln" data-s="2"><span class="ok">✓</span> <span lang="pt">Triagem: adultos · entrevista gravada · clínica-escola</span><span lang="en">Screening: adults · recorded interview · teaching clinic</span><span lang="es">Cribado: adultos · entrevista grabada · clínica escuela</span></div>
+        <div class="ln" data-s="3"><span class="w">!</span> <span lang="pt">Folha de rosto não recebida</span><span lang="en">Cover sheet (folha de rosto) not received</span><span lang="es">Hoja de portada (folha de rosto) no recibida</span></div>
+        <div class="ln" data-s="4"><span class="w">!</span> <span lang="pt">"Não há riscos" no projeto · coleta antes da aprovação</span><span lang="en">"There are no risks" in the project · data collection before approval</span><span lang="es">"No hay riesgos" en el proyecto · recolección antes de la aprobación</span></div>
+        <div class="ln d" data-s="5"><span class="d">…</span> <span lang="pt">duas revisões independentes: ética e acadêmica</span><span lang="en">two independent reviews: ethics and academic</span><span lang="es">dos revisiones independientes: ética y académica</span></div>
+        <div class="ln prow" data-s="6" style="--d:2.4s"><span class="d" lang="pt">Parte 1</span><span class="d" lang="en">Part 1</span><span class="d" lang="es">Parte 1</span><span class="pbar"><b></b></span><span class="ok tick">✓</span></div>
+        <div class="ln prow" data-s="6" style="--d:1.9s"><span class="d" lang="pt">Parte 2</span><span class="d" lang="en">Part 2</span><span class="d" lang="es">Parte 2</span><span class="pbar"><b></b></span><span class="ok tick">✓</span></div>
+        <div class="ln prow" data-s="6" style="--d:2.7s"><span class="d" lang="pt">compilar</span><span class="d" lang="en">compile</span><span class="d" lang="es">compilar</span><span class="pbar"><b></b></span><span class="ok tick">✓</span></div>
+        <div class="ln" data-s="7"><span class="ok">✓</span> <span lang="pt">1 bloqueante · 3 pendências · 4 sugestões essenciais · submeter até 10/01</span><span lang="en">1 blocking · 3 pending · 4 essential suggestions · submit by Jan 10</span><span lang="es">1 bloqueante · 3 pendientes · 4 sugerencias esenciales · enviar antes del 10/01</span></div>
+        <div class="ln" data-s="8"><span class="ok">✓</span> <span>relatorio.pdf · relatorio_orientador.pdf</span></div>
+        <div class="cap"><span lang="pt">exemplo ilustrativo, resumido</span><span lang="en">illustrative example, abridged</span><span lang="es">ejemplo ilustrativo, resumido</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================ DUAS TRILHAS -->
 <section class="alt">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Duas trilhas que nunca se misturam</div>
-      <h2>O que o CEP cobra, de um lado. O que melhora o trabalho, do outro.</h2>
-      <p>O CEP avalia ética, não a qualidade científica, salvo quando a metodologia gera viés ético (item PROJ-G05 do modelo de projeto). Por isso o relatório tem duas partes, com rótulos diferentes, e uma sugestão acadêmica nunca aparece como se fosse exigência do comitê.</p>
+      <div class="eyebrow"><span lang="pt">Duas trilhas</span><span lang="en">Two tracks</span><span lang="es">Dos vías</span></div>
+      <h2 lang="pt">O que o CEP cobra, e o que melhora o trabalho.</h2>
+      <h2 lang="en">What the committee requires, and what improves the work.</h2>
+      <h2 lang="es">Lo que el comité exige, y lo que mejora el trabajo.</h2>
+      <p lang="pt">O CEP avalia ética, não a qualidade científica, salvo quando a metodologia gera viés ético. Por isso o relatório tem duas partes, com rótulos diferentes, e uma sugestão acadêmica nunca aparece como exigência do comitê.</p>
+      <p lang="en">The committee assesses ethics, not scientific quality, except when the methods create an ethical bias. That is why the report has two parts, with different labels, and an academic suggestion never appears as a committee requirement.</p>
+      <p lang="es">El comité evalúa la ética, no la calidad científica, salvo cuando la metodología genera un sesgo ético. Por eso el informe tiene dos partes, con etiquetas diferentes, y una sugerencia académica nunca aparece como exigencia del comité.</p>
     </div>
     <div class="uses">
       <div class="use">
         <div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
-        <h3>Parte 1 · Ética e documentos</h3>
-        <p>Exigências do CEP-UMC, tiradas de 274 requisitos com ID estável. A base foi montada a partir dos modelos de 2022, do Regimento de 2025, do Manual da Plataforma Brasil e da Cartilha da CONEP.</p>
-        <ul><li><b>[BLOQUEANTE]</b>, <b>[PENDÊNCIA]</b> ou <b>[RECOMENDAÇÃO]</b>, com o trecho e o requisito</li><li>Documentos esperados × recebidos (TCLE, TALE, TAI, carta de anuência…)</li><li>Igual para todos os níveis: o que é exigência vale para todo mundo</li></ul>
+        <h3 lang="pt">Parte 1 · Ética e documentos</h3><h3 lang="en">Part 1 · Ethics and documents</h3><h3 lang="es">Parte 1 · Ética y documentos</h3>
+        <p lang="pt">Exigências do CEP-UMC, tiradas de 274 requisitos com ID estável. A base vem dos modelos de 2022, do Regimento de 2025, do Manual da Plataforma Brasil e da Cartilha da CONEP.</p>
+        <p lang="en">CEP-UMC requirements, drawn from 274 requirements with stable IDs. The base comes from the 2022 templates, the 2025 bylaws, the Plataforma Brasil manual and the CONEP participants' rights booklet.</p>
+        <p lang="es">Exigencias del CEP-UMC, extraídas de 274 requisitos con ID estable. La base proviene de los modelos de 2022, el Reglamento de 2025, el Manual de la Plataforma Brasil y la Cartilla de la CONEP.</p>
+        <ul lang="pt"><li>[BLOQUEANTE], [PENDÊNCIA] ou [RECOMENDAÇÃO], com o trecho e o requisito</li><li>Documentos esperados × recebidos: TCLE, TALE, TAI, carta de anuência…</li><li>Igual para todos os níveis</li></ul>
+        <ul lang="en"><li>[BLOCKING], [PENDING] or [RECOMMENDATION], with the passage and the requirement</li><li>Expected × received documents: consent and assent forms, site permits, letters…</li><li>The same for every level</li></ul>
+        <ul lang="es"><li>[BLOQUEANTE], [PENDIENTE] o [RECOMENDACIÓN], con el fragmento y el requisito</li><li>Documentos esperados × recibidos: consentimiento, asentimiento, autorizaciones, cartas…</li><li>Igual para todos los niveles</li></ul>
       </div>
       <div class="use ref">
         <div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg></div>
-        <h3>Parte 2 · Sugestões acadêmicas</h3>
-        <p>Metodologia, estatística e escrita, com base nas diretrizes EQUATOR, nas normas ABNT e na literatura metodológica. <b>Não são cobradas pelo CEP</b>: quem decide é o pesquisador, com o orientador.</p>
-        <ul><li><b>[SUGESTÃO]</b> dividida em Essencial e Para aprofundar</li><li>Calibrada pelo nível: o que se espera de um TCC não é o que se espera de uma tese</li><li>Erro é erro em qualquer nível; o que muda é a profundidade e o tom</li></ul>
+        <h3 lang="pt">Parte 2 · Sugestões acadêmicas</h3><h3 lang="en">Part 2 · Academic suggestions</h3><h3 lang="es">Parte 2 · Sugerencias académicas</h3>
+        <p lang="pt">Metodologia, estatística e escrita, com base nas diretrizes EQUATOR, nas normas ABNT e na literatura metodológica. <b>Não são cobradas pelo CEP</b>: quem decide é o pesquisador, com o orientador.</p>
+        <p lang="en">Methods, statistics and writing, based on the EQUATOR guidelines, ABNT standards and the methods literature. <b>They are not required by the committee</b>: the researcher decides, with the supervisor.</p>
+        <p lang="es">Metodología, estadística y redacción, con base en las guías EQUATOR, las normas ABNT y la literatura metodológica. <b>El comité no las exige</b>: decide el investigador, con su director.</p>
+        <ul lang="pt"><li>[SUGESTÃO] em Essencial e Para aprofundar</li><li>Calibrada pelo nível: TCC, especialização, mestrado, doutorado, docente</li><li>Erro é erro em qualquer nível; muda a profundidade e o tom</li></ul>
+        <ul lang="en"><li>[SUGGESTION] as Essential or Going further</li><li>Calibrated by level: undergraduate, specialization, master's, PhD, faculty</li><li>An error is an error at any level; depth and tone change</li></ul>
+        <ul lang="es"><li>[SUGERENCIA] en Esencial y Para profundizar</li><li>Calibrada por nivel: grado, especialización, maestría, doctorado, docente</li><li>Un error es un error en cualquier nivel; cambian la profundidad y el tono</li></ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================ PERFIS -->
-<section id="perfis">
+<!-- ================================================================ GUIDE -->
+<section id="guia">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Para quem</div>
-      <h2>Cada perfil começa por um lugar diferente.</h2>
-    </div>
-    <div class="audit">
-      <div class="a-card">
-        <span class="lbl t-opt">Aluno de graduação</span>
-        <h3>Ainda não sabe que documentos precisa</h3>
-        <p>O <b>planejamento</b> pergunta o essencial (menores? online? local de coleta?) e lista os documentos, quem assina cada um e a data-limite para submeter. Depois, o relatório abre com <b>"Comece por aqui"</b>: até cinco ações, em ordem, e uma legenda do que é bloqueante, pendência e sugestão.</p>
-      </div>
-      <div class="a-card">
-        <span class="lbl t-ess">Aluno de pós</span>
-        <h3>Projeto longo, prazo apertado</h3>
-        <p>Lê projetos de dissertação e tese inteiros. Calcula a <b>data para submeter</b> a partir do início da coleta no cronograma, com margem para uma pendência. Se você incluir o PDF "Informações Básicas" da Plataforma Brasil, confere se ele bate com o projeto. A cada rodada, mostra o que já foi resolvido.</p>
-      </div>
-      <div class="a-card">
-        <span class="lbl t-block">Orientador</span>
-        <h3>Precisa decidir rápido se pode submeter</h3>
-        <p>O <b>relatório do orientador</b> tem uma página: se o protocolo está pronto ou não, o que falta, quem assina cada documento e o prazo. Na graduação, lembra que é o orientador quem submete na Plataforma Brasil.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================ GUIA -->
-<section id="guia" class="alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow">Guia</div>
-      <h2>Do zero à primeira revisão, em oito passos.</h2>
-      <p>Escolha abaixo o seu sistema e a IA que vai usar. O guia mostra só os comandos certos para a sua escolha. Em cada caixa escura, clique em <b>copiar</b> e cole no terminal.</p>
+      <div class="eyebrow"><span lang="pt">Manual de uso</span><span lang="en">User manual</span><span lang="es">Manual de uso</span></div>
+      <h2 lang="pt">Do zero à primeira revisão, em oito passos.</h2>
+      <h2 lang="en">From zero to your first review, in eight steps.</h2>
+      <h2 lang="es">De cero a su primera revisión, en ocho pasos.</h2>
+      <p lang="pt">Escolha abaixo o seu sistema e a IA que vai usar. O guia mostra só os comandos certos para a sua escolha. Em cada caixa escura, clique em <b>copy</b> e cole no terminal.</p>
+      <p lang="en">Choose your system and the AI you will use below. The guide shows only the right commands for your choice. In each dark box, click <b>copy</b> and paste into the terminal.</p>
+      <p lang="es">Elija abajo su sistema y la IA que va a usar. La guía muestra solo los comandos correctos para su elección. En cada caja oscura, haga clic en <b>copy</b> y pegue en la terminal.</p>
     </div>
 
     <div class="pickers">
-      <div><label>Sistema</label>
-        <div class="seg" role="group" aria-label="Sistema operacional"><button type="button" data-set="os" data-val="win">Windows</button><button type="button" data-set="os" data-val="mac">macOS</button><button type="button" data-set="os" data-val="linux">Linux</button></div></div>
+      <div><label lang="pt">Sistema</label><label lang="en">System</label><label lang="es">Sistema</label>
+        <div class="seg" role="group" aria-label="Operating system"><button type="button" data-set="os" data-val="win">Windows</button><button type="button" data-set="os" data-val="mac">macOS</button><button type="button" data-set="os" data-val="linux">Linux</button></div></div>
       <div><label>IA</label>
-        <div class="seg" role="group" aria-label="Assistente de IA"><button type="button" data-set="ai" data-val="claude">Claude Code</button><button type="button" data-set="ai" data-val="agy">Antigravity</button></div></div>
+        <div class="seg" role="group" aria-label="AI"><button type="button" data-set="ai" data-val="claude">Claude Code</button><button type="button" data-set="ai" data-val="agy">Antigravity</button></div></div>
     </div>
 
     <div class="needs">
-      <div><b>Uma conta de IA</b><span class="ai-claude">Assinatura do Claude (Pro, Max ou institucional).</span><span class="ai-agy">Conta Google com acesso ao Antigravity.</span></div>
-      <div><b>Os documentos</b>Projeto, TCLE e demais termos, em .docx, .pdf ou .doc. Para o planejamento, nada.</div>
-      <div><b>Uns 20 minutos</b>Na primeira vez. Depois, a revisão leva poucos minutos.</div>
-      <div><b>Autorização</b>O texto vai para o serviço de IA. Para revisar o protocolo de outra pessoa, peça permissão antes.</div>
+      <div><b lang="pt">Computador</b><b lang="en">Computer</b><b lang="es">Computadora</b>
+        <span lang="pt">Windows 10 ou 11, macOS 13 ou mais novo, ou Linux (Ubuntu 20.04+), com internet.</span><span lang="en">Windows 10 or 11, macOS 13 or later, or Linux (Ubuntu 20.04+), online.</span><span lang="es">Windows 10 u 11, macOS 13 o posterior, o Linux (Ubuntu 20.04+), con internet.</span></div>
+      <div class="ai-claude"><b lang="pt">Conta</b><b lang="en">Account</b><b lang="es">Cuenta</b>
+        <span lang="pt">Uma assinatura paga do Claude (Pro ou superior). O plano gratuito não inclui o Claude Code.</span><span lang="en">A paid Claude subscription (Pro or higher). The free plan does not include Claude Code.</span><span lang="es">Una suscripción de pago de Claude (Pro o superior). El plan gratuito no incluye Claude Code.</span></div>
+      <div class="ai-agy"><b lang="pt">Conta</b><b lang="en">Account</b><b lang="es">Cuenta</b>
+        <span lang="pt">Uma conta Google com acesso ao Antigravity.</span><span lang="en">A Google account with access to Antigravity.</span><span lang="es">Una cuenta de Google con acceso a Antigravity.</span></div>
+      <div><b lang="pt">Documentos</b><b lang="en">Documents</b><b lang="es">Documentos</b>
+        <span lang="pt">Projeto, TCLE e demais termos, em .docx, .pdf ou .doc. Para o planejamento, nenhum.</span><span lang="en">Project, consent forms and other documents, as .docx, .pdf or .doc. For planning, none.</span><span lang="es">Proyecto, consentimiento y demás documentos, en .docx, .pdf o .doc. Para la planificación, ninguno.</span></div>
+      <div><b lang="pt">Tempo</b><b lang="en">Time</b><b lang="es">Tiempo</b>
+        <span lang="pt">Cerca de 20 minutos na primeira vez. Depois, a revisão leva poucos minutos.</span><span lang="en">About 20 minutes the first time. After that, a review takes a few minutes.</span><span lang="es">Unos 20 minutos la primera vez. Después, la revisión tarda pocos minutos.</span></div>
     </div>
 
     <ol class="steps">
       <li>
-        <h3>Abra o terminal</h3>
+        <h3 lang="pt">Abra o terminal</h3><h3 lang="en">Open the terminal</h3><h3 lang="es">Abra la terminal</h3>
         <div class="txt">
-          <p>O terminal é uma janela onde você digita comandos. Você vai usá-lo só para colar o que está nas caixas escuras deste guia.</p>
-          <p class="os-win">No Windows, aperte a tecla <kbd>⊞ Win</kbd>, digite <b>PowerShell</b> e abra o programa <b>Windows PowerShell</b>.</p>
-          <p class="os-mac">No Mac, aperte <kbd>⌘ Cmd</kbd> + <kbd>Espaço</kbd>, digite <b>Terminal</b> e aperte <kbd>Enter</kbd>.</p>
-          <p class="os-linux">No Linux, aperte <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> ou procure <b>Terminal</b> no menu de aplicativos.</p>
-          <div class="tip"><b>Para colar:</b> <span class="os-win">clique com o botão direito dentro da janela</span><span class="os-mac">use <kbd>⌘ Cmd</kbd> + <kbd>V</kbd></span><span class="os-linux">use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd></span>. Depois aperte <kbd>Enter</kbd> para executar.</div>
+          <p lang="pt">O terminal é uma janela onde você digita comandos. Você vai usá-lo só para colar o que está nas caixas escuras deste guia.</p>
+          <p lang="en">The terminal is a window where you type commands. You will only use it to paste what is in the dark boxes of this guide.</p>
+          <p lang="es">La terminal es una ventana donde se escriben comandos. Solo la usará para pegar lo que está en las cajas oscuras de esta guía.</p>
+          <p class="os-win" lang="pt">No Windows, aperte a tecla <kbd>⊞ Win</kbd>, digite <b>PowerShell</b> e abra o programa <b>Windows PowerShell</b>.</p>
+          <p class="os-win" lang="en">On Windows, press <kbd>⊞ Win</kbd>, type <b>PowerShell</b> and open <b>Windows PowerShell</b>.</p>
+          <p class="os-win" lang="es">En Windows, presione <kbd>⊞ Win</kbd>, escriba <b>PowerShell</b> y abra <b>Windows PowerShell</b>.</p>
+          <p class="os-mac" lang="pt">No Mac, aperte <kbd>⌘ Cmd</kbd> + <kbd>Espaço</kbd>, digite <b>Terminal</b> e aperte <kbd>Enter</kbd>.</p>
+          <p class="os-mac" lang="en">On a Mac, press <kbd>⌘ Cmd</kbd> + <kbd>Space</kbd>, type <b>Terminal</b> and press <kbd>Enter</kbd>.</p>
+          <p class="os-mac" lang="es">En Mac, presione <kbd>⌘ Cmd</kbd> + <kbd>Espacio</kbd>, escriba <b>Terminal</b> y presione <kbd>Enter</kbd>.</p>
+          <p class="os-linux" lang="pt">No Linux, aperte <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> ou procure <b>Terminal</b> no menu de aplicativos.</p>
+          <p class="os-linux" lang="en">On Linux, press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> or look for <b>Terminal</b> in the applications menu.</p>
+          <p class="os-linux" lang="es">En Linux, presione <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> o busque <b>Terminal</b> en el menú de aplicaciones.</p>
+          <div class="tip" lang="pt"><b>Para colar:</b> <span class="os-win">clique com o botão direito dentro da janela</span><span class="os-mac">use <kbd>⌘ Cmd</kbd> + <kbd>V</kbd></span><span class="os-linux">use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd></span>. Depois aperte <kbd>Enter</kbd> para executar.</div>
+          <div class="tip" lang="en"><b>To paste:</b> <span class="os-win">right-click inside the window</span><span class="os-mac">use <kbd>⌘ Cmd</kbd> + <kbd>V</kbd></span><span class="os-linux">use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd></span>. Then press <kbd>Enter</kbd> to run it.</div>
+          <div class="tip" lang="es"><b>Para pegar:</b> <span class="os-win">haga clic derecho dentro de la ventana</span><span class="os-mac">use <kbd>⌘ Cmd</kbd> + <kbd>V</kbd></span><span class="os-linux">use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd></span>. Luego presione <kbd>Enter</kbd> para ejecutar.</div>
         </div>
       </li>
 
       <li>
-        <h3>Instale o uv</h3>
+        <h3 lang="pt">Instale o uv</h3><h3 lang="en">Install uv</h3><h3 lang="es">Instale uv</h3>
         <div class="txt">
-          <p>O <b>uv</b> é um programa gratuito que baixa, sozinho, as peças em Python que o tutor usa para ler os documentos e gerar os relatórios em PDF.</p>
-          <div class="code os-win"><button class="copy" type="button">copiar</button><pre>powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"</pre></div>
-          <div class="code os-unix"><button class="copy" type="button">copiar</button><pre>curl -LsSf https://astral.sh/uv/install.sh | sh</pre></div>
-          <div class="tip">Ao terminar, <b>feche o terminal e abra outro</b>. Isso vale para todos os passos de instalação.</div>
+          <p lang="pt">O <b>uv</b> é um programa gratuito que baixa, sozinho, as peças em Python que o tutor usa para ler os documentos e gerar os relatórios em PDF. Cole o comando, aperte <kbd>Enter</kbd> e espere terminar.</p>
+          <p lang="en"><b>uv</b> is a free program that downloads, on its own, the Python pieces the tutor uses to read the documents and write the PDF reports. Paste the command, press <kbd>Enter</kbd> and wait for it to finish.</p>
+          <p lang="es"><b>uv</b> es un programa gratuito que descarga, por sí solo, las piezas en Python que el tutor usa para leer los documentos y generar los informes en PDF. Pegue el comando, presione <kbd>Enter</kbd> y espere a que termine.</p>
+          <div class="code os-win"><button class="copy" type="button">copy</button><pre>powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"</pre></div>
+          <div class="code os-unix"><button class="copy" type="button">copy</button><pre>curl -LsSf https://astral.sh/uv/install.sh | sh</pre></div>
+          <div class="tip" lang="pt">Ao terminar, <b>feche o terminal e abra outro</b>. Isso vale para todos os passos de instalação.</div>
+          <div class="tip" lang="en">When it finishes, <b>close the terminal and open a new one</b>. This applies to every installation step.</div>
+          <div class="tip" lang="es">Al terminar, <b>cierre la terminal y abra otra</b>. Esto vale para todos los pasos de instalación.</div>
         </div>
       </li>
 
       <li>
-        <h3>Instale o assistente de IA</h3>
+        <h3 lang="pt">Instale o assistente de IA</h3><h3 lang="en">Install the AI assistant</h3><h3 lang="es">Instale el asistente de IA</h3>
         <div class="txt">
-          <p>É o assistente que vai conduzir a revisão. O instalador não mostra progresso enquanto baixa; espere a linha de comando voltar.</p>
-          <div class="code ai-claude os-win"><button class="copy" type="button">copiar</button><pre>irm https://claude.ai/install.ps1 | iex</pre></div>
-          <div class="code ai-claude os-unix"><button class="copy" type="button">copiar</button><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div>
-          <div class="code ai-agy os-win"><button class="copy" type="button">copiar</button><pre>irm https://antigravity.google/cli/install.ps1 | iex</pre></div>
-          <div class="code ai-agy os-unix"><button class="copy" type="button">copiar</button><pre>curl -fsSL https://antigravity.google/cli/install.sh | bash</pre></div>
-          <p style="margin-top:12px">Abra um terminal novo e confira. Deve aparecer um número de versão:</p>
-          <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre>claude --version</pre></div>
-          <div class="code ai-agy"><button class="copy" type="button">copiar</button><pre>agy --version</pre></div>
+          <p lang="pt">Este é o assistente de IA que vai conduzir a revisão. O instalador não mostra progresso enquanto baixa; espere a linha de comando voltar.</p>
+          <p lang="en">This is the AI assistant that will run the review. The installer shows no progress while downloading; wait for the prompt to come back.</p>
+          <p lang="es">Este es el asistente de IA que conducirá la revisión. El instalador no muestra progreso mientras descarga; espere a que vuelva la línea de comandos.</p>
+          <div class="code ai-claude os-win"><button class="copy" type="button">copy</button><pre>irm https://claude.ai/install.ps1 | iex</pre></div>
+          <div class="code ai-claude os-unix"><button class="copy" type="button">copy</button><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div>
+          <div class="code ai-agy os-win"><button class="copy" type="button">copy</button><pre>irm https://antigravity.google/cli/install.ps1 | iex</pre></div>
+          <div class="code ai-agy os-unix"><button class="copy" type="button">copy</button><pre>curl -fsSL https://antigravity.google/cli/install.sh | bash</pre></div>
+          <p lang="pt" style="margin-top:12px">Abra um terminal novo e confira se a instalação deu certo. Deve aparecer um número de versão:</p>
+          <p lang="en" style="margin-top:12px">Open a new terminal and check that it worked. A version number should appear:</p>
+          <p lang="es" style="margin-top:12px">Abra una terminal nueva y compruebe la instalación. Debe aparecer un número de versión:</p>
+          <div class="code ai-claude"><button class="copy" type="button">copy</button><pre>claude --version</pre></div>
+          <div class="code ai-agy"><button class="copy" type="button">copy</button><pre>agy --version</pre></div>
         </div>
       </li>
 
       <li>
-        <h3>Entre na sua conta</h3>
+        <h3 lang="pt">Entre na sua conta</h3><h3 lang="en">Sign in</h3><h3 lang="es">Inicie sesión</h3>
         <div class="txt">
-          <p>Digite o comando abaixo. Na primeira vez, o navegador abre para você entrar na sua conta; volte ao terminal quando terminar.</p>
-          <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre>claude</pre></div>
-          <div class="code ai-agy"><button class="copy" type="button">copiar</button><pre>agy</pre></div>
-          <p class="ai-claude" style="margin-top:12px">Quando aparecer a pergunta sobre confiar na pasta, escolha <b>Yes</b>. Para sair do assistente, digite <code>/exit</code>.</p>
-          <p class="ai-agy" style="margin-top:12px">Para sair do assistente, aperte <kbd>Ctrl</kbd> + <kbd>C</kbd> duas vezes.</p>
+          <p lang="pt">Digite o comando abaixo. Na primeira vez, o navegador abre para você entrar na sua conta; volte ao terminal quando terminar.</p>
+          <p lang="en">Type the command below. The first time, the browser opens for you to sign in; come back to the terminal when you are done.</p>
+          <p lang="es">Escriba el comando de abajo. La primera vez, el navegador se abre para que inicie sesión; vuelva a la terminal al terminar.</p>
+          <div class="code ai-claude"><button class="copy" type="button">copy</button><pre>claude</pre></div>
+          <div class="code ai-agy"><button class="copy" type="button">copy</button><pre>agy</pre></div>
+          <p class="ai-claude" lang="pt" style="margin-top:12px">Quando aparecer a pergunta sobre confiar na pasta, escolha <b>Yes</b>. Para sair do assistente, digite <code>/exit</code>.</p>
+          <p class="ai-claude" lang="en" style="margin-top:12px">When asked whether to trust the folder, choose <b>Yes</b>. To leave the assistant, type <code>/exit</code>.</p>
+          <p class="ai-claude" lang="es" style="margin-top:12px">Cuando pregunte si confía en la carpeta, elija <b>Yes</b>. Para salir del asistente, escriba <code>/exit</code>.</p>
+          <p class="ai-agy" lang="pt" style="margin-top:12px">Para sair do assistente, aperte <kbd>Ctrl</kbd> + <kbd>C</kbd> duas vezes.</p>
+          <p class="ai-agy" lang="en" style="margin-top:12px">To leave the assistant, press <kbd>Ctrl</kbd> + <kbd>C</kbd> twice.</p>
+          <p class="ai-agy" lang="es" style="margin-top:12px">Para salir del asistente, presione <kbd>Ctrl</kbd> + <kbd>C</kbd> dos veces.</p>
         </div>
       </li>
 
       <li>
-        <h3>Instale o tutor</h3>
+        <h3 lang="pt">Instale o tutor</h3><h3 lang="en">Install the tutor</h3><h3 lang="es">Instale el tutor</h3>
         <div class="txt">
-          <p class="ai-claude">Com o Claude Code aberto (passo 4), cole as duas linhas, <b>uma de cada vez</b>, apertando <kbd>Enter</kbd> depois de cada uma:</p>
-          <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre><span class="p">&gt; </span>/plugin marketplace add LaBiOmicS/cep-umc-tutor</pre></div>
-          <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre><span class="p">&gt; </span>/plugin install cep-umc-tutor@labiomics</pre></div>
-          <p class="ai-claude" style="margin-top:12px">Depois digite <code>/exit</code>. O tutor passa a funcionar na próxima vez que você abrir o Claude Code. Se você já usa outro plugin LaBiOmicS, o marketplace <code>labiomics</code> é o mesmo.</p>
-          <p class="ai-agy">Baixe o plugin em <a href="https://github.com/LaBiOmicS/cep-umc-tutor/archive/refs/tags/v0.2.0.zip">cep-umc-tutor-0.2.0.zip</a> e extraia o arquivo (clique direito → <b>Extrair tudo</b> no Windows; dois cliques no Mac). No terminal, fora do assistente, digite <code>agy plugin install </code> com um espaço no final, <b>arraste a pasta extraída para a janela</b> e aperte <kbd>Enter</kbd>. Depois ative o plugin:</p>
-          <div class="code ai-agy"><button class="copy" type="button">copiar</button><pre>agy plugin install <span class="ph os-win">C:\Users\Ana\Downloads\cep-umc-tutor-0.2.0</span><span class="ph os-mac">/Users/ana/Downloads/cep-umc-tutor-0.2.0</span><span class="ph os-linux">/home/ana/Downloads/cep-umc-tutor-0.2.0</span>
+          <p class="ai-claude" lang="pt">Com o Claude Code aberto (passo 4), cole as duas linhas, <b>uma de cada vez</b>, apertando <kbd>Enter</kbd> depois de cada uma:</p>
+          <p class="ai-claude" lang="en">With Claude Code open (step 4), paste the two lines, <b>one at a time</b>, pressing <kbd>Enter</kbd> after each:</p>
+          <p class="ai-claude" lang="es">Con Claude Code abierto (paso 4), pegue las dos líneas, <b>una por vez</b>, presionando <kbd>Enter</kbd> después de cada una:</p>
+          <div class="code ai-claude"><button class="copy" type="button">copy</button><pre><span class="p">&gt; </span>/plugin marketplace add LaBiOmicS/cep-umc-tutor</pre></div>
+          <div class="code ai-claude"><button class="copy" type="button">copy</button><pre><span class="p">&gt; </span>/plugin install cep-umc-tutor@labiomics</pre></div>
+          <p class="ai-claude" lang="pt" style="margin-top:12px">Depois digite <code>/exit</code>. O tutor passa a funcionar na próxima vez que você abrir o Claude Code. Se você já usa outro plugin LaBiOmicS, o marketplace <code>labiomics</code> é o mesmo.</p>
+          <p class="ai-claude" lang="en" style="margin-top:12px">Then type <code>/exit</code>. The tutor works the next time you open Claude Code. If you already use another LaBiOmicS plugin, the <code>labiomics</code> marketplace is the same.</p>
+          <p class="ai-claude" lang="es" style="margin-top:12px">Luego escriba <code>/exit</code>. El tutor funciona la próxima vez que abra Claude Code. Si ya usa otro plugin de LaBiOmicS, el marketplace <code>labiomics</code> es el mismo.</p>
+          <p class="ai-agy" lang="pt">Baixe o plugin em <a href="https://github.com/LaBiOmicS/cep-umc-tutor/archive/refs/tags/v0.2.0.zip">cep-umc-tutor-0.2.0.zip</a> e extraia o arquivo (clique direito → <b>Extrair tudo</b> no Windows; dois cliques no Mac). No terminal, fora do assistente, digite <code>agy plugin install </code> com um espaço no final, <b>arraste a pasta extraída para a janela</b> e aperte <kbd>Enter</kbd>. Depois ative o plugin:</p>
+          <p class="ai-agy" lang="en">Download the plugin from <a href="https://github.com/LaBiOmicS/cep-umc-tutor/archive/refs/tags/v0.2.0.zip">cep-umc-tutor-0.2.0.zip</a> and extract it (right-click → <b>Extract all</b> on Windows; double-click on a Mac). In the terminal, outside the assistant, type <code>agy plugin install </code> with a trailing space, <b>drag the extracted folder into the window</b> and press <kbd>Enter</kbd>. Then enable the plugin:</p>
+          <p class="ai-agy" lang="es">Descargue el plugin en <a href="https://github.com/LaBiOmicS/cep-umc-tutor/archive/refs/tags/v0.2.0.zip">cep-umc-tutor-0.2.0.zip</a> y extraiga el archivo (clic derecho → <b>Extraer todo</b> en Windows; doble clic en Mac). En la terminal, fuera del asistente, escriba <code>agy plugin install </code> con un espacio al final, <b>arrastre la carpeta extraída a la ventana</b> y presione <kbd>Enter</kbd>. Luego active el plugin:</p>
+          <div class="code ai-agy"><button class="copy" type="button">copy</button><pre>agy plugin install <span class="ph os-win">C:\Users\Ana\Downloads\cep-umc-tutor-0.2.0</span><span class="ph os-mac">/Users/ana/Downloads/cep-umc-tutor-0.2.0</span><span class="ph os-linux">/home/ana/Downloads/cep-umc-tutor-0.2.0</span>
 agy plugin enable cep-umc-tutor</pre></div>
         </div>
       </li>
 
       <li>
-        <h3>Separe os documentos numa pasta</h3>
+        <h3 lang="pt">Separe os documentos numa pasta</h3><h3 lang="en">Put the documents in a folder</h3><h3 lang="es">Reúna los documentos en una carpeta</h3>
         <div class="txt">
-          <p>Crie uma pasta, por exemplo <b>tcc</b> dentro de <b>Documentos</b>, e dentro dela uma subpasta <b>protocolo</b> com os documentos que vão para a Plataforma Brasil: projeto, folha de rosto, TCLE, TALE, TAI, cartas, questionários. Use os <a href="https://www.umc.br/comite-de-etica-cep/">modelos oficiais do CEP-UMC</a>.</p>
-          <p>No terminal, digite <code>cd </code> (com espaço), <b>arraste a pasta tcc para a janela</b> e aperte <kbd>Enter</kbd>:</p>
-          <div class="code"><button class="copy" type="button">copiar</button><pre>cd <span class="ph os-win">C:\Users\Ana\Documents\tcc</span><span class="ph os-mac">/Users/ana/Documents/tcc</span><span class="ph os-linux">/home/ana/Documentos/tcc</span></pre></div>
-          <div class="tip">Ainda sem documentos? Pule para o passo 7 e peça o <b>planejamento</b>: o tutor diz o que preparar.</div>
+          <p lang="pt">Crie uma pasta, por exemplo <b>tcc</b> dentro de <b>Documentos</b>, e dentro dela uma subpasta <b>protocolo</b> com os documentos que vão para a Plataforma Brasil: projeto, folha de rosto, TCLE, TALE, TAI, cartas, questionários. Use os <a href="https://www.umc.br/comite-de-etica-cep/">modelos oficiais do CEP-UMC</a>.</p>
+          <p lang="en">Create a folder, for example <b>tcc</b> inside <b>Documents</b>, and inside it a <b>protocolo</b> subfolder with the documents that go to Plataforma Brasil: project, cover sheet, consent and assent forms, site permits, letters, questionnaires. Use the <a href="https://www.umc.br/comite-de-etica-cep/">official CEP-UMC templates</a>.</p>
+          <p lang="es">Cree una carpeta, por ejemplo <b>tcc</b> dentro de <b>Documentos</b>, y dentro de ella una subcarpeta <b>protocolo</b> con los documentos que van a la Plataforma Brasil: proyecto, hoja de portada, consentimiento, asentimiento, autorizaciones, cartas, cuestionarios. Use los <a href="https://www.umc.br/comite-de-etica-cep/">modelos oficiales del CEP-UMC</a>.</p>
+          <p lang="pt">No terminal, digite <code>cd </code> (com espaço), <b>arraste a pasta tcc para a janela</b> e aperte <kbd>Enter</kbd>:</p>
+          <p lang="en">In the terminal, type <code>cd </code> (with a space), <b>drag the tcc folder into the window</b> and press <kbd>Enter</kbd>:</p>
+          <p lang="es">En la terminal, escriba <code>cd </code> (con espacio), <b>arrastre la carpeta tcc a la ventana</b> y presione <kbd>Enter</kbd>:</p>
+          <div class="code"><button class="copy" type="button">copy</button><pre>cd <span class="ph os-win">C:\Users\Ana\Documents\tcc</span><span class="ph os-mac">/Users/ana/Documents/tcc</span><span class="ph os-linux">/home/ana/Documentos/tcc</span></pre></div>
+          <div class="tip" lang="pt">Ainda sem documentos? Pule para o passo 7 e peça o <b>planejamento</b>: o tutor diz o que preparar, quem assina e até quando submeter.</div>
+          <div class="tip" lang="en">No documents yet? Skip to step 7 and ask for the <b>plan</b>: the tutor says what to prepare, who signs and when to submit.</div>
+          <div class="tip" lang="es">¿Todavía sin documentos? Pase al paso 7 y pida la <b>planificación</b>: el tutor indica qué preparar, quién firma y hasta cuándo enviar.</div>
         </div>
       </li>
 
       <li>
-        <h3>Peça a revisão</h3>
+        <h3 lang="pt">Peça a revisão</h3><h3 lang="en">Ask for the review</h3><h3 lang="es">Pida la revisión</h3>
         <div class="txt">
-          <p>Ainda nessa pasta, abra o assistente e escreva o pedido com as suas palavras, ou use um dos <a href="#prompts">prompts prontos</a>.</p>
-          <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre>claude</pre></div>
-          <div class="code ai-agy"><button class="copy" type="button">copiar</button><pre>agy</pre></div>
-          <div class="code"><button class="copy" type="button">copiar</button><pre><span class="p">&gt; </span>Revise meu protocolo da pasta <span class="ph">protocolo/</span> antes de submeter ao CEP-UMC.</pre></div>
-          <div class="tip warn"><b>O assistente vai confirmar com você</b> o tipo de cada documento, as respostas da triagem (menores? online? material biológico?) e o <b>nível do trabalho</b> antes de avaliar. Confira: os documentos exigidos e o tom das sugestões dependem disso. Ele também vai pedir permissão para rodar programas (<code>uv run …</code>); escolha <b>Yes</b>.</div>
+          <p lang="pt">Ainda nessa pasta, abra o assistente e escreva o pedido com as suas palavras, ou use um dos <a href="#prompts">prompts prontos</a>.</p>
+          <p lang="en">Still in that folder, open the assistant and write the request in your own words, or use one of the <a href="#prompts">ready prompts</a>.</p>
+          <p lang="es">En esa misma carpeta, abra el asistente y escriba el pedido con sus palabras, o use uno de los <a href="#prompts">prompts listos</a>.</p>
+          <div class="code ai-claude"><button class="copy" type="button">copy</button><pre>claude</pre></div>
+          <div class="code ai-agy"><button class="copy" type="button">copy</button><pre>agy</pre></div>
+          <div class="code" lang="pt"><button class="copy" type="button">copy</button><pre><span class="p">&gt; </span>Revise meu protocolo da pasta <span class="ph">protocolo/</span> antes de submeter ao CEP-UMC.</pre></div>
+          <div class="code" lang="en"><button class="copy" type="button">copy</button><pre><span class="p">&gt; </span>Review my protocol in <span class="ph">protocolo/</span> before I submit it to the CEP-UMC.</pre></div>
+          <div class="code" lang="es"><button class="copy" type="button">copy</button><pre><span class="p">&gt; </span>Revisa mi protocolo de la carpeta <span class="ph">protocolo/</span> antes de enviarlo al CEP-UMC.</pre></div>
+          <div class="tip warn" lang="pt"><b>O assistente vai confirmar com você</b> o tipo de cada documento, as respostas da triagem (menores? online? material biológico?) e o <b>nível do trabalho</b> antes de avaliar. Confira: os documentos exigidos e o tom das sugestões dependem disso. Ele também vai pedir permissão para rodar programas (<code>uv run …</code>); escolha <b>Yes</b>.</div>
+          <div class="tip warn" lang="en"><b>The assistant will confirm with you</b> the type of each document, the screening answers (minors? online? biological material?) and the <b>level of the work</b> before reviewing. Check them: the required documents and the tone of the suggestions depend on them. It will also ask permission to run programs (<code>uv run …</code>); choose <b>Yes</b>.</div>
+          <div class="tip warn" lang="es"><b>El asistente confirmará con usted</b> el tipo de cada documento, las respuestas del cribado (¿menores? ¿en línea? ¿material biológico?) y el <b>nivel del trabajo</b> antes de evaluar. Verifíquelos: los documentos exigidos y el tono de las sugerencias dependen de ello. También pedirá permiso para ejecutar programas (<code>uv run …</code>); elija <b>Yes</b>.</div>
         </div>
       </li>
 
       <li>
-        <h3>Leia o relatório e corrija</h3>
+        <h3 lang="pt">Leia o relatório e corrija</h3><h3 lang="en">Read the report and fix</h3><h3 lang="es">Lea el informe y corrija</h3>
         <div class="txt">
-          <p>Os arquivos ficam em <code>cep_tutor/&lt;projeto&gt;</code>. O aluno começa pelo <b>relatorio.pdf</b>, em "Comece por aqui". O orientador começa pelo <b>relatorio_orientador.pdf</b>.</p>
-          <p>Corrija e peça a revisão de novo. A partir da segunda rodada, o tutor confere o que já apontou e mostra o que foi resolvido. São <b>no máximo três rodadas</b>: depois disso, conclua com o orientador e submeta.</p>
-          <div class="tip">A IA pode errar. O relatório é um rascunho a conferir com o orientador; em caso de dúvida, consulte o CEP-UMC.</div>
+          <p lang="pt">Os arquivos ficam em <code>cep_tutor/&lt;projeto&gt;</code>. O aluno começa pelo <b>relatorio.pdf</b>, em "Comece por aqui"; o orientador, pelo <b>relatorio_orientador.pdf</b>. Corrija e peça a revisão de novo: a partir da segunda rodada, o tutor confere o que já apontou. São <b>no máximo três rodadas</b>.</p>
+          <p lang="en">Files are saved in <code>cep_tutor/&lt;project&gt;</code>. The student starts with <b>relatorio.pdf</b>, at "Start here"; the supervisor, with <b>relatorio_orientador.pdf</b>. Fix and ask again: from the second round, the tutor checks what it already pointed out. There are <b>at most three rounds</b>.</p>
+          <p lang="es">Los archivos quedan en <code>cep_tutor/&lt;proyecto&gt;</code>. El estudiante empieza por <b>relatorio.pdf</b>, en "Empiece aquí"; el director, por <b>relatorio_orientador.pdf</b>. Corrija y pida la revisión de nuevo: desde la segunda ronda, el tutor verifica lo que ya señaló. Son <b>como máximo tres rondas</b>.</p>
+          <div class="tip" lang="pt">A IA pode errar. O relatório é um rascunho a conferir com o orientador; em caso de dúvida, consulte o CEP-UMC.</div>
+          <div class="tip" lang="en">The AI can be wrong. The report is a draft to check with your supervisor; when in doubt, ask the CEP-UMC.</div>
+          <div class="tip" lang="es">La IA puede equivocarse. El informe es un borrador para revisar con su director; ante la duda, consulte al CEP-UMC.</div>
         </div>
       </li>
     </ol>
@@ -590,152 +630,216 @@ agy plugin enable cep-umc-tutor</pre></div>
 </section>
 
 <!-- ================================================================ PROMPTS -->
-<section id="prompts">
+<section id="prompts" class="alt">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Prompts</div>
-      <h2>Copie, troque o que está sublinhado e envie.</h2>
-      <p>Os mesmos pedidos funcionam no Claude Code e no Antigravity.</p>
+      <div class="eyebrow"><span lang="pt">Prompts prontos</span><span lang="en">Ready prompts</span><span lang="es">Prompts listos</span></div>
+      <h2 lang="pt">Copie, troque o que está sublinhado e envie.</h2>
+      <h2 lang="en">Copy, replace the underlined parts and send.</h2>
+      <h2 lang="es">Copie, cambie lo subrayado y envíe.</h2>
+      <p lang="pt">Os mesmos pedidos funcionam no Claude Code e no Antigravity. O relatório sai em português, como os documentos do CEP-UMC.</p>
+      <p lang="en">The same requests work in Claude Code and Antigravity. The report is written in Portuguese, like the CEP-UMC documents.</p>
+      <p lang="es">Los mismos pedidos funcionan en Claude Code y Antigravity. El informe sale en portugués, como los documentos del CEP-UMC.</p>
     </div>
     <div class="prompts">
       <div class="pcard">
-        <div class="when">Começando</div>
-        <h3>Planejar a submissão <span class="badge">sem documentos</span></h3>
-        <p>Documentos a preparar, quem assina, data-limite e erros comuns.</p>
-        <div class="code"><button class="copy" type="button">copiar</button>
-          <pre>Vou fazer um <span class="ph">TCC de Psicologia</span> com <span class="ph">entrevistas gravadas com estudantes da UMC</span>. Quero começar a coleta em <span class="ph">junho de 2027</span>. Que documentos preciso enviar ao CEP-UMC e até quando devo submeter?</pre></div>
+        <div class="when"><span lang="pt">Começando</span><span lang="en">Getting started</span><span lang="es">Empezando</span> <span class="badge"><span lang="pt">sem documentos</span><span lang="en">no documents</span><span lang="es">sin documentos</span></span></div>
+        <h3 lang="pt">Planejar a submissão</h3><h3 lang="en">Plan the submission</h3><h3 lang="es">Planificar el envío</h3>
+        <p lang="pt">Documentos a preparar, quem assina, data-limite e erros comuns.</p><p lang="en">Documents to prepare, who signs, deadline and common mistakes.</p><p lang="es">Documentos a preparar, quién firma, fecha límite y errores comunes.</p>
+        <div class="code"><button class="copy" type="button">copy</button>
+          <pre lang="pt">Vou fazer um <span class="ph">TCC de Psicologia</span> com <span class="ph">entrevistas gravadas com estudantes da UMC</span>. Quero começar a coleta em <span class="ph">junho de 2027</span>. Que documentos preciso enviar ao CEP-UMC e até quando devo submeter?</pre>
+          <pre lang="en">I am doing an <span class="ph">undergraduate psychology thesis</span> with <span class="ph">recorded interviews with UMC students</span>. I want to start collecting data in <span class="ph">June 2027</span>. Which documents must I send to the CEP-UMC and when should I submit?</pre>
+          <pre lang="es">Voy a hacer un <span class="ph">trabajo final de Psicología</span> con <span class="ph">entrevistas grabadas a estudiantes de la UMC</span>. Quiero empezar la recolección en <span class="ph">junio de 2027</span>. ¿Qué documentos debo enviar al CEP-UMC y hasta cuándo debo enviarlos?</pre></div>
       </div>
       <div class="pcard">
-        <div class="when">Antes de submeter</div>
-        <h3>Revisão completa</h3>
-        <p>As duas partes do relatório e a página do orientador.</p>
-        <div class="code"><button class="copy" type="button">copiar</button>
-          <pre>Revise meu protocolo da pasta <span class="ph">protocolo/</span> antes de submeter ao CEP-UMC. É uma <span class="ph">dissertação de mestrado</span>.</pre></div>
+        <div class="when"><span lang="pt">Antes de submeter</span><span lang="en">Before submitting</span><span lang="es">Antes de enviar</span></div>
+        <h3 lang="pt">Revisão completa</h3><h3 lang="en">Full review</h3><h3 lang="es">Revisión completa</h3>
+        <p lang="pt">As duas partes do relatório e a página do orientador.</p><p lang="en">Both parts of the report and the supervisor page.</p><p lang="es">Las dos partes del informe y la página del director.</p>
+        <div class="code"><button class="copy" type="button">copy</button>
+          <pre lang="pt">Revise meu protocolo da pasta <span class="ph">protocolo/</span> antes de submeter ao CEP-UMC. É uma <span class="ph">dissertação de mestrado</span>.</pre>
+          <pre lang="en">Review my protocol in <span class="ph">protocolo/</span> before I submit it to the CEP-UMC. It is a <span class="ph">master's dissertation</span>.</pre>
+          <pre lang="es">Revisa mi protocolo de la carpeta <span class="ph">protocolo/</span> antes de enviarlo al CEP-UMC. Es una <span class="ph">tesis de maestría</span>.</pre></div>
       </div>
       <div class="pcard">
-        <div class="when">Só a parte ética</div>
-        <h3>Revisar só o que o CEP cobra</h3>
-        <p>Para quem já tem o projeto aprovado na banca e quer só a Parte 1.</p>
-        <div class="code"><button class="copy" type="button">copiar</button>
-          <pre>Revise só a parte ética e documental do protocolo em <span class="ph">protocolo/</span>, sem sugestões de metodologia.</pre></div>
+        <div class="when"><span lang="pt">Só a parte ética</span><span lang="en">Ethics only</span><span lang="es">Solo la parte ética</span></div>
+        <h3 lang="pt">Revisar só o que o CEP cobra</h3><h3 lang="en">Review only what the committee requires</h3><h3 lang="es">Revisar solo lo que exige el comité</h3>
+        <p lang="pt">Para quem já passou pela banca e quer só a Parte 1.</p><p lang="en">For projects already approved by the examining board that only need Part 1.</p><p lang="es">Para quien ya pasó por el tribunal y solo quiere la Parte 1.</p>
+        <div class="code"><button class="copy" type="button">copy</button>
+          <pre lang="pt">Revise só a parte ética e documental do protocolo em <span class="ph">protocolo/</span>, sem sugestões de metodologia.</pre>
+          <pre lang="en">Review only the ethics and documents of the protocol in <span class="ph">protocolo/</span>, without methods suggestions.</pre>
+          <pre lang="es">Revisa solo la parte ética y documental del protocolo en <span class="ph">protocolo/</span>, sin sugerencias de metodología.</pre></div>
       </div>
       <div class="pcard">
-        <div class="when">Dúvida pontual</div>
-        <h3>Consultar a base</h3>
-        <p>A resposta cita o requisito e a fonte.</p>
-        <div class="code"><button class="copy" type="button">copiar</button>
-          <pre>Preciso de <span class="ph">TALE</span> para <span class="ph">adolescentes de 16 anos</span>? Quem assina o <span class="ph">TAI</span>?</pre></div>
+        <div class="when"><span lang="pt">Dúvida pontual</span><span lang="en">Quick question</span><span lang="es">Duda puntual</span></div>
+        <h3 lang="pt">Consultar a base</h3><h3 lang="en">Ask the knowledge base</h3><h3 lang="es">Consultar la base</h3>
+        <p lang="pt">A resposta cita o requisito e a fonte.</p><p lang="en">The answer cites the requirement and the source.</p><p lang="es">La respuesta cita el requisito y la fuente.</p>
+        <div class="code"><button class="copy" type="button">copy</button>
+          <pre lang="pt">Preciso de <span class="ph">TALE</span> para <span class="ph">adolescentes de 16 anos</span>? Quem assina o <span class="ph">TAI</span>?</pre>
+          <pre lang="en">Do I need an <span class="ph">assent form (TALE)</span> for <span class="ph">16-year-olds</span>? Who signs the <span class="ph">site permit (TAI)</span>?</pre>
+          <pre lang="es">¿Necesito <span class="ph">asentimiento (TALE)</span> para <span class="ph">adolescentes de 16 años</span>? ¿Quién firma la <span class="ph">autorización (TAI)</span>?</pre></div>
       </div>
       <div class="pcard">
-        <div class="when">Orientador</div>
-        <h3>Ver se pode submeter</h3>
-        <p>A página de uma folha, com a situação e as assinaturas.</p>
-        <div class="code"><button class="copy" type="button">copiar</button>
-          <pre>Sou o orientador. Revise o protocolo em <span class="ph">protocolo_ana/</span> e me diga se já pode ser submetido e o que falta assinar.</pre></div>
+        <div class="when"><span lang="pt">Orientador</span><span lang="en">Supervisor</span><span lang="es">Director</span></div>
+        <h3 lang="pt">Ver se pode submeter</h3><h3 lang="en">Check if it can be submitted</h3><h3 lang="es">Ver si se puede enviar</h3>
+        <p lang="pt">A página de uma folha, com a situação e as assinaturas.</p><p lang="en">The one-page summary, with the status and signatures.</p><p lang="es">La página única, con la situación y las firmas.</p>
+        <div class="code"><button class="copy" type="button">copy</button>
+          <pre lang="pt">Sou o orientador. Revise o protocolo em <span class="ph">protocolo_ana/</span> e me diga se já pode ser submetido e o que falta assinar.</pre>
+          <pre lang="en">I am the supervisor. Review the protocol in <span class="ph">protocolo_ana/</span> and tell me whether it can be submitted and what still needs signing.</pre>
+          <pre lang="es">Soy el director. Revisa el protocolo en <span class="ph">protocolo_ana/</span> y dime si ya se puede enviar y qué falta firmar.</pre></div>
       </div>
       <div class="pcard">
-        <div class="when">Depois do parecer</div>
-        <h3>Carta-resposta a pendências</h3>
-        <p>Uma entrada por pendência, copiada literalmente, com o texto novo e onde mudou.</p>
-        <div class="code"><button class="copy" type="button">copiar</button>
-          <pre>Recebi o parecer <span class="ph">parecer.pdf</span> com pendências. Me ajude a montar a carta-resposta no modelo do CEP-UMC.</pre></div>
+        <div class="when"><span lang="pt">Depois do parecer</span><span lang="en">After the decision</span><span lang="es">Después del dictamen</span></div>
+        <h3 lang="pt">Carta-resposta a pendências</h3><h3 lang="en">Response letter</h3><h3 lang="es">Carta de respuesta</h3>
+        <p lang="pt">Uma entrada por pendência, com o texto novo e onde mudou.</p><p lang="en">One entry per pending item, with the new text and where it changed.</p><p lang="es">Una entrada por pendiente, con el texto nuevo y dónde cambió.</p>
+        <div class="code"><button class="copy" type="button">copy</button>
+          <pre lang="pt">Recebi o parecer <span class="ph">parecer.pdf</span> com pendências. Me ajude a montar a carta-resposta no modelo do CEP-UMC.</pre>
+          <pre lang="en">I received the decision <span class="ph">parecer.pdf</span> with pending items. Help me write the response letter in the CEP-UMC template.</pre>
+          <pre lang="es">Recibí el dictamen <span class="ph">parecer.pdf</span> con pendientes. Ayúdame a armar la carta de respuesta en el modelo del CEP-UMC.</pre></div>
+      </div>
+      <div class="pcard">
+        <div class="when"><span lang="pt">Nova rodada</span><span lang="en">New round</span><span lang="es">Nueva ronda</span></div>
+        <h3 lang="pt">Conferir as correções</h3><h3 lang="en">Check the fixes</h3><h3 lang="es">Verificar las correcciones</h3>
+        <p lang="pt">Mostra o que foi resolvido, o que continua e o que é novo.</p><p lang="en">Shows what was solved, what remains and what is new.</p><p lang="es">Muestra lo resuelto, lo que sigue y lo nuevo.</p>
+        <div class="code"><button class="copy" type="button">copy</button>
+          <pre lang="pt">Corrigi o protocolo em <span class="ph">protocolo/</span>. Confira se as pendências da revisão anterior foram resolvidas.</pre>
+          <pre lang="en">I fixed the protocol in <span class="ph">protocolo/</span>. Check whether the items from the previous review were solved.</pre>
+          <pre lang="es">Corregí el protocolo en <span class="ph">protocolo/</span>. Verifica si los pendientes de la revisión anterior se resolvieron.</pre></div>
+      </div>
+      <div class="pcard">
+        <div class="when"><span lang="pt">Comando direto</span><span lang="en">Direct command</span><span lang="es">Comando directo</span></div>
+        <h3 lang="pt">Chamar a skill pelo nome</h3><h3 lang="en">Call the skill by name</h3><h3 lang="es">Llamar la skill por su nombre</h3>
+        <p lang="pt">Útil se o assistente não reconhecer o pedido.</p><p lang="en">Useful if the assistant does not pick up the request.</p><p lang="es">Útil si el asistente no reconoce el pedido.</p>
+        <div class="code"><button class="copy" type="button">copy</button><pre>/cep-umc-tutor:cep-tutor <span class="ph">protocolo/</span></pre></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================ COMO FUNCIONA -->
-<section id="como" class="alt">
+<!-- ================================================================ HOW IT WORKS -->
+<section id="como">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Como funciona</div>
-      <h2>Programas onde dá para contar, IA onde é preciso ler.</h2>
-      <p>Leitura dos documentos, triagem, sinais automáticos, severidade e montagem do relatório são programas determinísticos e testados. Os modelos de linguagem entram só para ler o protocolo e julgar, um revisor para cada parte, sem que um veja o trabalho do outro.</p>
+      <div class="eyebrow"><span lang="pt">Como funciona</span><span lang="en">How it works</span><span lang="es">Cómo funciona</span></div>
+      <h2 lang="pt">Cinco etapas, dos documentos ao relatório.</h2><h2 lang="en">Five steps, from documents to report.</h2><h2 lang="es">Cinco etapas, de los documentos al informe.</h2>
+      <p lang="pt">Leitura, triagem, sinais automáticos, severidade e montagem do relatório são programas determinísticos e testados: o mesmo protocolo dá sempre o mesmo resultado. Os modelos de linguagem entram só onde é preciso ler e julgar, um revisor para cada parte.</p>
+      <p lang="en">Reading, screening, automatic signals, severity and report assembly are deterministic, tested programs: the same protocol always gives the same result. Language models come in only where reading and judgement are needed, one reviewer per part.</p>
+      <p lang="es">Lectura, cribado, señales automáticas, severidad y armado del informe son programas deterministas y probados: el mismo protocolo da siempre el mismo resultado. Los modelos de lenguaje intervienen solo donde hace falta leer y juzgar, un revisor por cada parte.</p>
     </div>
-    <div class="pipeline">
-      <div class="step">
-        <h3>Ler e classificar</h3>
-        <p>Extrai o texto de .docx, .doc e .pdf, identifica cada documento e acha restos de modelo (trechos em vermelho, "XXX") e texto oculto.</p>
-      </div>
-      <div class="step">
-        <h3>Triagem</h3>
-        <p>Menores? Online? Material biológico? Local de coleta? Daí sai a lista de documentos esperados × recebidos e o nível do trabalho.</p>
-      </div>
-      <div class="step llm">
-        <h3>Revisor da Parte 1</h3>
-        <p>Lê tudo com a base do CEP-UMC, confirma ou descarta cada sinal automático e cita o trecho e o ID de cada requisito.</p>
-      </div>
-      <div class="step llm">
-        <h3>Revisor da Parte 2</h3>
-        <p>Lê o projeto e os instrumentos com a base acadêmica e o nível do trabalho. Não repete o que é da Parte 1.</p>
-      </div>
-      <div class="step">
-        <h3>Compilar</h3>
-        <p>Severidade tirada da base, Essencial × Para aprofundar por regra fixa, prazo, progresso e os dois relatórios.</p>
-      </div>
+    <div class="pipeline flow" id="flow">
+      <div class="step"><div class="viz" aria-hidden="true"><div class="doc"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span class="scan"></span></div><div class="doc-cap">protocolo/</div><div class="tags"><span class="k" data-t="700">TCLE</span><span class="k" data-t="1100">TAI</span><span class="k" data-t="1500"><span lang="pt">vermelho</span><span lang="en">red text</span><span lang="es">rojo</span></span></div></div><h3 lang="pt">Leitura</h3><h3 lang="en">Reading</h3><h3 lang="es">Lectura</h3>
+        <p lang="pt">Extrai o texto de .docx, .doc e .pdf, identifica cada documento e acha restos de modelo, trechos em vermelho e texto oculto.</p><p lang="en">Extracts text from .docx, .doc and .pdf, identifies each document and finds template leftovers, red passages and hidden text.</p><p lang="es">Extrae el texto de .docx, .doc y .pdf, identifica cada documento y encuentra restos de modelo, fragmentos en rojo y texto oculto.</p></div>
+      <div class="step"><div class="viz" aria-hidden="true"><ul><li class="k" data-t="200"><span class="ok">✓</span> <span lang="pt">adultos</span><span lang="en">adults</span><span lang="es">adultos</span></li><li class="k" data-t="600"><span class="ok">✓</span> <span lang="pt">gravação</span><span lang="en">recording</span><span lang="es">grabación</span></li><li class="k" data-t="1000"><span class="ok">✓</span> <span lang="pt">nível: TCC</span><span lang="en">level: undergrad</span><span lang="es">nivel: grado</span></li><li class="k" data-t="1400"><span class="w">!</span> <span lang="pt">folha de rosto</span><span lang="en">cover sheet</span><span lang="es">portada</span></li><li class="k" data-t="1800"><span class="w">!</span> <span lang="pt">"não há riscos"</span><span lang="en">"no risks"</span><span lang="es">"no hay riesgos"</span></li></ul></div><h3 lang="pt">Triagem</h3><h3 lang="en">Screening</h3><h3 lang="es">Cribado</h3>
+        <p lang="pt">Menores? Online? Material biológico? Local de coleta? Daí saem os documentos esperados × recebidos, o nível e os sinais automáticos.</p><p lang="en">Minors? Online? Biological material? Collection site? This yields expected × received documents, the level and the automatic signals.</p><p lang="es">¿Menores? ¿En línea? ¿Material biológico? ¿Lugar de recolección? De ahí salen los documentos esperados × recibidos, el nivel y las señales automáticas.</p></div>
+      <div class="step llm"><div class="viz" aria-hidden="true"><div class="row t-block k" data-t="300" style="--w:25%;--d:1s"><span class="n">1</span><span class="pbar"><b></b></span></div><div class="row t-ess k" data-t="700" style="--w:60%;--d:1.2s"><span class="n">3</span><span class="pbar"><b></b></span></div><div class="row t-opt k" data-t="1100" style="--w:45%;--d:1.1s"><span class="n">2</span><span class="pbar"><b></b></span></div><div class="stamp k" data-t="1700">PROJ-R01 · TCLE-C11</div></div><h3 lang="pt">Parte 1 · ética</h3><h3 lang="en">Part 1 · ethics</h3><h3 lang="es">Parte 1 · ética</h3>
+        <p lang="pt">Um revisor lê tudo com a base do CEP-UMC, confirma ou descarta cada sinal e cita o trecho e o ID do requisito.</p><p lang="en">A reviewer reads everything with the CEP-UMC base, confirms or discards each signal and cites the passage and requirement ID.</p><p lang="es">Un revisor lee todo con la base del CEP-UMC, confirma o descarta cada señal y cita el fragmento y el ID del requisito.</p></div>
+      <div class="step llm"><div class="viz" aria-hidden="true"><ul><li class="k" data-t="300"><span class="ok">✓</span> <span lang="pt">pergunta e desenho</span><span lang="en">question and design</span><span lang="es">pregunta y diseño</span></li><li class="k" data-t="800"><span class="ok">✓</span> <span lang="pt">amostra e análise</span><span lang="en">sample and analysis</span><span lang="es">muestra y análisis</span></li><li class="k" data-t="1300"><span class="ok">✓</span> <span lang="pt">calibrado: TCC</span><span lang="en">calibrated: undergrad</span><span lang="es">calibrado: grado</span></li></ul></div><h3 lang="pt">Parte 2 · acadêmica</h3><h3 lang="en">Part 2 · academic</h3><h3 lang="es">Parte 2 · académica</h3>
+        <p lang="pt">Outro revisor lê o projeto e os instrumentos com a base acadêmica e o nível, sem repetir o que é da Parte 1.</p><p lang="en">Another reviewer reads the project and instruments with the academic base and the level, without repeating Part 1.</p><p lang="es">Otro revisor lee el proyecto y los instrumentos con la base académica y el nivel, sin repetir la Parte 1.</p></div>
+      <div class="step"><div class="viz" aria-hidden="true"><ul><li class="k" data-t="200"><span class="fi pdf">PDF</span> <span lang="pt">relatório</span><span lang="en">report</span><span lang="es">informe</span></li><li class="k" data-t="550"><span class="fi pdf">PDF</span> <span lang="pt">orientador</span><span lang="en">supervisor</span><span lang="es">director</span></li><li class="k" data-t="900"><span class="fi">MD</span> <span lang="pt">triagem</span><span lang="en">screening</span><span lang="es">cribado</span></li><li class="k" data-t="1250"><span class="fi">JSON</span> <span lang="pt">dados</span><span lang="en">data</span><span lang="es">datos</span></li></ul></div><h3 lang="pt">Relatórios</h3><h3 lang="en">Reports</h3><h3 lang="es">Informes</h3>
+        <p lang="pt">Severidade tirada da base, Essencial × Para aprofundar por regra fixa, prazo de submissão e progresso entre rodadas.</p><p lang="en">Severity taken from the base, Essential × Going further by a fixed rule, submission deadline and progress between rounds.</p><p lang="es">Severidad tomada de la base, Esencial × Para profundizar por regla fija, plazo de envío y progreso entre rondas.</p></div>
     </div>
-    <div class="legend"><span><i></i>Programa determinístico</span><span><i class="l-llm"></i>Modelo de linguagem</span></div>
+    <div class="legend">
+      <span><i></i><span lang="pt">programa determinístico (Python)</span><span lang="en">deterministic program (Python)</span><span lang="es">programa determinista (Python)</span></span>
+      <span><i class="l-llm"></i><span lang="pt">modelo de linguagem</span><span lang="en">language model</span><span lang="es">modelo de lenguaje</span></span>
+      <button class="chip-btn replay-btn" type="button" data-replay="flow">↻ <span lang="pt">Repetir animação</span><span lang="en">Replay animation</span><span lang="es">Repetir animación</span></button>
+    </div>
   </div>
 </section>
 
-<!-- ================================================================ FINITA -->
+<section id="perfis" class="alt">
+  <div class="wrap grid-2">
+    <div>
+      <div class="sec-head" style="margin-bottom:24px">
+        <div class="eyebrow"><span lang="pt">Para quem</span><span lang="en">Who it is for</span><span lang="es">Para quién</span></div>
+        <h2 lang="pt">Cada perfil começa por um lugar diferente.</h2><h2 lang="en">Each reader starts in a different place.</h2><h2 lang="es">Cada perfil empieza por un lugar distinto.</h2>
+        <p lang="pt">O que é exigência do CEP vale igual para todos. O que muda com o nível é a Parte 2: quantas sugestões são essenciais e o tom.</p>
+        <p lang="en">Committee requirements are the same for everyone. What changes with the level is Part 2: how many suggestions are essential, and the tone.</p>
+        <p lang="es">Lo que exige el comité vale igual para todos. Lo que cambia con el nivel es la Parte 2: cuántas sugerencias son esenciales y el tono.</p>
+      </div>
+      <table class="comp">
+        <thead><tr><th lang="pt">Nível</th><th lang="en">Level</th><th lang="es">Nivel</th><th lang="pt">Essencial</th><th lang="en">Essential</th><th lang="es">Esencial</th></tr></thead>
+        <tbody>
+          <tr><td><span lang="pt">Graduação</span><span lang="en">Undergraduate</span><span lang="es">Grado</span></td><td lang="pt">até 5 · tom de tutoria</td><td lang="en">up to 5 · tutoring tone</td><td lang="es">hasta 5 · tono de tutoría</td></tr>
+          <tr><td><span lang="pt">Especialização</span><span lang="en">Specialization</span><span lang="es">Especialización</span></td><td lang="pt">até 6</td><td lang="en">up to 6</td><td lang="es">hasta 6</td></tr>
+          <tr><td><span lang="pt">Mestrado</span><span lang="en">Master's</span><span lang="es">Maestría</span></td><td lang="pt">até 8 · tom de banca</td><td lang="en">up to 8 · examiner tone</td><td lang="es">hasta 8 · tono de tribunal</td></tr>
+          <tr><td><span lang="pt">Doutorado</span><span lang="en">PhD</span><span lang="es">Doctorado</span></td><td lang="pt">até 8</td><td lang="en">up to 8</td><td lang="es">hasta 8</td></tr>
+          <tr><td><span lang="pt">Docente</span><span lang="en">Faculty</span><span lang="es">Docente</span></td><td lang="pt">até 8 · entre pares</td><td lang="en">up to 8 · peer to peer</td><td lang="es">hasta 8 · entre pares</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="roles">
+      <div class="role-card"><div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></div>
+        <div><h3 lang="pt">Aluno de graduação</h3><h3 lang="en">Undergraduate student</h3><h3 lang="es">Estudiante de grado</h3>
+        <p lang="pt">O <b>planejamento</b> diz que documentos preparar antes de escrever. O relatório abre com "Comece por aqui": até cinco ações, em ordem, e uma legenda do que é bloqueante, pendência e sugestão.</p>
+        <p lang="en">The <b>plan</b> says which documents to prepare before writing. The report opens with "Start here": up to five actions, in order, and a legend of blocking, pending and suggestion.</p>
+        <p lang="es">La <b>planificación</b> indica qué documentos preparar antes de escribir. El informe abre con "Empiece aquí": hasta cinco acciones, en orden, y una leyenda de bloqueante, pendiente y sugerencia.</p></div></div>
+      <div class="role-card"><div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <div><h3 lang="pt">Aluno de pós</h3><h3 lang="en">Graduate student</h3><h3 lang="es">Estudiante de posgrado</h3>
+        <p lang="pt">Lê dissertações e teses inteiras, calcula a data para submeter a partir do cronograma e confere o PDF da Plataforma Brasil contra o projeto.</p>
+        <p lang="en">Reads full dissertations and theses, computes the submission date from the timeline and checks the Plataforma Brasil PDF against the project.</p>
+        <p lang="es">Lee tesis completas, calcula la fecha de envío a partir del cronograma y compara el PDF de la Plataforma Brasil con el proyecto.</p></div></div>
+      <div class="role-card"><div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <div><h3 lang="pt">Orientador</h3><h3 lang="en">Supervisor</h3><h3 lang="es">Director</h3>
+        <p lang="pt">Uma página: pronto ou não, o que falta, quem assina cada documento e o prazo. Na graduação, é o orientador quem submete na Plataforma Brasil.</p>
+        <p lang="en">One page: ready or not, what is missing, who signs each document and the deadline. For undergraduates, the supervisor submits on Plataforma Brasil.</p>
+        <p lang="es">Una página: listo o no, qué falta, quién firma cada documento y el plazo. En grado, el director es quien envía en la Plataforma Brasil.</p></div></div>
+      <div class="role-card"><div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+        <div><h3 lang="pt">Docente</h3><h3 lang="en">Faculty</h3><h3 lang="es">Docente</h3>
+        <p lang="pt">Conferência rápida antes de submeter o próprio projeto, com sugestões entre pares e sem tom didático.</p>
+        <p lang="en">A quick check before submitting one's own project, with peer-level suggestions and no teaching tone.</p>
+        <p lang="es">Verificación rápida antes de enviar el propio proyecto, con sugerencias entre pares y sin tono didáctico.</p></div></div>
+    </div>
+  </div>
+</section>
+
 <section id="rodadas">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Revisão com fim</div>
-      <h2>Corrigir não abre uma lista nova a cada rodada.</h2>
-      <p>O pior que um tutor pode fazer é o ciclo "corrige, aparece mais coisa". Por isso a revisão tem um número fixo de rodadas, e cada parte do relatório tem um limite de itens.</p>
+      <div class="eyebrow"><span lang="pt">Revisão com fim</span><span lang="en">A review that ends</span><span lang="es">Una revisión con fin</span></div>
+      <h2 lang="pt">Corrigir não abre uma lista nova a cada rodada.</h2><h2 lang="en">Fixing does not open a new list every round.</h2><h2 lang="es">Corregir no abre una lista nueva en cada ronda.</h2>
+      <p lang="pt">O pior que um tutor pode fazer é o ciclo "corrige, aparece mais coisa". Por isso a revisão tem um número fixo de rodadas, e cada bloco do relatório tem um limite de itens. Bloqueantes e pendências nunca são cortados.</p>
+      <p lang="en">The worst a tutor can do is the "fix it, something else shows up" loop. So the review has a fixed number of rounds, and each block of the report has a maximum number of items. Blocking and pending items are never cut.</p>
+      <p lang="es">Lo peor que puede hacer un tutor es el ciclo "corrijo y aparece algo más". Por eso la revisión tiene un número fijo de rondas, y cada bloque del informe tiene un límite de ítems. Los bloqueantes y pendientes nunca se recortan.</p>
     </div>
     <div class="cal">
-      <div class="cal-card"><span class="lbl t-opt">Rodada 1</span><p><b>Revisão completa.</b> As duas partes, com tudo o que a base cobre.</p><p class="ex">Bloqueantes e pendências nunca são cortados.</p></div>
-      <div class="cal-card"><span class="lbl t-ess">Rodadas 2 e 3</span><p><b>Conferência.</b> O tutor verifica o que já apontou: resolvido, ainda pendente. Item novo só entra se for bloqueante ou pendência ética; nada de sugestões novas.</p><p class="ex">Rodar de novo sem mudar os documentos não conta rodada.</p></div>
-      <div class="cal-card"><span class="lbl t-block">Depois da 3ª</span><p><b>Ciclo encerrado.</b> Só a conferência da parte ética. O relatório recomenda concluir com o orientador e submeter.</p><p class="ex">O limite pode ser mudado, mas o padrão é três.</p></div>
+      <div class="cal-card"><span class="lbl t-opt"><span lang="pt">Rodada 1</span><span lang="en">Round 1</span><span lang="es">Ronda 1</span></span>
+        <p lang="pt"><b>Revisão completa.</b> As duas partes, com tudo o que a base cobre.</p><p lang="en"><b>Full review.</b> Both parts, with everything the base covers.</p><p lang="es"><b>Revisión completa.</b> Las dos partes, con todo lo que cubre la base.</p>
+        <p class="ex" lang="pt">Essencial: 5 a 8, conforme o nível · Para aprofundar: 5 · Recomendações: 8</p><p class="ex" lang="en">Essential: 5 to 8, by level · Going further: 5 · Recommendations: 8</p><p class="ex" lang="es">Esencial: 5 a 8, según el nivel · Para profundizar: 5 · Recomendaciones: 8</p></div>
+      <div class="cal-card"><span class="lbl t-ess"><span lang="pt">Rodadas 2 e 3</span><span lang="en">Rounds 2 and 3</span><span lang="es">Rondas 2 y 3</span></span>
+        <p lang="pt"><b>Conferência.</b> O tutor verifica o que já apontou. Item novo só entra se for bloqueante ou pendência ética; nada de sugestões novas.</p><p lang="en"><b>Verification.</b> The tutor checks what it already pointed out. A new item only enters if it is a blocking or pending ethics issue; no new suggestions.</p><p lang="es"><b>Verificación.</b> El tutor revisa lo que ya señaló. Un ítem nuevo solo entra si es bloqueante o pendiente ético; nada de sugerencias nuevas.</p>
+        <p class="ex" lang="pt">Rodar de novo sem mudar os documentos não conta rodada.</p><p class="ex" lang="en">Running again without changing the documents does not count as a round.</p><p class="ex" lang="es">Ejecutar de nuevo sin cambiar los documentos no cuenta como ronda.</p></div>
+      <div class="cal-card"><span class="lbl t-block"><span lang="pt">Depois da 3ª</span><span lang="en">After the 3rd</span><span lang="es">Después de la 3ª</span></span>
+        <p lang="pt"><b>Ciclo encerrado.</b> Só a conferência da parte ética. O relatório recomenda concluir com o orientador e submeter.</p><p lang="en"><b>Cycle closed.</b> Only the ethics verification. The report recommends finishing with the supervisor and submitting.</p><p lang="es"><b>Ciclo cerrado.</b> Solo la verificación ética. El informe recomienda concluir con el director y enviar.</p>
+        <p class="ex" lang="pt">Cada revisão tem no máximo duas tentativas.</p><p class="ex" lang="en">Each review gets at most two attempts.</p><p class="ex" lang="es">Cada revisión tiene como máximo dos intentos.</p></div>
     </div>
-    <table class="comp" style="margin-top:28px">
-      <thead><tr><th>Bloco</th><th>Limite</th></tr></thead>
-      <tbody>
-        <tr><td>Essencial</td><td>5 na graduação · 6 na especialização · 8 no mestrado, doutorado e para docentes</td></tr>
-        <tr><td>Para aprofundar</td><td>5</td></tr>
-        <tr><td>Recomendações</td><td>8</td></tr>
-        <tr><td>Comece por aqui</td><td>5 ações</td></tr>
-        <tr><td>Pontos para conferir</td><td>10 (o resto fica em triagem.md)</td></tr>
-      </tbody>
-    </table>
   </div>
 </section>
 
-<!-- ================================================================ SAÍDAS -->
 <section id="saidas" class="alt">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Saídas</div>
-      <h2>Um relatório para quem escreveu, uma página para quem orienta.</h2>
+      <div class="eyebrow"><span lang="pt">O que você recebe</span><span lang="en">What you get</span><span lang="es">Qué recibe</span></div>
+      <h2 lang="pt">Um relatório para quem escreveu, uma página para quem orienta.</h2><h2 lang="en">A report for the author, one page for the supervisor.</h2><h2 lang="es">Un informe para quien escribió, una página para quien dirige.</h2>
     </div>
     <div class="out">
       <aside class="report">
-        <div class="rhead"><b>Relatório de pré-submissão</b><small>rodada 2 de 3</small></div>
+        <div class="rhead"><b><span lang="pt">Relatório de pré-submissão</span><span lang="en">Pre-submission report</span><span lang="es">Informe previo al envío</span></b><small><span lang="pt">exemplo ilustrativo</span><span lang="en">illustrative example</span><span lang="es">ejemplo ilustrativo</span></small></div>
+        <div class="rev"><code>PROJ-R06</code><span class="role"><span lang="pt">encaminhamento à UBS</span><span lang="en">referral to public clinic</span><span lang="es">derivación a centro público</span></span><span class="verdict"><span lang="pt">bloqueante</span><span lang="en">blocking</span><span lang="es">bloqueante</span></span></div>
+        <div class="rev"><code>PROJ-C13</code><span class="role"><span lang="pt">coleta antes da aprovação</span><span lang="en">collection before approval</span><span lang="es">recolección antes de aprobar</span></span><span class="verdict"><span lang="pt">pendência</span><span lang="en">pending</span><span lang="es">pendiente</span></span></div>
+        <div class="rev"><code>SUG-EST-01</code><span class="role"><span lang="pt">justificar a amostra</span><span lang="en">justify the sample</span><span lang="es">justificar la muestra</span></span><span class="verdict"><span lang="pt">sugestão</span><span lang="en">suggestion</span><span lang="es">sugerencia</span></span></div>
         <div class="tiers">
-          <div class="tier t-block"><b>1</b><span>bloqueante</span></div>
-          <div class="tier t-ess"><b>2</b><span>pendências</span></div>
-          <div class="tier t-opt"><b>3</b><span>sugestões</span></div>
+          <div class="tier t-block"><b>1</b><span><span lang="pt">bloqueante</span><span lang="en">blocking</span><span lang="es">bloqueante</span></span></div>
+          <div class="tier t-ess"><b>2</b><span><span lang="pt">pendências</span><span lang="en">pending</span><span lang="es">pendientes</span></span></div>
+          <div class="tier t-opt"><b>3</b><span><span lang="pt">resolvidos</span><span lang="en">solved</span><span lang="es">resueltos</span></span></div>
         </div>
-        <p style="margin-top:14px"><b>Comece por aqui</b></p>
-        <ol style="margin:6px 0 0;padding-left:20px;color:var(--ink-2)">
-          <li>Providenciar a folha de rosto</li>
-          <li>[BLOQUEANTE] Encaminhamento à UBS em caso de dano · <code>PROJ-R06</code></li>
-          <li>[PENDÊNCIA] Coleta antes da aprovação prevista · <code>PROJ-C13</code></li>
-        </ol>
-        <p style="margin-top:12px"><b>Desde a rodada anterior:</b> 3 resolvidos · 2 ainda pendentes · 0 novos</p>
-        <p style="margin-top:8px"><b>Prazo:</b> submeter até 10/01/2027 para coletar em 01/03/2027</p>
-        <div class="foot">Rascunho gerado com assistência de IA · não é parecer do CEP-UMC</div>
+        <div class="foot"><span lang="pt">rodada 2 de 3 · submeter até 10/01/2027 · rascunho assistido por IA</span><span lang="en">round 2 of 3 · submit by 2027-01-10 · AI-assisted draft</span><span lang="es">ronda 2 de 3 · enviar antes del 10/01/2027 · borrador asistido por IA</span></div>
       </aside>
       <div>
-        <div class="file key"><code>relatorio.pdf</code><span>Comece por aqui, progresso, prazo, legenda, Parte 1 (CEP) e Parte 2 (sugestões).</span></div>
-        <div class="file key"><code>relatorio_orientador.pdf</code><span>Uma página: pronto ou não, o que falta, quem assina, prazo.</span></div>
-        <div class="file"><code>planejamento.pdf</code><span>Sem documentos ainda: o que preparar, quem assina e até quando submeter.</span></div>
-        <div class="file"><code>triagem.md</code><span>Respostas da triagem com as evidências, documentos esperados × recebidos e todos os sinais automáticos.</span></div>
-        <div class="file"><code>resumo.json</code><span>Tudo o que está no relatório, em formato estruturado.</span></div>
-        <div class="file"><code>historico/</code><span>Um resumo por versão dos documentos, usado para contar as rodadas.</span></div>
+        <div class="file key"><code>relatorio.pdf</code><span lang="pt">Comece por aqui: plano de ação, progresso, prazo, legenda, Parte 1 (CEP) e Parte 2 (sugestões).</span><span lang="en">Start here: action plan, progress, deadline, legend, Part 1 (committee) and Part 2 (suggestions).</span><span lang="es">Empiece aquí: plan de acción, progreso, plazo, leyenda, Parte 1 (comité) y Parte 2 (sugerencias).</span></div>
+        <div class="file key"><code>relatorio_orientador.pdf</code><span lang="pt">Uma página: pronto ou não, o que falta, quem assina, prazo.</span><span lang="en">One page: ready or not, what is missing, who signs, deadline.</span><span lang="es">Una página: listo o no, qué falta, quién firma, plazo.</span></div>
+        <div class="file"><code>planejamento.pdf</code><span lang="pt">Sem documentos ainda: o que preparar, quem assina e até quando submeter.</span><span lang="en">No documents yet: what to prepare, who signs and when to submit.</span><span lang="es">Todavía sin documentos: qué preparar, quién firma y hasta cuándo enviar.</span></div>
+        <div class="file"><code>triagem.md</code><span lang="pt">Respostas da triagem com evidências, documentos esperados × recebidos e todos os sinais automáticos.</span><span lang="en">Screening answers with evidence, expected × received documents and every automatic signal.</span><span lang="es">Respuestas del cribado con evidencias, documentos esperados × recibidos y todas las señales automáticas.</span></div>
+        <div class="file"><code>resumo.json</code><span lang="pt">Tudo o que está no relatório, em formato estruturado.</span><span lang="en">Everything in the report, structured.</span><span lang="es">Todo lo del informe, en formato estructurado.</span></div>
+        <div class="file"><code>historico/</code><span lang="pt">Um resumo por versão dos documentos, usado para contar as rodadas.</span><span lang="en">One summary per version of the documents, used to count rounds.</span><span lang="es">Un resumen por versión de los documentos, usado para contar las rondas.</span></div>
       </div>
     </div>
   </div>
@@ -745,74 +849,78 @@ agy plugin enable cep-umc-tutor</pre></div>
 <section id="faq">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Perguntas frequentes</div>
-      <h2>Se algo não funcionar.</h2>
+      <div class="eyebrow"><span lang="pt">Dúvidas</span><span lang="en">FAQ</span><span lang="es">Preguntas</span></div>
+      <h2 lang="pt">Se algo não funcionar.</h2><h2 lang="en">If something does not work.</h2><h2 lang="es">Si algo no funciona.</h2>
     </div>
     <div class="faq">
-      <details><summary>O terminal diz que o comando não foi encontrado.</summary>
-        <div><p>Quase sempre basta <b>fechar o terminal e abrir um novo</b>. Se continuar, reinicie o computador e repita o passo de instalação.</p></div></details>
-      <details><summary>O assistente não reconhece o tutor.</summary>
-        <div><p>Feche o assistente e abra de novo: o plugin só é carregado numa sessão nova. Confira se ele aparece como ativado:</p>
-        <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre>claude plugin list</pre></div>
-        <div class="code ai-agy"><button class="copy" type="button">copiar</button><pre>agy plugin list</pre></div></div></details>
-      <details><summary>O tutor disse que eu preciso de um documento que não se aplica.</summary>
-        <div><p>A triagem é heurística. Diga ao assistente, por exemplo, "não há menores no estudo" ou "a coleta não é online": ele refaz a lista de documentos esperados.</p></div></details>
-      <details><summary>O nível do trabalho saiu errado.</summary>
-        <div><p>Sem indicação na capa, o tutor assume graduação. Diga o nível ("é uma tese de doutorado") e ele refaz a revisão com a calibração certa. A Parte 1 não muda com o nível; só a Parte 2.</p></div></details>
-      <details><summary>Já fiz três rodadas e ainda há pendências.</summary>
-        <div><p>É de propósito: depois da terceira, o tutor só confere a parte ética. Resolva os itens restantes com o orientador e, se a dúvida for sobre uma exigência, consulte o CEP-UMC (cep@umc.br). O tutor ainda ajuda com perguntas pontuais e com a carta-resposta.</p></div></details>
-      <details><summary>Meus documentos ficam guardados em algum lugar?</summary>
-        <div><p>Os arquivos gerados ficam só no seu computador, em <code>cep_tutor/</code>. O texto dos documentos é enviado ao serviço de IA que você usa (Claude ou Antigravity), nos termos da sua conta. Protocolos podem conter dados pessoais: para revisar o protocolo de outra pessoa, peça autorização antes.</p></div></details>
-      <details><summary>Os PDFs dos relatórios não aparecem.</summary>
-        <div><p>Eles dependem do <b>uv</b> (passo 2). Confirme que <code>uv --version</code> mostra uma versão e peça ao assistente para compilar de novo. Os arquivos <code>.md</code> trazem o mesmo conteúdo.</p></div></details>
-      <details><summary>Como atualizo o tutor?</summary>
+      <details><summary><span lang="pt">O terminal diz que o comando não foi encontrado.</span><span lang="en">The terminal says the command was not found.</span><span lang="es">La terminal dice que no encuentra el comando.</span></summary>
+        <div><p lang="pt">Quase sempre basta <b>fechar o terminal e abrir um novo</b>. Se continuar, reinicie o computador e repita o passo de instalação.</p><p lang="en">Almost always, <b>closing the terminal and opening a new one</b> is enough. If not, restart the computer and repeat the installation step.</p><p lang="es">Casi siempre basta <b>cerrar la terminal y abrir otra</b>. Si sigue, reinicie la computadora y repita el paso de instalación.</p></div></details>
+      <details><summary><span lang="pt">O assistente não reconhece o tutor.</span><span lang="en">The assistant does not recognise the tutor.</span><span lang="es">El asistente no reconoce el tutor.</span></summary>
+        <div><p lang="pt">Feche o assistente e abra de novo: o plugin só é carregado numa sessão nova. Confira se ele aparece como ativado, ou use o prompt "Comando direto".</p><p lang="en">Close the assistant and open it again: the plugin only loads in a new session. Check that it shows as enabled, or use the "Direct command" prompt.</p><p lang="es">Cierre el asistente y ábralo de nuevo: el plugin solo se carga en una sesión nueva. Verifique que aparece activado, o use el prompt "Comando directo".</p>
+        <div class="code ai-claude"><button class="copy" type="button">copy</button><pre>claude plugin list</pre></div>
+        <div class="code ai-agy"><button class="copy" type="button">copy</button><pre>agy plugin list</pre></div></div></details>
+      <details><summary><span lang="pt">O tutor pediu um documento que não se aplica.</span><span lang="en">The tutor asked for a document that does not apply.</span><span lang="es">El tutor pidió un documento que no corresponde.</span></summary>
+        <div><p lang="pt">A triagem é heurística. Diga ao assistente, por exemplo, "não há menores no estudo" ou "a coleta não é online": ele refaz a lista de documentos esperados.</p><p lang="en">Screening is heuristic. Tell the assistant, for example, "there are no minors in the study" or "data collection is not online": it rebuilds the list of expected documents.</p><p lang="es">El cribado es heurístico. Dígale al asistente, por ejemplo, "no hay menores en el estudio" o "la recolección no es en línea": rehace la lista de documentos esperados.</p></div></details>
+      <details><summary><span lang="pt">O nível do trabalho saiu errado.</span><span lang="en">The level of the work is wrong.</span><span lang="es">El nivel del trabajo salió mal.</span></summary>
+        <div><p lang="pt">Sem indicação na capa, o tutor assume graduação. Diga o nível ("é uma tese de doutorado") e ele refaz a revisão com a calibração certa. A Parte 1 não muda com o nível; só a Parte 2.</p><p lang="en">Without a hint on the cover page, the tutor assumes undergraduate. State the level ("it is a PhD thesis") and it redoes the review with the right calibration. Part 1 does not change with the level; only Part 2 does.</p><p lang="es">Sin indicación en la portada, el tutor asume grado. Indique el nivel ("es una tesis doctoral") y rehace la revisión con la calibración correcta. La Parte 1 no cambia con el nivel; solo la Parte 2.</p></div></details>
+      <details><summary><span lang="pt">Já fiz três rodadas e ainda há pendências.</span><span lang="en">I did three rounds and there are still pending items.</span><span lang="es">Ya hice tres rondas y todavía hay pendientes.</span></summary>
+        <div><p lang="pt">É de propósito: depois da terceira, o tutor só confere a parte ética. Resolva o que falta com o orientador e, se a dúvida for sobre uma exigência, consulte o CEP-UMC (cep@umc.br). O tutor ainda ajuda com perguntas pontuais e com a carta-resposta.</p><p lang="en">That is by design: after the third, the tutor only verifies the ethics part. Solve what is left with your supervisor and, for doubts about a requirement, ask the CEP-UMC (cep@umc.br). The tutor still helps with specific questions and the response letter.</p><p lang="es">Es a propósito: después de la tercera, el tutor solo verifica la parte ética. Resuelva lo que falta con su director y, si la duda es sobre una exigencia, consulte al CEP-UMC (cep@umc.br). El tutor sigue ayudando con preguntas puntuales y con la carta de respuesta.</p></div></details>
+      <details><summary><span lang="pt">Meus documentos ficam guardados em algum lugar?</span><span lang="en">Are my documents stored anywhere?</span><span lang="es">¿Mis documentos quedan guardados en algún lugar?</span></summary>
+        <div><p lang="pt">Os arquivos gerados ficam só no seu computador, em <code>cep_tutor/</code>. O texto dos documentos é enviado ao serviço de IA que você usa, nos termos da sua conta. Protocolos podem ter dados pessoais: para revisar o de outra pessoa, peça autorização.</p><p lang="en">Generated files stay on your computer, in <code>cep_tutor/</code>. The text of the documents is sent to the AI service you use, under your account's terms. Protocols may contain personal data: ask permission before reviewing someone else's.</p><p lang="es">Los archivos generados quedan solo en su computadora, en <code>cep_tutor/</code>. El texto de los documentos se envía al servicio de IA que usa, según los términos de su cuenta. Los protocolos pueden tener datos personales: para revisar el de otra persona, pida autorización.</p></div></details>
+      <details><summary><span lang="pt">Os PDFs não foram gerados.</span><span lang="en">The PDFs were not generated.</span><span lang="es">No se generaron los PDF.</span></summary>
+        <div><p lang="pt">Eles dependem do <b>uv</b> (passo 2). Confirme que <code>uv --version</code> mostra uma versão e peça ao assistente para compilar de novo. Os arquivos <code>.md</code> trazem o mesmo conteúdo.</p><p lang="en">They depend on <b>uv</b> (step 2). Check that <code>uv --version</code> prints a version and ask the assistant to compile again. The <code>.md</code> files have the same content.</p><p lang="es">Dependen de <b>uv</b> (paso 2). Confirme que <code>uv --version</code> muestra una versión y pida al asistente que compile de nuevo. Los archivos <code>.md</code> tienen el mismo contenido.</p></div></details>
+      <details><summary><span lang="pt">Como atualizo o tutor?</span><span lang="en">How do I update the tutor?</span><span lang="es">¿Cómo actualizo el tutor?</span></summary>
         <div>
-        <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre>claude plugin marketplace update labiomics
+        <div class="code ai-claude"><button class="copy" type="button">copy</button><pre>claude plugin marketplace update labiomics
 claude plugin update cep-umc-tutor@labiomics</pre></div>
-        <p class="ai-agy">Baixe a versão nova na página de <a href="https://github.com/LaBiOmicS/cep-umc-tutor/releases">releases</a> e repita o passo 5.</p></div></details>
+        <p class="ai-agy" lang="pt">Baixe a versão nova na página de <a href="https://github.com/LaBiOmicS/cep-umc-tutor/releases">releases</a> e repita o passo 5.</p><p class="ai-agy" lang="en">Download the new version from the <a href="https://github.com/LaBiOmicS/cep-umc-tutor/releases">releases</a> page and repeat step 5.</p><p class="ai-agy" lang="es">Descargue la versión nueva en la página de <a href="https://github.com/LaBiOmicS/cep-umc-tutor/releases">releases</a> y repita el paso 5.</p></div></details>
     </div>
   </div>
 </section>
 
-<!-- ================================================================ AVANÇADO -->
+<!-- ================================================================ ADVANCED -->
 <section id="instalar" class="alt">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Avançado</div>
-      <h2>Instalação a partir do código e uso sem o assistente.</h2>
-      <p>Opções de cada comando e a estrutura das bases estão no <a href="https://github.com/LaBiOmicS/cep-umc-tutor#readme">README</a>.</p>
+      <div class="eyebrow"><span lang="pt">Avançado</span><span lang="en">Advanced</span><span lang="es">Avanzado</span></div>
+      <h2 lang="pt">Instalação a partir do código e uso headless.</h2><h2 lang="en">Install from source and headless use.</h2><h2 lang="es">Instalación desde el código y uso headless.</h2>
+      <p lang="pt">Opções de cada comando e a estrutura das bases estão no <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.pt-BR.md">README</a>.</p>
+      <p lang="en">Command options and the structure of the knowledge bases are in the <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.md">README</a>.</p>
+      <p lang="es">Las opciones de cada comando y la estructura de las bases están en el <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.es.md">README</a>.</p>
     </div>
     <div class="tabs" role="tablist">
       <button class="tab" role="tab" aria-selected="true" data-tab="script">install.sh</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="agy">Antigravity</button>
-      <button class="tab" role="tab" aria-selected="false" data-tab="cli">Linha de comando</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="cli">Headless</button>
     </div>
-    <div class="panel on" id="tab-script"><div class="code"><button class="copy" type="button">copiar</button><pre><span class="c"># Claude Code e Antigravity, o que estiver instalado (macOS / Linux / WSL)</span>
+    <div class="panel on" id="tab-script"><div class="code"><button class="copy" type="button">copy</button><pre><span class="c"># Claude Code + Antigravity, whichever is installed (macOS / Linux / WSL)</span>
 git clone https://github.com/LaBiOmicS/cep-umc-tutor.git
 cd cep-umc-tutor
 ./install.sh</pre></div></div>
-    <div class="panel" id="tab-agy"><div class="code"><button class="copy" type="button">copiar</button><pre>agy plugin validate ./cep-umc-tutor --strict
+    <div class="panel" id="tab-agy"><div class="code"><button class="copy" type="button">copy</button><pre>agy plugin validate ./cep-umc-tutor --strict
 agy plugin install ./cep-umc-tutor
 agy plugin enable cep-umc-tutor</pre></div></div>
-    <div class="panel" id="tab-cli"><div class="code"><button class="copy" type="button">copiar</button><pre>S=skills/cep-tutor/scripts; OUT=cep_tutor/meu-projeto
+    <div class="panel" id="tab-cli"><div class="code"><button class="copy" type="button">copy</button><pre>S=skills/cep-tutor/scripts; OUT=cep_tutor/my-project
 uv run $S/cep_tutor.py prepare --input protocolo/ --output-dir $OUT --nivel mestrado
 uv run $S/cep_tutor.py run     --output-dir $OUT --runner claude
 uv run $S/cep_tutor.py compile --output-dir $OUT
-uv run $S/cep_tutor.py planejar --output-dir cep_tutor/plano --nivel graduacao --coleta 2027-06-01 --q "Q7=sim"
-uv run $S/kb.py search "assentimento"</pre></div></div>
+uv run $S/cep_tutor.py planejar --output-dir cep_tutor/plan --nivel graduacao --coleta 2027-06-01 --q "Q7=sim"</pre></div></div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">Uso responsável</div>
-      <h2>Apoio ao pesquisador, não um parecer.</h2>
+      <div class="eyebrow"><span lang="pt">Uso responsável</span><span lang="en">Responsible use</span><span lang="es">Uso responsable</span></div>
+      <h2 lang="pt">Apoio ao pesquisador, não um parecer.</h2><h2 lang="en">Support for the researcher, not an ethics opinion.</h2><h2 lang="es">Apoyo al investigador, no un dictamen.</h2>
     </div>
     <div class="resp">
-      <div><h3>Quem decide é o CEP</h3><p>O tutor aponta o que os documentos do CEP-UMC costumam cobrar. A severidade é uma classificação editorial, não um critério oficial do comitê, e nada aqui prevê aprovação.</p></div>
-      <div><h3>Quem orienta é o orientador</h3><p>As sugestões acadêmicas são alternativas para discutir, não correções. Escolhas metodológicas combinadas com o orientador são respeitadas.</p></div>
-      <div><h3>Dados de pesquisa são sensíveis</h3><p>Use o tutor com os seus próprios documentos ou com autorização. Textos ocultos e instruções dirigidas à IA dentro dos documentos são ignorados e aparecem como alerta de integridade.</p></div>
+      <div><h3 lang="pt">Quem decide é o CEP</h3><h3 lang="en">The committee decides</h3><h3 lang="es">Decide el comité</h3>
+        <p lang="pt">O tutor aponta o que os documentos do CEP-UMC costumam cobrar. A severidade é uma classificação editorial, não um critério oficial do comitê, e nada aqui prevê aprovação.</p><p lang="en">The tutor points out what the CEP-UMC documents usually require. Severity is an editorial classification, not an official committee criterion, and nothing here predicts approval.</p><p lang="es">El tutor señala lo que los documentos del CEP-UMC suelen exigir. La severidad es una clasificación editorial, no un criterio oficial del comité, y nada aquí anticipa la aprobación.</p></div>
+      <div><h3 lang="pt">Confidencialidade</h3><h3 lang="en">Confidentiality</h3><h3 lang="es">Confidencialidad</h3>
+        <p lang="pt">Protocolos são inéditos e podem ter dados pessoais. Use o tutor com os seus documentos ou com autorização. Texto oculto e instruções à IA dentro dos documentos são ignorados e aparecem como alerta.</p><p lang="en">Protocols are unpublished and may hold personal data. Use the tutor with your own documents or with permission. Hidden text and instructions to the AI inside documents are ignored and flagged.</p><p lang="es">Los protocolos son inéditos y pueden tener datos personales. Use el tutor con sus documentos o con autorización. El texto oculto y las instrucciones a la IA dentro de los documentos se ignoran y se señalan.</p></div>
+      <div><h3 lang="pt">Limites</h3><h3 lang="en">Limits</h3><h3 lang="es">Límites</h3>
+        <p lang="pt">A IA pode ler mal um trecho. A triagem e os sinais automáticos são heurísticos, e a base reflete os documentos do CEP-UMC de 2022 e 2025. As sugestões acadêmicas se discutem com o orientador.</p><p lang="en">The AI can misread a passage. Screening and automatic signals are heuristic, and the base reflects the 2022 and 2025 CEP-UMC documents. Academic suggestions are for discussion with the supervisor.</p><p lang="es">La IA puede leer mal un fragmento. El cribado y las señales automáticas son heurísticos, y la base refleja los documentos del CEP-UMC de 2022 y 2025. Las sugerencias académicas se discuten con el director.</p></div>
     </div>
   </div>
 </section>
@@ -822,18 +930,19 @@ uv run $S/kb.py search "assentimento"</pre></div></div>
   <div class="wrap">
     <div>
       <b>cep-umc-tutor</b><br>
-      Prof. Dr. Fabiano Bezerra Menegidio · LaBiOmicS · Universidade de Mogi das Cruzes<br>
-      Projeto independente do laboratório; não é um canal oficial do CEP-UMC.
+      <span lang="pt">Desenvolvido no LaBiOmicS — Laboratório de Bioinformática e Ciências Ômicas, Universidade de Mogi das Cruzes.</span><span lang="en">Developed at LaBiOmicS — Laboratory of Bioinformatics and Omics Sciences, University of Mogi das Cruzes.</span><span lang="es">Desarrollado en LaBiOmicS — Laboratorio de Bioinformática y Ciencias Ómicas, Universidade de Mogi das Cruzes.</span><br>
+      <span lang="pt">Coordenação</span><span lang="en">Lead</span><span lang="es">Coordinación</span>: Prof. Dr. Fabiano Bezerra Menegidio · <a href="mailto:fabianomenegidio@umc.br">fabianomenegidio@umc.br</a>
     </div>
     <div>
       <a href="https://github.com/LaBiOmicS/cep-umc-tutor">GitHub</a> ·
       <a href="https://github.com/LaBiOmicS/cep-umc-tutor/releases">Releases</a> ·
       <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/CHANGELOG.md">Changelog</a> ·
-      <a href="https://www.umc.br/comite-de-etica-cep/">CEP-UMC</a><br>
-      Outros plugins: <a href="https://labiomics.github.io/academic-peer-review/">academic-peer-review</a> · <a href="https://labiomics.github.io/congress-abstract-review/">congress-abstract-review</a>
+      <a lang="pt" href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.pt-BR.md">Documentação</a><a lang="en" href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.md">Documentation</a><a lang="es" href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.es.md">Documentación</a> ·
+      <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/LICENSE"><span lang="pt">Licença MIT</span><span lang="en">MIT License</span><span lang="es">Licencia MIT</span></a>
     </div>
   </div>
 </footer>
+
 
 <script>
 (function () {
@@ -841,18 +950,22 @@ uv run $S/kb.py search "assentimento"</pre></div></div>
   function store(key, value) { try { localStorage.setItem(key, value); } catch (e) {} }
   function read(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
 
-  // Duas escolhas independentes (sistema e IA), cada uma um atributo data-* em <html>.
-  var CHOICES = { os: ["win", "mac", "linux"], ai: ["claude", "agy"] };
+  // Three independent choices (language, operating system, AI), each a data-* attribute on <html>.
+  var CHOICES = { lang: ["pt", "en", "es"], os: ["win", "mac", "linux"], ai: ["claude", "agy"] };
+  var HTML_LANG = { pt: "pt-BR", en: "en", es: "es" };
   function set(kind, val) {
     if (CHOICES[kind].indexOf(val) < 0) val = CHOICES[kind][0];
     root.setAttribute("data-" + kind, val);
+    if (kind === "lang") root.setAttribute("lang", HTML_LANG[val]);
     document.querySelectorAll('[data-set="' + kind + '"]').forEach(function (b) {
       b.setAttribute("aria-pressed", b.dataset.val === val ? "true" : "false");
     });
     store("cep-" + kind, val);
   }
+  var browserLang = (navigator.language || "").toLowerCase().slice(0, 2);
   var ua = (navigator.userAgent || "").toLowerCase();
   var browserOs = ua.indexOf("win") >= 0 ? "win" : (ua.indexOf("mac") >= 0 ? "mac" : (ua.indexOf("linux") >= 0 ? "linux" : "win"));
+  set("lang", read("cep-lang") || (HTML_LANG[browserLang] ? browserLang : "en"));
   set("os", read("cep-os") || browserOs);
   set("ai", read("cep-ai") || "claude");
   document.querySelectorAll("[data-set]").forEach(function (b) {
@@ -876,7 +989,7 @@ uv run $S/kb.py search "assentimento"</pre></div></div>
     });
   });
 
-  // Copia só o que está visível (variante de sistema e IA), sem o "> " nem comentários.
+  // Copies only what is visible: the current language, system and AI variant, without prompt marks or comments.
   function visibleText(node) {
     if (node.nodeType === 3) return node.textContent;
     if (node.nodeType !== 1 || getComputedStyle(node).display === "none") return "";
@@ -890,10 +1003,86 @@ uv run $S/kb.py search "assentimento"</pre></div></div>
       var text = "";
       btn.parentElement.querySelectorAll("pre").forEach(function (pre) { text += visibleText(pre); });
       text = text.split("\n").map(function (l) { return l.trim(); }).filter(Boolean).join("\n");
-      var done = function () { btn.textContent = "✓"; setTimeout(function () { btn.textContent = "copiar"; }, 1400); };
+      var done = function () { btn.textContent = "✓"; setTimeout(function () { btn.textContent = "copy"; }, 1400); };
       if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
     });
   });
+
+  // Animations: the terminal "runs" a review and the pipeline lights up stage by stage. Each starts
+  // when it scrolls into view; with reduced motion they stay in their final, static state.
+  function timeline() {
+    var ids = [];
+    return { at: function (ms, fn) { ids.push(setTimeout(fn, ms)); }, clear: function () { ids.forEach(clearTimeout); ids = []; } };
+  }
+  function each(scope, sel, fn) { Array.prototype.forEach.call(scope.querySelectorAll(sel), fn); }
+
+  var term = document.getElementById("term"), tt = timeline();
+  var typed = Array.prototype.slice.call(term.querySelectorAll(".type"));
+  typed.forEach(function (s) { s.dataset.full = s.textContent; });
+  function resetTerm() {
+    tt.clear();
+    term.classList.add("anim");
+    term.classList.remove("typed");
+    each(term, ".ln", function (l) { l.classList.remove("on"); });
+    typed.forEach(function (s) { typeTo(s, 0); });
+  }
+  // The untyped rest stays in place, transparent, so the box keeps its final height while typing.
+  function typeTo(span, n) {
+    var full = span.dataset.full, rest = document.createElement("span");
+    rest.className = "rest";
+    rest.textContent = full.slice(n);
+    span.textContent = full.slice(0, n);
+    if (n < full.length) span.appendChild(rest);
+  }
+  function runTerm() {
+    resetTerm();
+    term.querySelector('.ln[data-s="0"]').classList.add("on");
+    var longest = Math.max.apply(null, typed.map(function (s) { return s.dataset.full.length; }));
+    var t = 500;
+    for (var i = 1; i <= longest; i++) {
+      (function (i) { tt.at(t + i * 28, function () { typed.forEach(function (s) { typeTo(s, i); }); }); })(i);
+    }
+    t += longest * 28 + 450;
+    tt.at(t, function () { term.classList.add("typed"); });
+    [[1, 0], [2, 450], [3, 900], [4, 1350], [5, 1850], [6, 2250], [7, 5100], [8, 5600]].forEach(function (s) {
+      tt.at(t + s[1], function () { each(term, '.ln[data-s="' + s[0] + '"]', function (l) { l.classList.add("on"); }); });
+    });
+  }
+
+  var flow = document.getElementById("flow"), ft = timeline();
+  var stages = Array.prototype.slice.call(flow.querySelectorAll(".step"));
+  var STAGE_MS = [2300, 2500, 3000, 2500, 2000];
+  function resetFlow() {
+    ft.clear();
+    flow.classList.add("anim");
+    stages.forEach(function (s) { s.classList.remove("active", "done"); each(s, ".k", function (k) { k.classList.remove("on"); }); });
+  }
+  function runFlow() {
+    resetFlow();
+    var t = 300;
+    stages.forEach(function (s, i) {
+      ft.at(t, function () {
+        if (i) { stages[i - 1].classList.remove("active"); stages[i - 1].classList.add("done"); }
+        s.classList.add("active");
+      });
+      each(s, ".k", function (k) { ft.at(t + (+k.dataset.t || 0), function () { k.classList.add("on"); }); });
+      t += STAGE_MS[i];
+    });
+    ft.at(t, function () { var last = stages[stages.length - 1]; last.classList.remove("active"); last.classList.add("done"); });
+  }
+
+  var RUN = { term: runTerm, flow: runFlow };
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce && "IntersectionObserver" in window) {
+    [[term, resetTerm, runTerm], [flow, resetFlow, runFlow]].forEach(function (a) {
+      a[1]();
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { io.disconnect(); a[2](); }
+      }, { threshold: 0.35 });
+      io.observe(a[0]);
+    });
+  }
+  each(document, "[data-replay]", function (b) { b.addEventListener("click", function () { RUN[b.dataset.replay](); }); });
 })();
 </script>
 </body>

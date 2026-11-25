@@ -33,9 +33,14 @@ Revisão sob o olhar de três perfis: aluno de graduação, aluno de pós e orie
 - Novo tipo de documento: "Informações Básicas do Projeto" (PDF da Plataforma Brasil). A Trilha A compara esse PDF
   com o projeto (PB-S06/S07).
 - Alerta quando um documento é truncado.
-- Página do GitHub Pages (`site/`, workflow `pages.yml`): guia passo a passo por sistema operacional e por IA (Claude
-  Code ou Antigravity), prompts prontos, como funciona, limites de rodadas, saídas e perguntas frequentes. Logo em
-  `assets/`.
+- Página do GitHub Pages (`site/`, workflow `pages.yml`), no mesmo modelo dos outros plugins LaBiOmicS:
+  - em PT, EN e ES;
+  - guia passo a passo por sistema operacional e por IA (Claude Code ou Antigravity);
+  - terminal e fluxo animados;
+  - prompts prontos, perfis, limites de rodadas, saídas e perguntas frequentes.
+
+  Logo em `assets/`.
+- READMEs em inglês (`README.md`), português (`README.pt-BR.md`) e espanhol (`README.es.md`).
 
 ### Alterado
 - Limite de texto por documento: de 60 mil para 250 mil caracteres (projetos de dissertação e tese).
