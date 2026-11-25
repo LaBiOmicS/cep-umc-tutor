@@ -127,11 +127,22 @@ O `install.sh`:
 
 Reinicie a sessão depois de instalar.
 
-Manualmente, no Claude Code:
+Sem clonar, direto do GitHub, no Claude Code:
 
 ```bash
-claude plugin marketplace add /caminho/para/cep-umc-tutor
+claude plugin marketplace add LaBiOmicS/cep-umc-tutor
 claude plugin install cep-umc-tutor@labiomics
+```
+
+Quem já usa outro plugin LaBiOmicS recebe `Cannot add marketplace "labiomics"` na primeira linha: no lugar dela, rode
+`claude plugin marketplace update labiomics` e depois a segunda.
+
+No Antigravity, a partir da pasta clonada ou do zip do release extraído:
+
+```bash
+agy plugin validate ./cep-umc-tutor --strict
+agy plugin install ./cep-umc-tutor
+agy plugin enable cep-umc-tutor
 ```
 
 Requisitos: Python ≥ 3.10 e [`uv`](https://docs.astral.sh/uv/) (recomendado). Opcionais: `pdftotext` (poppler) para

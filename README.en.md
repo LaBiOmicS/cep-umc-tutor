@@ -131,14 +131,17 @@ cd cep-umc-tutor
 
 Restart the session after installing.
 
-Manually, in Claude Code:
+Without cloning, straight from GitHub, in Claude Code:
 
 ```bash
 claude plugin marketplace add LaBiOmicS/cep-umc-tutor
 claude plugin install cep-umc-tutor@labiomics
 ```
 
-In Antigravity:
+Anyone who already uses another LaBiOmicS plugin gets `Cannot add marketplace "labiomics"` on the first line: run
+`claude plugin marketplace update labiomics` instead, then the second.
+
+In Antigravity, from the cloned folder or the extracted release zip:
 
 ```bash
 agy plugin validate ./cep-umc-tutor --strict

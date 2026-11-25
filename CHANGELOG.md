@@ -8,6 +8,8 @@ e as versões seguem o [SemVer](https://semver.org/lang/pt-BR/).
 ### Documentação
 - Site e READMEs (PT, EN, ES): seção "Bases de conhecimento" explica como as duas bases foram construídas e como
   entram na avaliação (seções inteiras escolhidas por regra, citação obrigatória de ID, severidade pela base).
+- Instalação: aviso para quem já tem o marketplace `labiomics` de outro plugin (usar `marketplace update`); README
+  em português ganhou o bloco do Antigravity e o comando direto do GitHub, como o EN e o ES.
 - Site: quebras de linha e tamanhos harmônicos (título em duas linhas, textos equilibrados, termos sem quebra no hífen).
 
 ## [0.2.0] — 2026-11-25
