@@ -3,6 +3,13 @@
 Todas as mudanças relevantes deste plugin. O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/)
 e as versões seguem o [SemVer](https://semver.org/lang/pt-BR/).
 
+## [Não publicado]
+
+### Documentação
+- Site e READMEs (PT, EN, ES): seção "Bases de conhecimento" explica como as duas bases foram construídas e como
+  entram na avaliação (seções inteiras escolhidas por regra, citação obrigatória de ID, severidade pela base).
+- Site: quebras de linha e tamanhos harmônicos (título em duas linhas, textos equilibrados, termos sem quebra no hífen).
+
 ## [0.2.0] — 2026-11-25
 
 Revisão sob o olhar de três perfis: aluno de graduação, aluno de pós e orientador.

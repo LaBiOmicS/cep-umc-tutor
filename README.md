@@ -197,6 +197,36 @@ Em `cep_tutor/<projeto>/`:
   a partir de qual nível passa a ser "Essencial" e onde estudar. É uma **versão inicial**, a validar com coordenadores
   de curso e de pós-graduação.
 
+### Como foram construídas
+
+1. **Conversão das fontes.** Os 12 documentos de `docs/` foram convertidos em texto integral (`base-conhecimento/fontes/`),
+   para permitir citação literal.
+2. **Extração dos requisitos.** Cada exigência virou uma linha de tabela com ID estável (ex.: `TCLE-C11`), documento e
+   item de origem e severidade. A severidade sai da redação da fonte: **[BLOQUEANTE]** quando a fonte diz que o problema
+   leva à recusa, **[PENDÊNCIA]** quando costuma gerar parecer pendente, **[RECOMENDAÇÃO]** para boas práticas.
+3. **Registro das divergências.** Onde os documentos discordam (11 casos, ex.: horário de atendimento), as duas versões
+   ficam em `00-fontes-e-discrepancias.md` e o tutor manda confirmar com o CEP em vez de escolher uma.
+4. **Ferramentas de triagem.** Matriz de documentos por tipo de estudo (21 perguntas), checklist consolidado e 45
+   padrões de erro frequentes, que viram os sinais automáticos.
+5. **Base acadêmica.** Itens escritos a partir das diretrizes EQUATOR (STROBE, CONSORT, SPIRIT, SAMPL), das normas ABNT
+   (NBR 14724, 15287) e da literatura metodológica. Cada item diz se é do núcleo comum e o nível mínimo.
+6. **Conferência.** `kb.py stats` e os testes verificam que todo ID citado no checklist e nos padrões existe.
+
+### Como entram na avaliação
+
+Não é RAG por semelhança: não há banco de vetores. As bases são Markdown, e o código escolhe **seções inteiras por
+regra**, para que nenhum requisito aplicável fique de fora por não "parecer" com o texto.
+
+| Momento | O que a base faz |
+|---|---|
+| Preparação (`prepare`) | Pela triagem e pelos documentos recebidos, entrega ao revisor da Parte 1 os arquivos que se aplicam (sempre projeto, Plataforma Brasil, checklist e erros frequentes; mais TCLE, TALE, TAI, coleta online etc. conforme o caso). O revisor da Parte 2 recebe a base acadêmica inteira. |
+| Sinais automáticos | Os padrões de erro rodam antes da IA ("não há riscos", coleta antes da aprovação, restos de modelo); o revisor confirma ou descarta cada um. |
+| Revisão | O revisor precisa citar o ID do requisito e o trecho do documento. |
+| Compilação (`compile`) | A severidade vem da tabela, não do modelo. ID inexistente não vira pendência: vai para "Outros pontos (sem requisito correspondente na base)". Na Parte 2, núcleo comum e nível mínimo decidem Essencial × Para aprofundar. |
+| Perguntas pontuais | "Preciso de TALE?" é respondido com o requisito e a fonte. |
+
+A severidade é uma **classificação editorial**, não um critério oficial do CEP-UMC.
+
 Para atualizar quando o CEP publicar novos modelos, veja a seção "Manutenção" de `base-conhecimento/README.md`. Os
 IDs nunca são renumerados.
 

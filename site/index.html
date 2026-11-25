@@ -365,6 +365,19 @@ p, li, .lede, .file span, .needs span, .tip, .beta-note span, .role-card p, .cal
 .nw { white-space: nowrap; }
 .rev { grid-template-columns: 92px 1fr auto; }
 .step p { font-size: .88rem; }
+.kb-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
+@media (max-width: 900px) { .kb-stats { grid-template-columns: 1fr 1fr; } }
+.kb-stats div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; font-size: .9rem; color: var(--ink-2); }
+.kb-stats b { display: block; font: 650 2rem/1.1 var(--serif); color: var(--gold); margin-bottom: 4px; }
+.kb-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.kb-cols > * { min-width: 0; }
+@media (max-width: 860px) { .kb-cols { grid-template-columns: 1fr; } }
+.kb-cols ol { margin: 14px 0 0; padding-left: 22px; }
+.kb-cols ol li { margin: 8px 0; font-size: .92rem; color: var(--ink-2); padding-left: 4px; }
+.kb-cols ol li::before { content: none; }
+.kb-cols ol li::marker { color: var(--gold); font: 600 .85rem var(--mono); }
+.use.ref .kb-cols ol li::marker, .use.ref ol li::marker { color: var(--cyan); }
+.kb-note { margin-top: 16px; max-width: none; }
 </style>
 </head>
 <body>
@@ -375,6 +388,7 @@ p, li, .lede, .file span, .needs span, .tip, .beta-note span, .role-card p, .cal
       <a href="#guia"><span lang="pt">Guia</span><span lang="en">Guide</span><span lang="es">Guía</span></a>
       <a href="#prompts">Prompts</a>
       <a href="#como"><span lang="pt">Como funciona</span><span lang="en">How it works</span><span lang="es">Cómo funciona</span></a>
+      <a href="#bases"><span lang="pt">Bases</span><span lang="en">Bases</span><span lang="es">Bases</span></a>
       <a href="#faq"><span lang="pt">Dúvidas</span><span lang="en">FAQ</span><span lang="es">Preguntas</span></a>
       <a href="https://github.com/LaBiOmicS/cep-umc-tutor">GitHub</a>
     </nav>
@@ -752,7 +766,94 @@ agy plugin enable cep-umc-tutor</pre></div>
   </div>
 </section>
 
-<section id="perfis" class="alt">
+
+<!-- ================================================================ KNOWLEDGE BASES -->
+<section id="bases" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span lang="pt">Bases de conhecimento</span><span lang="en">Knowledge bases</span><span lang="es">Bases de conocimiento</span></div>
+      <h2 lang="pt">O que o tutor sabe, e de onde veio.</h2><h2 lang="en">What the tutor knows, and where it came from.</h2><h2 lang="es">Lo que el tutor sabe, y de dónde vino.</h2>
+      <p lang="pt">Os revisores não respondem de memória. Cada apontamento sai de uma de duas bases em Markdown, instaladas junto com o plugin: a do <span class="nw">CEP-UMC</span>, para a Parte 1, e a acadêmica, para a Parte 2. Elas são abertas: qualquer pessoa pode ler, conferir a fonte de cada item e propor correções.</p>
+      <p lang="en">The reviewers do not answer from memory. Every finding comes from one of two Markdown bases, installed with the plugin: the <span class="nw">CEP-UMC</span> base, for Part 1, and the academic base, for Part 2. Both are open: anyone can read them, check the source of each item and propose corrections.</p>
+      <p lang="es">Los revisores no responden de memoria. Cada señalamiento sale de una de dos bases en Markdown, instaladas con el plugin: la del <span class="nw">CEP-UMC</span>, para la Parte 1, y la académica, para la Parte 2. Son abiertas: cualquiera puede leerlas, verificar la fuente de cada ítem y proponer correcciones.</p>
+    </div>
+
+    <div class="kb-stats">
+      <div><b>12</b><span lang="pt">documentos oficiais na origem</span><span lang="en">official source documents</span><span lang="es">documentos oficiales de origen</span></div>
+      <div><b>274</b><span lang="pt">requisitos com ID estável e fonte</span><span lang="en">requirements with stable ID and source</span><span lang="es">requisitos con ID estable y fuente</span></div>
+      <div><b>11</b><span lang="pt">divergências entre documentos, registradas</span><span lang="en">discrepancies between documents, recorded</span><span lang="es">divergencias entre documentos, registradas</span></div>
+      <div><b>42</b><span lang="pt">sugestões acadêmicas, 16 no núcleo comum</span><span lang="en">academic suggestions, 16 in the common core</span><span lang="es">sugerencias académicas, 16 en el núcleo común</span></div>
+    </div>
+
+    <div class="kb-cols">
+      <div class="use">
+        <div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h12l4 4v12H4z"/><path d="M8 11h8M8 15h8M8 7h4"/></svg></div>
+        <h3 lang="pt">Como foram construídas</h3><h3 lang="en">How they were built</h3><h3 lang="es">Cómo se construyeron</h3>
+        <ol lang="pt">
+          <li><b>Fontes.</b> Os modelos do <span class="nw">CEP-UMC</span> de 2022, o Regimento Interno de 2025, o Manual do Pesquisador da Plataforma Brasil e a Cartilha dos Direitos dos Participantes da CONEP foram convertidos em texto integral.</li>
+          <li><b>Requisitos.</b> Cada exigência virou uma linha com ID estável (ex.: <code>TCLE-C11</code>), o documento e o item de origem e uma severidade tirada da redação da fonte.</li>
+          <li><b>Divergências.</b> Onde os documentos discordam, como o horário de atendimento do CEP, as duas versões ficam registradas e o tutor manda confirmar com o comitê.</li>
+          <li><b>Ferramentas de triagem.</b> Matriz de documentos por tipo de estudo, checklist consolidado e 45 padrões de erro frequentes, que viram os sinais automáticos.</li>
+          <li><b>Base acadêmica.</b> Itens de metodologia, estatística e escrita a partir das diretrizes EQUATOR (STROBE, CONSORT, SPIRIT, SAMPL), das normas ABNT e da literatura metodológica, cada um com o nível a partir do qual é essencial.</li>
+          <li><b>Conferência.</b> Testes automáticos verificam que todo ID citado existe e que nenhuma tabela perdeu o formato.</li>
+        </ol>
+        <ol lang="en">
+          <li><b>Sources.</b> The 2022 <span class="nw">CEP-UMC</span> templates, the 2025 bylaws, the Plataforma Brasil researcher manual and the CONEP booklet on participants' rights were converted to full text.</li>
+          <li><b>Requirements.</b> Each requirement became a row with a stable ID (e.g. <code>TCLE-C11</code>), the source document and item, and a severity taken from the source's wording.</li>
+          <li><b>Discrepancies.</b> Where the documents disagree, such as the committee's office hours, both versions are recorded and the tutor asks to confirm with the committee.</li>
+          <li><b>Screening tools.</b> A matrix of documents by study type, a consolidated checklist and 45 frequent error patterns, which become the automatic signals.</li>
+          <li><b>Academic base.</b> Methods, statistics and writing items from the EQUATOR guidelines (STROBE, CONSORT, SPIRIT, SAMPL), ABNT standards and the methods literature, each with the level from which it is essential.</li>
+          <li><b>Checks.</b> Automated tests verify that every cited ID exists and that no table lost its format.</li>
+        </ol>
+        <ol lang="es">
+          <li><b>Fuentes.</b> Los modelos del <span class="nw">CEP-UMC</span> de 2022, el Reglamento Interno de 2025, el Manual del Investigador de la Plataforma Brasil y la Cartilla de Derechos de los Participantes de la CONEP se convirtieron a texto completo.</li>
+          <li><b>Requisitos.</b> Cada exigencia se convirtió en una fila con ID estable (p. ej., <code>TCLE-C11</code>), el documento e ítem de origen y una severidad tomada de la redacción de la fuente.</li>
+          <li><b>Divergencias.</b> Donde los documentos no coinciden, como el horario de atención del comité, se registran ambas versiones y el tutor pide confirmar con el comité.</li>
+          <li><b>Herramientas de cribado.</b> Matriz de documentos por tipo de estudio, lista de verificación consolidada y 45 patrones de error frecuentes, que se convierten en las señales automáticas.</li>
+          <li><b>Base académica.</b> Ítems de metodología, estadística y redacción a partir de las guías EQUATOR (STROBE, CONSORT, SPIRIT, SAMPL), las normas ABNT y la literatura metodológica, cada uno con el nivel desde el cual es esencial.</li>
+          <li><b>Verificación.</b> Pruebas automáticas comprueban que todo ID citado existe y que ninguna tabla perdió el formato.</li>
+        </ol>
+      </div>
+      <div class="use ref">
+        <div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></div>
+        <h3 lang="pt">Como entram na avaliação</h3><h3 lang="en">How they are used in the review</h3><h3 lang="es">Cómo entran en la revisión</h3>
+        <ol lang="pt">
+          <li><b>Escolha do que ler.</b> Pela triagem e pelos documentos recebidos, o programa escolhe as seções inteiras que se aplicam (TCLE, TALE, TAI, coleta online…) e as entrega ao revisor junto com o protocolo.</li>
+          <li><b>Citação obrigatória.</b> O revisor da Parte 1 precisa citar o ID de um requisito da base e o trecho do documento. Um ID que não existe na base não vira pendência: o ponto aparece à parte, para conferir.</li>
+          <li><b>Severidade pela base.</b> Bloqueante, pendência ou recomendação vem da tabela, não da opinião do modelo. O mesmo problema tem sempre o mesmo peso.</li>
+          <li><b>Sinais automáticos.</b> Os padrões de erro frequentes rodam antes da IA ("não há riscos", coleta antes da aprovação, restos de modelo) e o revisor confirma ou descarta cada um.</li>
+          <li><b>Calibração da Parte 2.</b> Núcleo comum e nível mínimo de cada sugestão decidem, por regra fixa, o que é essencial para um TCC e o que é essencial para uma tese.</li>
+          <li><b>Perguntas pontuais.</b> "Preciso de TALE?" é respondido com o requisito e a fonte da base.</li>
+        </ol>
+        <ol lang="en">
+          <li><b>Choosing what to read.</b> From the screening and the documents received, the program picks the whole sections that apply (consent forms, assent, site permits, online collection…) and hands them to the reviewer with the protocol.</li>
+          <li><b>Mandatory citation.</b> The Part 1 reviewer must cite the ID of a requirement in the base and the passage of the document. An ID that is not in the base does not become a pending item: the point is shown apart, to be checked.</li>
+          <li><b>Severity from the base.</b> Blocking, pending or recommendation comes from the table, not from the model's opinion. The same problem always weighs the same.</li>
+          <li><b>Automatic signals.</b> Frequent error patterns run before the AI ("no risks", collection before approval, template leftovers) and the reviewer confirms or discards each one.</li>
+          <li><b>Part 2 calibration.</b> The common core and minimum level of each suggestion decide, by a fixed rule, what is essential for an undergraduate thesis and what is essential for a PhD.</li>
+          <li><b>Quick questions.</b> "Do I need an assent form?" is answered with the requirement and its source in the base.</li>
+        </ol>
+        <ol lang="es">
+          <li><b>Qué leer.</b> A partir del cribado y de los documentos recibidos, el programa elige las secciones completas que corresponden (consentimiento, asentimiento, autorizaciones, recolección en línea…) y se las entrega al revisor junto con el protocolo.</li>
+          <li><b>Cita obligatoria.</b> El revisor de la Parte 1 debe citar el ID de un requisito de la base y el fragmento del documento. Un ID que no está en la base no se convierte en pendiente: el punto aparece aparte, para verificar.</li>
+          <li><b>Severidad de la base.</b> Bloqueante, pendiente o recomendación viene de la tabla, no de la opinión del modelo. El mismo problema pesa siempre lo mismo.</li>
+          <li><b>Señales automáticas.</b> Los patrones de error frecuentes se ejecutan antes de la IA ("no hay riesgos", recolección antes de la aprobación, restos de modelo) y el revisor confirma o descarta cada uno.</li>
+          <li><b>Calibración de la Parte 2.</b> El núcleo común y el nivel mínimo de cada sugerencia deciden, por regla fija, qué es esencial para un trabajo de grado y qué para una tesis doctoral.</li>
+          <li><b>Preguntas puntuales.</b> "¿Necesito asentimiento?" se responde con el requisito y la fuente de la base.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="tip kb-note" lang="pt"><b>Por que não é uma busca por semelhança (RAG).</b> A base é pequena o bastante para ser entregue por seção inteira, escolhida por regra. Assim o revisor vê todos os requisitos que se aplicam ao documento, e nenhum fica de fora por não "parecer" com o texto.</div>
+    <div class="tip kb-note" lang="en"><b>Why it is not similarity search (RAG).</b> The base is small enough to be handed over by whole section, chosen by rule. The reviewer sees every requirement that applies to the document, and none is left out for not "looking like" the text.</div>
+    <div class="tip kb-note" lang="es"><b>Por qué no es una búsqueda por similitud (RAG).</b> La base es lo bastante pequeña para entregarse por sección completa, elegida por regla. Así el revisor ve todos los requisitos que se aplican al documento, y ninguno queda fuera por no "parecerse" al texto.</div>
+    <div class="tip warn kb-note" lang="pt"><b>Validação em andamento.</b> A severidade é uma classificação editorial, tirada da redação dos documentos, não um critério oficial do <span class="nw">CEP-UMC</span>, e as divergências ainda precisam ser confirmadas com o comitê. A base acadêmica é uma versão inicial, a validar com coordenadores de curso e de pós-graduação.</div>
+    <div class="tip warn kb-note" lang="en"><b>Validation in progress.</b> Severity is an editorial classification, taken from the wording of the documents, not an official <span class="nw">CEP-UMC</span> criterion, and the discrepancies still need to be confirmed with the committee. The academic base is an initial version, to be validated with program coordinators.</div>
+    <div class="tip warn kb-note" lang="es"><b>Validación en curso.</b> La severidad es una clasificación editorial, tomada de la redacción de los documentos, no un criterio oficial del <span class="nw">CEP-UMC</span>, y las divergencias aún deben confirmarse con el comité. La base académica es una versión inicial, a validar con coordinadores de grado y posgrado.</div>
+    <p class="kb-links" style="margin-top:18px;font-size:.92rem;color:var(--ink-2)"><span lang="pt">Ver as bases no GitHub:</span><span lang="en">See the bases on GitHub:</span><span lang="es">Ver las bases en GitHub:</span> <a href="https://github.com/LaBiOmicS/cep-umc-tutor/tree/main/base-conhecimento">base-conhecimento/</a> · <a href="https://github.com/LaBiOmicS/cep-umc-tutor/tree/main/base-academica">base-academica/</a></p>
+  </div>
+</section>
+
+<section id="perfis">
   <div class="wrap grid-2">
     <div>
       <div class="sec-head" style="margin-bottom:24px">
@@ -798,7 +899,7 @@ agy plugin enable cep-umc-tutor</pre></div>
   </div>
 </section>
 
-<section id="rodadas">
+<section id="rodadas" class="alt">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span lang="pt">Revisão com fim</span><span lang="en">A review that ends</span><span lang="es">Una revisión con fin</span></div>
@@ -821,7 +922,7 @@ agy plugin enable cep-umc-tutor</pre></div>
   </div>
 </section>
 
-<section id="saidas" class="alt">
+<section id="saidas">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span lang="pt">O que você recebe</span><span lang="en">What you get</span><span lang="es">Qué recibe</span></div>
@@ -853,7 +954,7 @@ agy plugin enable cep-umc-tutor</pre></div>
 </section>
 
 <!-- ================================================================ FAQ -->
-<section id="faq">
+<section id="faq" class="alt">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span lang="pt">Dúvidas</span><span lang="en">FAQ</span><span lang="es">Preguntas</span></div>
@@ -886,7 +987,7 @@ claude plugin update cep-umc-tutor@labiomics</pre></div>
 </section>
 
 <!-- ================================================================ ADVANCED -->
-<section id="instalar" class="alt">
+<section id="instalar">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span lang="pt">Avançado</span><span lang="en">Advanced</span><span lang="es">Avanzado</span></div>
@@ -915,7 +1016,7 @@ uv run $S/cep_tutor.py planejar --output-dir cep_tutor/plan --nivel graduacao --
   </div>
 </section>
 
-<section>
+<section class="alt">
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow"><span lang="pt">Uso responsável</span><span lang="en">Responsible use</span><span lang="es">Uso responsable</span></div>

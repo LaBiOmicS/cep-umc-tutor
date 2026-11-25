@@ -209,6 +209,37 @@ In `cep_tutor/<project>/`:
   common core, from which level it becomes "Essential" and where to study it. It is an **initial version**, to be
   validated with undergraduate and graduate program coordinators.
 
+### How they were built
+
+1. **Source conversion.** The 12 documents in `docs/` were converted to full text (`base-conhecimento/fontes/`), so
+   they can be quoted literally.
+2. **Requirement extraction.** Each requirement became a table row with a stable ID (e.g. `TCLE-C11`), source document
+   and item, and severity. Severity comes from the source's wording: **[BLOQUEANTE]** (blocking) when the source says
+   the problem leads to rejection, **[PENDÊNCIA]** (pending) when it usually leads to a pending decision,
+   **[RECOMENDAÇÃO]** for good practice.
+3. **Discrepancies recorded.** Where documents disagree (11 cases, e.g. office hours), both versions are kept in
+   `00-fontes-e-discrepancias.md` and the tutor asks to confirm with the committee instead of picking one.
+4. **Screening tools.** A matrix of documents by study type (21 questions), a consolidated checklist and 45 frequent
+   error patterns, which become the automatic signals.
+5. **Academic base.** Items written from the EQUATOR guidelines (STROBE, CONSORT, SPIRIT, SAMPL), ABNT standards
+   (NBR 14724, 15287) and the methods literature. Each item states whether it is common core and its minimum level.
+6. **Checks.** `kb.py stats` and the tests verify that every ID cited in the checklist and patterns exists.
+
+### How they are used in the review
+
+This is not similarity-search RAG: there is no vector store. The bases are Markdown, and the code picks **whole
+sections by rule**, so no applicable requirement is left out for not "looking like" the text.
+
+| Stage | What the base does |
+|---|---|
+| Preparation (`prepare`) | From the screening and the documents received, hands the Part 1 reviewer the files that apply (always project, Plataforma Brasil, checklist and frequent errors; plus consent, assent, site permit, online collection etc. as needed). The Part 2 reviewer gets the whole academic base. |
+| Automatic signals | Error patterns run before the AI ("no risks", collection before approval, template leftovers); the reviewer confirms or discards each one. |
+| Review | The reviewer must cite the requirement ID and the document passage. |
+| Compilation (`compile`) | Severity comes from the table, not the model. An unknown ID does not become a pending item: it goes to "Outros pontos" (no matching requirement in the base). In Part 2, common core and minimum level decide Essential × Going further. |
+| Quick questions | "Do I need an assent form?" is answered with the requirement and its source. |
+
+Severity is an **editorial classification**, not an official CEP-UMC criterion.
+
 To update when the committee publishes new templates, see the "Manutenção" section of `base-conhecimento/README.md`.
 IDs are never renumbered.
 

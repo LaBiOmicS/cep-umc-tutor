@@ -209,6 +209,37 @@ En `cep_tutor/<proyecto>/`:
   núcleo común, a partir de qué nivel pasa a ser "Esencial" y dónde estudiarlo. Es una **versión inicial**, a validar
   con coordinadores de grado y posgrado.
 
+### Cómo se construyeron
+
+1. **Conversión de las fuentes.** Los 12 documentos de `docs/` se convirtieron a texto completo
+   (`base-conhecimento/fontes/`), para permitir la cita literal.
+2. **Extracción de requisitos.** Cada exigencia se convirtió en una fila con ID estable (p. ej., `TCLE-C11`), documento e
+   ítem de origen y severidad. La severidad sale de la redacción de la fuente: **[BLOQUEANTE]** cuando la fuente dice que
+   el problema lleva al rechazo, **[PENDÊNCIA]** (pendiente) cuando suele generar dictamen pendiente,
+   **[RECOMENDAÇÃO]** para buenas prácticas.
+3. **Registro de divergencias.** Donde los documentos no coinciden (11 casos, p. ej., horario de atención), ambas
+   versiones quedan en `00-fontes-e-discrepancias.md` y el tutor pide confirmar con el comité en vez de elegir una.
+4. **Herramientas de cribado.** Matriz de documentos por tipo de estudio (21 preguntas), lista de verificación
+   consolidada y 45 patrones de error frecuentes, que se convierten en las señales automáticas.
+5. **Base académica.** Ítems escritos a partir de las guías EQUATOR (STROBE, CONSORT, SPIRIT, SAMPL), las normas ABNT
+   (NBR 14724, 15287) y la literatura metodológica. Cada ítem indica si es del núcleo común y su nivel mínimo.
+6. **Verificación.** `kb.py stats` y las pruebas comprueban que todo ID citado en la lista y en los patrones existe.
+
+### Cómo entran en la revisión
+
+No es RAG por similitud: no hay base vectorial. Las bases son Markdown, y el código elige **secciones completas por
+regla**, para que ningún requisito aplicable quede fuera por no "parecerse" al texto.
+
+| Momento | Qué hace la base |
+|---|---|
+| Preparación (`prepare`) | A partir del cribado y de los documentos recibidos, entrega al revisor de la Parte 1 los archivos que corresponden (siempre proyecto, Plataforma Brasil, lista de verificación y errores frecuentes; más consentimiento, asentimiento, autorización, recolección en línea, etc., según el caso). El revisor de la Parte 2 recibe toda la base académica. |
+| Señales automáticas | Los patrones de error se ejecutan antes de la IA ("no hay riesgos", recolección antes de la aprobación, restos de modelo); el revisor confirma o descarta cada uno. |
+| Revisión | El revisor debe citar el ID del requisito y el fragmento del documento. |
+| Compilación (`compile`) | La severidad viene de la tabla, no del modelo. Un ID inexistente no se convierte en pendiente: va a "Outros pontos" (sin requisito correspondiente en la base). En la Parte 2, el núcleo común y el nivel mínimo deciden Esencial × Para profundizar. |
+| Preguntas puntuales | "¿Necesito asentimiento?" se responde con el requisito y la fuente. |
+
+La severidad es una **clasificación editorial**, no un criterio oficial del CEP-UMC.
+
 Para actualizar cuando el comité publique nuevos modelos, vea la sección "Manutenção" de `base-conhecimento/README.md`.
 Los IDs nunca se renumeran.
 
