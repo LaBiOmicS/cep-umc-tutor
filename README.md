@@ -50,6 +50,7 @@ Faz parte da linha de plugins do LaBiOmicS/UMC, com o
 - [Segurança e confidencialidade](#segurança-e-confidencialidade)
 - [Limitações](#limitações)
 - [Desenvolvimento](#desenvolvimento)
+- [Como citar](#como-citar)
 - [Licença e autoria](#licença-e-autoria)
 
 ## O que o tutor faz
@@ -286,6 +287,23 @@ site/                    página do GitHub Pages (publicada por .github/workflow
 assets/                  logo
 tests/                   testes (protocolo fictício em fixtures/)
 ```
+
+## Como citar
+
+Se usar o `cep-umc-tutor` na sua pesquisa, cite-o assim:
+
+```bibtex
+@software{cep_umc_tutor,
+  author  = {{LaBiOmicS -- Laboratory of Bioinformatics and Omics Sciences, University of Mogi das Cruzes}},
+  title   = {{cep-umc-tutor}: AI-assisted pre-submission review of research protocols for the CEP-UMC ethics committee},
+  version = {0.2.0},
+  year    = {2026},
+  url     = {https://github.com/LaBiOmicS/cep-umc-tutor}
+}
+```
+
+Ajuste `version` para a versão que você usou. No GitHub, o botão **Cite this repository** dá a mesma referência em
+outros formatos (APA e BibTeX), a partir do [`CITATION.cff`](CITATION.cff).
 
 ## Licença e autoria
 

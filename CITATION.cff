@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "cep-umc-tutor: AI-assisted pre-submission review of research protocols for the CEP-UMC ethics committee"
+authors:
+  - name: "LaBiOmicS – Laboratory of Bioinformatics and Omics Sciences, University of Mogi das Cruzes"
+    city: "Mogi das Cruzes"
+    country: BR
+version: "0.2.0"
+date-released: "2026-11-25"
+license: MIT
+url: "https://labiomics.github.io/cep-umc-tutor/"
+repository-code: "https://github.com/LaBiOmicS/cep-umc-tutor"
