@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B1938"/><stop offset="55%" stop-color="#071026"/><stop offset="100%" stop-color="#030712"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FDE68A"/><stop offset="50%" stop-color="#D97706"/><stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="150" y1="120" x2="330" y2="390" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFBEB"/><stop offset="100%" stop-color="#E7E5E4"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="270" y1="230" x2="390" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#67E8F9"/><stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+  </defs>
+  <rect x="64" y="64" width="384" height="384" rx="84" fill="#061024" stroke="url(#rim)" stroke-width="12"/>
+  <rect x="76" y="76" width="360" height="360" rx="74" fill="url(#bg)" stroke="#38BDF8" stroke-width="4" stroke-opacity="0.75"/>
+  <!-- protocolo -->
+  <path d="M150 132h120l46 46v196a14 14 0 0 1-14 14H150a14 14 0 0 1-14-14V146a14 14 0 0 1 14-14z" fill="url(#paper)" stroke="#0F172A" stroke-width="6"/>
+  <path d="M270 132v46h46" fill="#D6D3D1" stroke="#0F172A" stroke-width="6" stroke-linejoin="round"/>
+  <!-- duas trilhas: linhas âmbar (ética) e azuis (acadêmica) -->
+  <path d="M164 204h86M164 232h120" stroke="#D97706" stroke-width="10" stroke-linecap="round"/>
+  <path d="M164 272h70M164 300h56" stroke="#0284C7" stroke-width="10" stroke-linecap="round"/>
+  <!-- escudo com visto -->
+  <path d="M330 236l66 24v52c0 40-28 72-66 82-38-10-66-42-66-82v-52l66-24z" fill="url(#shield)" stroke="#0F172A" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M302 316l20 20 38-42" stroke="#FFFBEB" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

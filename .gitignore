@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.tmp
+
+# Protocolos e relatórios (inéditos e com dados pessoais: nunca versionar)
+/cep_tutor/
+/protocolos/
+/relatorios/

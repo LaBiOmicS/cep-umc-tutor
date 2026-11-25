@@ -1,0 +1,39 @@
+{
+  "name": "labiomics",
+  "owner": {
+    "name": "LaBiOmicS / UMC",
+    "email": "fabianomenegidio@umc.br"
+  },
+  "description": "LaBiOmicS / UMC plugins for research: academic peer review, congress abstract evaluation, WHOQOL quality-of-life analysis and the CEP-UMC pre-submission tutor.",
+  "plugins": [
+    {
+      "name": "academic-peer-review",
+      "source": {
+        "source": "github",
+        "repo": "LaBiOmicS/academic-peer-review"
+      },
+      "description": "Multi-reviewer academic peer review panel with statistical, citation, journal-scope and FAIR audits, and PDF report synthesis."
+    },
+    {
+      "name": "congress-abstract-review",
+      "source": {
+        "source": "github",
+        "repo": "LaBiOmicS/congress-abstract-review"
+      },
+      "description": "Evaluation of congress abstracts and expanded abstracts: edital compliance, promised-results detection, evaluator panel, barema scoring and committee spreadsheet."
+    },
+    {
+      "name": "whoqol-toolkit",
+      "source": {
+        "source": "github",
+        "repo": "LaBiOmicS/whoqol-toolkit"
+      },
+      "description": "WHOQOL scoring, psychometrics and publication-grade statistics."
+    },
+    {
+      "name": "cep-umc-tutor",
+      "source": "./",
+      "description": "Pre-submission tutor for the CEP-UMC research ethics committee: ethics and document checks with requirement IDs (Track A) and level-calibrated academic suggestions (Track B)."
+    }
+  ]
+}

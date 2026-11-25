@@ -1,0 +1,21 @@
+{
+  "name": "cep-umc-tutor",
+  "version": "0.2.0",
+  "description": "Tutor de pré-submissão ao Comitê de Ética em Pesquisa da Universidade de Mogi das Cruzes (CEP-UMC): revisa o protocolo antes da Plataforma Brasil em duas trilhas separadas. Trilha A (ética e documentos): triagem do estudo, documentos esperados × recebidos, sinais determinísticos e apontamentos com IDs e severidade da base de conhecimento do CEP-UMC. Trilha B (metodologia, estatística e escrita): sugestões calibradas pelo nível do trabalho (graduação a docente), nunca apresentadas como exigência do CEP. Relatório em duas partes (MD + PDF), consulta à base e ajuda com a carta-resposta a pendências. É um tutor, não o comitê.",
+  "author": {
+    "name": "Prof. Dr. Fabiano Bezerra Menegidio (LaBiOmicS / UMC)",
+    "email": "fabianomenegidio@umc.br"
+  },
+  "homepage": "https://github.com/LaBiOmicS/cep-umc-tutor",
+  "repository": "https://github.com/LaBiOmicS/cep-umc-tutor",
+  "license": "MIT",
+  "keywords": [
+    "research-ethics",
+    "cep",
+    "conep",
+    "plataforma-brasil",
+    "tcle",
+    "pre-submission",
+    "umc"
+  ]
+}

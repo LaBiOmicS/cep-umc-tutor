@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="pt-BR" data-os="win" data-ai="claude">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cep-umc-tutor · LaBiOmicS</title>
+<meta name="description" content="Tutor de pré-submissão ao Comitê de Ética em Pesquisa da UMC, para Claude Code e Antigravity: confere documentos e exigências éticas e separa as sugestões de metodologia, estatística e escrita, calibradas pelo nível do trabalho.">
+<meta property="og:title" content="cep-umc-tutor — chegue ao CEP-UMC com o protocolo pronto">
+<meta property="og:description" content="Revisão do protocolo antes da Plataforma Brasil: Parte 1 com o que o CEP cobra, Parte 2 com sugestões acadêmicas, relatório do orientador e no máximo três rodadas.">
+<meta property="og:image" content="https://labiomics.github.io/cep-umc-tutor/assets/logo-180.png">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfaf7; --surface: #ffffff; --surface-2: #f3f1ec; --ink: #14182b; --ink-2: #3d4257; --muted: #6b6f80;
+  --line: #e3e0d8; --gold: #b45309; --gold-soft: #fdf3e1; --cyan: #0369a1; --cyan-soft: #e6f2f9;
+  --red: #b42318; --red-soft: #fdecea; --green: #1f7a4d; --green-soft: #e8f5ee;
+  --code-bg: #0f1730; --code-ink: #e8ecf8; --code-dim: #8c95b8; --code-hi: #f2b25c;
+  --shadow: 0 1px 2px rgba(20,24,43,.05), 0 6px 24px rgba(20,24,43,.06);
+  --radius: 14px;
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a0f1f; --surface: #111831; --surface-2: #161f3d; --ink: #eef0f7; --ink-2: #c4c8d8; --muted: #8d93a8;
+    --line: #253056; --gold: #f2b25c; --gold-soft: #2a2213; --cyan: #67c1ec; --cyan-soft: #10273a;
+    --red: #f08a80; --red-soft: #2c1615; --green: #6fcf9c; --green-soft: #12281d; --code-bg: #060a17;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a0f1f; --surface: #111831; --surface-2: #161f3d; --ink: #eef0f7; --ink-2: #c4c8d8; --muted: #8d93a8;
+  --line: #253056; --gold: #f2b25c; --gold-soft: #2a2213; --cyan: #67c1ec; --cyan-soft: #10273a;
+  --red: #f08a80; --red-soft: #2c1615; --green: #6fcf9c; --green-soft: #12281d; --code-bg: #060a17;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
+}
+
+/* Language, operating system and AI selectors show one variant at a time. */
+html[data-lang="pt"] [lang="en"], html[data-lang="pt"] [lang="es"],
+html[data-lang="en"] [lang="pt"], html[data-lang="en"] [lang="es"],
+html[data-lang="es"] [lang="pt"], html[data-lang="es"] [lang="en"] { display: none !important; }
+html[data-os="win"] .os-mac, html[data-os="win"] .os-linux, html[data-os="win"] .os-unix,
+html[data-os="mac"] .os-win, html[data-os="mac"] .os-linux,
+html[data-os="linux"] .os-win, html[data-os="linux"] .os-mac { display: none !important; }
+html[data-ai="claude"] .ai-agy, html[data-ai="agy"] .ai-claude { display: none !important; }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: var(--cyan); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+code, pre, kbd { font-family: var(--mono); }
+code { font-size: .86em; background: var(--surface-2); padding: .1em .35em; border-radius: 5px; overflow-wrap: anywhere; }
+kbd { font-size: .8em; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: .05em .4em; background: var(--surface); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 650; letter-spacing: -.01em; line-height: 1.15; margin: 0; }
+h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); }
+h3 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0; }
+p + p { margin-top: 10px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+@media (max-width: 600px) { .wrap { padding: 0 16px; } body { font-size: 16px; } }
+.eyebrow { font: 500 .78rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+
+/* Header */
+header.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 18px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; min-width: 0; }
+.brand img { width: 30px; height: 30px; border-radius: 8px; flex: none; }
+.brand span { font-family: var(--mono); font-size: .92rem; white-space: nowrap; }
+nav.links { display: flex; gap: 16px; margin-left: auto; }
+nav.links a { color: var(--ink-2); text-decoration: none; font-size: .9rem; white-space: nowrap; }
+nav.links a:hover { color: var(--ink); }
+.toggles { display: flex; gap: 6px; align-items: center; }
+.chip-btn { font: 500 .78rem var(--mono); color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; cursor: pointer; }
+.chip-btn:hover { border-color: var(--muted); }
+.seg { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+.seg button { font: 500 .8rem var(--sans); color: var(--ink-2); background: none; border: 0; border-radius: 999px; padding: 5px 11px; cursor: pointer; white-space: nowrap; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.top .seg button { font-family: var(--mono); font-size: .74rem; padding: 4px 8px; }
+/* Narrow screens: the menu moves to a second, horizontally scrollable row instead of disappearing. */
+@media (max-width: 1060px) {
+  .top .wrap { flex-wrap: wrap; height: auto; padding-top: 10px; gap: 8px 14px; }
+  .toggles { margin-left: auto; }
+  nav.links { order: 3; width: 100%; margin: 0; gap: 18px; overflow-x: auto; padding: 2px 0 10px; scrollbar-width: none; }
+  nav.links::-webkit-scrollbar { display: none; }
+  html { scroll-padding-top: 110px; }
+  .pickers { top: 98px; }
+}
+@media (max-width: 420px) { .brand span { display: none; } }
+
+/* Hero */
+.hero { padding: 76px 0 64px; position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: -40% -10% auto auto; width: 760px; height: 760px; background: radial-gradient(closest-side, color-mix(in srgb, var(--gold) 14%, transparent), transparent); pointer-events: none; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 52px; align-items: center; }
+.hero .wrap > * { min-width: 0; }
+@media (max-width: 920px) { .hero .wrap { grid-template-columns: 1fr; gap: 36px; } .hero { padding: 48px 0 40px; } }
+.hero h1 { font-size: clamp(2.3rem, 5.2vw, 3.8rem); margin: 6px 0 20px; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.lede { font-size: 1.12rem; color: var(--ink-2); max-width: 36em; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid transparent; }
+.btn.primary { background: var(--ink); color: var(--bg); }
+.btn.ghost { border-color: var(--line); color: var(--ink); background: var(--surface); }
+.btn:hover { transform: translateY(-1px); }
+.meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.tag { font: 500 .76rem var(--mono); padding: 4px 10px; border-radius: 999px; background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line); }
+.tag.beta { background: var(--gold-soft); color: var(--gold); border-color: color-mix(in srgb, var(--gold) 45%, var(--line)); font-weight: 600; letter-spacing: .04em; }
+.beta-note { display: flex; gap: 12px; align-items: flex-start; margin-top: 22px; padding: 12px 16px; max-width: 36em; border: 1px solid color-mix(in srgb, var(--gold) 40%, var(--line)); border-left: 4px solid var(--gold); border-radius: 0 10px 10px 0; background: var(--gold-soft); font-size: .9rem; color: var(--ink); }
+.beta-note b { color: var(--gold); font: 600 .74rem var(--mono); letter-spacing: .06em; padding-top: 3px; flex: none; }
+
+/* Terminal mock */
+.term { background: var(--code-bg); color: var(--code-ink); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; font: .84rem/1.65 var(--mono); }
+.term .bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.term .bar i { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,.18); }
+.term .bar span { margin-left: 8px; color: var(--code-dim); font-size: .74rem; }
+.term .body { padding: 16px 18px 18px; }
+.term .body > div { white-space: pre-wrap; overflow-wrap: anywhere; }
+.term .u { color: var(--code-hi); }
+.term .d { color: var(--code-dim); }
+.term .ok { color: #6fcf9c; }
+.term .w { color: #f08a80; }
+.term .gap { height: 10px; }
+.term .cap { margin-top: 12px; color: var(--code-dim); font-size: .72rem; }
+.term .bar .replay { margin-left: auto; font: .8rem var(--mono); color: var(--code-dim); background: none; border: 1px solid rgba(255,255,255,.18); border-radius: 6px; padding: 0 8px; cursor: pointer; }
+.term .bar .replay:hover { color: var(--code-ink); }
+.term .prow { display: grid; grid-template-columns: 6em 1fr 1.4em; gap: 10px; align-items: center; padding-left: 1.2em; }
+.term .prow .pbar { background: rgba(255,255,255,.12); }
+.term .prow .pbar b { background: var(--code-hi); }
+.term .rest { color: transparent; }
+.term.anim:not(.typed) .rest { box-shadow: inset 2px 0 var(--code-hi); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { box-shadow: none; } }
+
+/* Animation states. Without JavaScript, or with reduced motion, everything stays in its final state. */
+.pbar { display: block; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.pbar b { display: block; height: 100%; width: var(--w, 100%); border-radius: 3px; background: var(--cyan); }
+.anim .pbar b { width: 0; transition: width var(--d, 1.4s) cubic-bezier(.45,0,.25,1); }
+.anim .on .pbar b { width: var(--w, 100%); }
+.term.anim .ln { opacity: 0; transition: opacity .35s; }
+.term.anim .ln.on { opacity: 1; }
+.term.anim .tick { opacity: 0; transition: opacity .2s var(--d, 1.4s); }
+.term.anim .ln.on .tick { opacity: 1; }
+
+/* Sections */
+section { padding: 80px 0; }
+section.alt { background: var(--surface-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.sec-head { max-width: 48em; margin-bottom: 38px; }
+.sec-head p { color: var(--ink-2); margin-top: 14px; font-size: 1.04rem; }
+@media (max-width: 600px) { section { padding: 54px 0; } }
+
+/* Two uses */
+.uses { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.uses > * { min-width: 0; }
+@media (max-width: 860px) { .uses { grid-template-columns: 1fr; } }
+.use { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; border-top: 4px solid var(--gold); }
+.use.ref { border-top-color: var(--cyan); }
+.use .ico { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--gold-soft); color: var(--gold); }
+.use.ref .ico { background: var(--cyan-soft); color: var(--cyan); }
+.use h3 { font-size: 1.3rem; margin: 14px 0 8px; }
+.use > p { color: var(--ink-2); font-size: .95rem; }
+.use ul { margin: 14px 0 0; padding: 0; list-style: none; }
+.use li { position: relative; padding-left: 24px; margin: 7px 0; font-size: .92rem; color: var(--ink-2); }
+.use li::before { content: "→"; position: absolute; left: 0; color: var(--gold); font-family: var(--mono); }
+.use.ref li::before { color: var(--cyan); }
+
+/* Guide */
+.pickers { position: sticky; top: 64px; z-index: 10; display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; padding: 14px 18px; margin-bottom: 30px; background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+.pickers label { font: 500 .74rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-right: 8px; }
+.pickers > div { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+@media (max-width: 600px) { .pickers { position: static; } }
+.needs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 36px; }
+@media (max-width: 900px) { .needs { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .needs { grid-template-columns: 1fr; } }
+.needs div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; font-size: .9rem; color: var(--ink-2); }
+.needs b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 3px; }
+ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+ol.steps > li { counter-increment: s; position: relative; padding: 0 0 34px 64px; }
+ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; font: 600 1rem var(--serif); color: var(--gold); background: var(--surface); border: 1.5px solid var(--gold); }
+ol.steps > li::after { content: ""; position: absolute; left: 20px; top: 46px; bottom: 6px; width: 1.5px; background: var(--line); }
+ol.steps > li:last-child::after { display: none; }
+ol.steps h3 { font-family: var(--sans); font-size: 1.12rem; padding-top: 8px; margin-bottom: 8px; }
+ol.steps .txt { color: var(--ink-2); font-size: .97rem; max-width: 46em; }
+ol.steps .txt ul { margin: 8px 0 0; padding-left: 20px; }
+ol.steps .txt li { margin: 3px 0; }
+@media (max-width: 600px) { ol.steps > li { padding-left: 52px; } ol.steps > li::before { width: 36px; height: 36px; } ol.steps > li::after { left: 17px; top: 40px; } }
+.tip { margin-top: 12px; padding: 12px 14px; border-left: 3px solid var(--cyan); background: var(--cyan-soft); border-radius: 0 10px 10px 0; font-size: .9rem; color: var(--ink); max-width: 46em; }
+.warn { border-left-color: var(--gold); background: var(--gold-soft); }
+
+/* Code blocks */
+.code { position: relative; background: var(--code-bg); color: var(--code-ink); border-radius: 12px; padding: 16px 18px; margin-top: 12px; font-size: .86rem; line-height: 1.7; max-width: 46em; }
+.code pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; padding-right: 64px; }
+.code .c { color: var(--code-dim); }
+.code .p { color: var(--code-hi); user-select: none; }
+.code .ph { color: var(--code-hi); border-bottom: 1px dashed var(--code-hi); }
+.copy { position: absolute; top: 10px; right: 10px; font: 500 .72rem var(--mono); color: var(--code-ink); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); border-radius: 6px; padding: 5px 9px; cursor: pointer; }
+.copy:hover { background: rgba(255,255,255,.16); }
+
+/* Prompts */
+.prompts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.prompts > * { min-width: 0; }
+@media (max-width: 900px) { .prompts { grid-template-columns: 1fr; } }
+.pcard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; }
+.pcard .when { font: 500 .72rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.pcard h3 { font-family: var(--sans); font-size: 1.05rem; margin: 6px 0 4px; }
+.pcard > p { font-size: .9rem; color: var(--ink-2); }
+.pcard .code { max-width: none; margin-top: auto; }
+.pcard > p:last-of-type { margin-bottom: 14px; }
+.badge { display: inline-block; font: 500 .68rem var(--mono); padding: 2px 7px; border-radius: 5px; background: var(--cyan-soft); color: var(--cyan); margin-left: 6px; vertical-align: 1px; text-transform: none; letter-spacing: 0; }
+
+/* Pipeline */
+.pipeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; counter-reset: step; }
+@media (max-width: 900px) { .pipeline { grid-template-columns: 1fr; } }
+@media (min-width: 901px) and (max-width: 1120px) { .pipeline { grid-template-columns: repeat(3, 1fr); } .pipeline .step:nth-child(3)::after { display: none; } }
+.step { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; transition: opacity .35s, border-color .35s, box-shadow .35s; }
+.step:not(:last-child)::after { content: ""; position: absolute; right: -13px; top: 50%; width: 12px; height: 2px; background: var(--line); transition: background .35s; }
+@media (max-width: 900px) { .step:not(:last-child)::after { right: auto; left: 50%; top: auto; bottom: -13px; width: 2px; height: 12px; } }
+.viz { position: relative; height: 120px; margin-bottom: 14px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface-2); overflow: hidden; font: .72rem/1.5 var(--mono); color: var(--ink-2); }
+.step.llm .viz { background: color-mix(in srgb, var(--cyan-soft) 70%, var(--surface)); }
+.viz .ok { color: var(--green); }
+.viz .w { color: var(--red); font-weight: 600; }
+.viz .doc { position: absolute; left: 12px; top: 10px; width: 32px; height: 42px; padding: 6px 5px; border-radius: 4px; border: 1px solid var(--line); background: var(--surface); display: grid; gap: 4px; align-content: start; overflow: hidden; }
+.viz .doc i { display: block; height: 3px; border-radius: 2px; background: var(--line); }
+.viz .doc i:nth-child(3n) { width: 70%; }
+.viz .scan { display: none; position: absolute; left: 0; right: 0; height: 2px; background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+.viz .tags { position: absolute; left: 12px; right: 8px; top: 60px; display: flex; flex-wrap: wrap; gap: 4px; font-size: .66rem; }
+.viz .tags span[lang] { display: inline-block; }
+.viz .tags > span { padding: 0 6px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--gold) 45%, var(--line)); background: var(--gold-soft); color: var(--gold); white-space: nowrap; }
+.viz .doc-cap { position: absolute; left: 54px; right: 8px; top: 22px; color: var(--ink); }
+.viz ul { list-style: none; margin: 0; padding: 0; }
+.viz li, .viz .row { display: flex; gap: 8px; align-items: center; white-space: nowrap; }
+.viz .row .pbar { flex: 1; }
+.viz .row .g { width: 1.1em; text-align: center; color: var(--cyan); font-weight: 600; }
+.viz .row .n { width: 1.4em; text-align: center; border-radius: 4px; font-weight: 600; }
+.viz .row.t-block .n { background: var(--red-soft); color: var(--red); }
+.viz .row.t-ess .n { background: var(--gold-soft); color: var(--gold); }
+.viz .row.t-opt .n { background: var(--green-soft); color: var(--green); }
+.viz .row + .row { margin-top: 6px; }
+.viz .row.p + .row.p { margin-top: 2px; }
+.viz .row.t-block .pbar b { background: var(--red); }
+.viz .row.t-ess .pbar b { background: var(--gold); }
+.viz .row.t-opt .pbar b { background: var(--green); }
+.viz .stamp { margin-top: 6px; color: var(--green); }
+.viz .fi { display: inline-block; min-width: 3.4em; text-align: center; padding: 0 4px; border-radius: 4px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); font-weight: 600; }
+.viz .fi.pdf { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+.flow.anim .step { opacity: .5; }
+.flow.anim .step.active, .flow.anim .step.done { opacity: 1; }
+.flow.anim .step.active { border-color: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 20%, transparent); }
+.flow.anim .step.llm.active { border-color: var(--cyan); box-shadow: 0 0 0 3px color-mix(in srgb, var(--cyan) 22%, transparent); }
+.flow.anim .step.done::after { background: var(--gold); }
+.flow.anim .step.active .scan { display: block; animation: scan 1.1s ease-in-out infinite alternate; }
+@keyframes scan { from { top: 0; } to { top: calc(100% - 2px); } }
+.flow.anim .k { opacity: 0; transform: translateY(4px); transition: opacity .3s, transform .3s; }
+.flow.anim .k.on { opacity: 1; transform: none; }
+.legend .replay-btn { margin-left: auto; }
+.step::before { counter-increment: step; content: counter(step); font: 600 .8rem var(--mono); color: var(--gold); display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--gold); margin-bottom: 12px; }
+.step h3 { font-family: var(--sans); font-size: 1.02rem; margin-bottom: 8px; }
+.step p { font-size: .9rem; color: var(--ink-2); }
+.step.llm { border-color: color-mix(in srgb, var(--cyan) 45%, var(--line)); background: color-mix(in srgb, var(--cyan-soft) 40%, var(--surface)); }
+.legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 18px; font-size: .85rem; color: var(--muted); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; border: 1px solid var(--line); background: var(--surface); }
+.legend .l-llm { border-color: var(--cyan); background: var(--cyan-soft); }
+
+/* Panel */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.grid-2 > * { min-width: 0; }
+@media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+.roles { display: grid; gap: 12px; }
+.role-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; display: grid; grid-template-columns: 40px 1fr; gap: 14px; }
+.role-card .ico { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--surface-2); color: var(--ink); }
+.role-card h3 { font-size: 1rem; font-family: var(--sans); margin-bottom: 4px; }
+.role-card p { font-size: .9rem; color: var(--ink-2); }
+table.comp { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; font-size: .92rem; }
+table.comp th, table.comp td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.comp th { font: 500 .74rem var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); background: var(--surface-2); }
+table.comp tr:last-child td { border-bottom: 0; }
+table.comp td:first-child { font-family: var(--mono); white-space: nowrap; }
+@media (max-width: 380px) { table.comp th, table.comp td { padding: 9px 10px; } table.comp th { letter-spacing: 0; } }
+
+/* Calibration */
+.cal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 900px) { .cal { grid-template-columns: 1fr; } }
+.cal-card { border-radius: var(--radius); padding: 22px; border: 1px solid var(--line); background: var(--surface); }
+.lbl { font: 600 .76rem var(--mono); text-transform: uppercase; letter-spacing: .06em; padding: 3px 9px; border-radius: 6px; display: inline-block; margin-bottom: 12px; }
+.cal-card p { font-size: .93rem; color: var(--ink-2); }
+.cal-card .ex { margin-top: 12px; font-size: .85rem; color: var(--muted); font-style: italic; }
+.t-block { background: var(--red-soft); color: var(--red); }
+.t-ess { background: var(--gold-soft); color: var(--gold); }
+.t-opt { background: var(--green-soft); color: var(--green); }
+
+/* Audit and axes */
+.audit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 900px) { .audit { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .audit { grid-template-columns: 1fr; } }
+.a-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.a-card h3 { font-family: var(--sans); font-size: 1rem; margin-bottom: 6px; }
+.a-card p { font-size: .9rem; color: var(--ink-2); }
+.axes { display: grid; grid-template-columns: .8fr 1.3fr 1.2fr; gap: 14px; margin-top: 30px; }
+@media (max-width: 900px) { .axes { grid-template-columns: 1fr; } }
+.axis { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.axis .n { font-family: var(--serif); font-size: 2.4rem; line-height: 1; color: var(--gold); }
+.axis h3 { margin: 6px 0 12px; font-family: var(--sans); font-size: 1rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips span { font-size: .79rem; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); background: var(--bg); }
+
+/* Outputs */
+.out { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: start; }
+.out > * { min-width: 0; }
+@media (max-width: 900px) { .out { grid-template-columns: 1fr; } }
+.report { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; font-size: .9rem; }
+.report .rhead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 12px; }
+.report .rhead b { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
+.report .rhead small { font: .72rem var(--mono); color: var(--muted); }
+.rev { display: grid; grid-template-columns: 62px 1fr auto; gap: 10px; align-items: center; padding: 7px 0; border-bottom: 1px dashed var(--line); }
+.rev code { background: none; padding: 0; font-weight: 500; }
+.rev .role { color: var(--ink-2); font-size: .85rem; }
+.verdict { font: 500 .72rem var(--mono); padding: 3px 8px; border-radius: 6px; background: var(--gold-soft); color: var(--gold); white-space: nowrap; }
+.tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+.tier { border-radius: 10px; padding: 10px; text-align: center; }
+.tier b { display: block; font-family: var(--serif); font-size: 1.5rem; line-height: 1; }
+.tier span { font: .68rem var(--mono); text-transform: uppercase; letter-spacing: .05em; }
+@media (max-width: 380px) { .report { padding: 16px; } .rev { grid-template-columns: 1fr auto; } .rev .role { grid-column: 1 / -1; grid-row: 2; } .tier span { font-size: .6rem; letter-spacing: 0; } }
+.report .foot { margin-top: 12px; font: .72rem var(--mono); color: var(--muted); }
+.file { display: grid; grid-template-columns: minmax(0, 15em) 1fr; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: .91rem; }
+.file code { background: none; padding: 0; color: var(--ink); word-break: break-all; }
+.file span { color: var(--ink-2); }
+.file.key code { color: var(--gold); font-weight: 500; }
+@media (max-width: 600px) { .file { grid-template-columns: 1fr; gap: 3px; } }
+
+/* FAQ */
+.faq { display: grid; gap: 10px; max-width: 52em; }
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 0 18px; }
+summary { cursor: pointer; padding: 15px 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font: 500 1.2rem var(--mono); color: var(--gold); line-height: 1.2; }
+details[open] summary::after { content: "–"; }
+details > div { padding: 0 0 16px; color: var(--ink-2); font-size: .94rem; }
+details .code { margin-top: 10px; }
+
+/* Advanced install */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tab { font: 500 .85rem var(--sans); padding: 9px 16px; border: 1px solid var(--line); border-bottom: 0; border-radius: 10px 10px 0 0; background: var(--surface-2); color: var(--ink-2); cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--code-bg); color: var(--code-ink); border-color: var(--code-bg); }
+.panel { display: none; }
+.panel.on { display: block; }
+.panel .code { margin-top: 0; border-radius: 0 12px 12px 12px; max-width: none; }
+
+/* Responsible use */
+.resp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+@media (max-width: 900px) { .resp { grid-template-columns: 1fr; } }
+.resp div { border-top: 2px solid var(--ink); padding-top: 14px; }
+.resp h3 { font-family: var(--sans); font-size: 1rem; margin-bottom: 6px; }
+.resp p { font-size: .92rem; color: var(--ink-2); }
+
+footer { padding: 44px 0 56px; border-top: 1px solid var(--line); font-size: .9rem; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; }
+footer b { color: var(--ink); font-weight: 600; }
+footer a { color: var(--ink-2); white-space: nowrap; }
+</style>
+<style>
+.a-card .lbl { margin-bottom: 10px; }
+.report ol li { margin: 4px 0; font-size: .88rem; }
+.term .body > div { white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/logo-180.png" alt="" width="30" height="30"><span>cep-umc-tutor</span></a>
+    <nav class="links">
+      <a href="#guia">Guia</a>
+      <a href="#prompts">Prompts</a>
+      <a href="https://github.com/LaBiOmicS/cep-umc-tutor">GitHub</a>
+    </nav>
+    <div class="toggles">
+      <button class="chip-btn" id="theme-btn" type="button" aria-label="Alternar modo escuro">◐</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Tutor de pré-submissão · CEP-UMC</div>
+      <h1>Chegue ao CEP com o protocolo <em>pronto</em>.</h1>
+      <p class="lede">Revisão do protocolo de pesquisa <b>antes</b> da submissão ao Comitê de Ética em Pesquisa da Universidade de Mogi das Cruzes, com assistência de IA. Confere os documentos exigidos, aponta o que costuma gerar pendência, com o requisito e a fonte, e separa as exigências éticas das sugestões de metodologia, estatística e escrita. Para alunos de graduação e de pós, orientadores e docentes. Não é preciso saber programar.</p>
+      <div class="cta">
+        <a class="btn primary" href="#guia">Começar pelo guia</a>
+        <a class="btn ghost" href="#prompts">Ver prompts prontos</a>
+      </div>
+      <div class="beta-note" role="note"><b>BETA</b>
+        <span>O tutor pode errar, tanto ao ler os documentos quanto nos apontamentos. Ele <b>não emite parecer</b> e não substitui o CEP-UMC. Confira cada resultado com o orientador e <a href="https://github.com/LaBiOmicS/cep-umc-tutor/issues">relate problemas</a>.</span>
+      </div>
+      <div class="meta-row"><span class="tag beta">BETA</span><span class="tag">v0.2.0</span><span class="tag">MIT</span><span class="tag">Windows · macOS · Linux</span><span class="tag">Claude Code · Antigravity</span></div>
+    </div>
+    <div class="term" aria-label="Exemplo de uso no terminal">
+      <div class="bar"><i></i><i></i><i></i><span>~/Documentos/tcc — claude</span></div>
+      <div class="body">
+        <div><span class="u">&gt;</span> Revise meu protocolo da pasta protocolo/ antes de submeter ao CEP-UMC</div>
+        <div class="gap"></div>
+        <div class="d">Lendo 4 documentos · nível: graduação (TCC)</div>
+        <div><span class="ok">✓</span> projeto.docx <span class="d">· projeto detalhado</span></div>
+        <div><span class="ok">✓</span> tcle.docx <span class="d">· TCLE</span></div>
+        <div><span class="ok">✓</span> TAI_clinica.pdf <span class="d">· autorização institucional</span></div>
+        <div><span class="w">✗</span> folha de rosto <span class="d">· não recebida</span></div>
+        <div class="gap"></div>
+        <div class="d">Trilha A · ética e documentos      <span class="ok">✓</span></div>
+        <div class="d">Trilha B · metodologia e escrita   <span class="ok">✓</span></div>
+        <div class="gap"></div>
+        <div>Parte 1 (CEP): <span class="w">1 bloqueante</span> · 3 pendências · 2 recomendações</div>
+        <div>Parte 2 (sugestões): 4 essenciais · 2 para aprofundar</div>
+        <div>Submeter até <span class="u">10/01/2027</span> para coletar em 01/03</div>
+        <div class="gap"></div>
+        <div><span class="ok">✓</span> relatorio.pdf  <span class="ok">✓</span> relatorio_orientador.pdf</div>
+        <div class="cap">Rodada 1 de 3 · exemplo ilustrativo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ DUAS TRILHAS -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Duas trilhas que nunca se misturam</div>
+      <h2>O que o CEP cobra, de um lado. O que melhora o trabalho, do outro.</h2>
+      <p>O CEP avalia ética, não a qualidade científica, salvo quando a metodologia gera viés ético (item PROJ-G05 do modelo de projeto). Por isso o relatório tem duas partes, com rótulos diferentes, e uma sugestão acadêmica nunca aparece como se fosse exigência do comitê.</p>
+    </div>
+    <div class="uses">
+      <div class="use">
+        <div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+        <h3>Parte 1 · Ética e documentos</h3>
+        <p>Exigências do CEP-UMC, tiradas de 274 requisitos com ID estável. A base foi montada a partir dos modelos de 2022, do Regimento de 2025, do Manual da Plataforma Brasil e da Cartilha da CONEP.</p>
+        <ul><li><b>[BLOQUEANTE]</b>, <b>[PENDÊNCIA]</b> ou <b>[RECOMENDAÇÃO]</b>, com o trecho e o requisito</li><li>Documentos esperados × recebidos (TCLE, TALE, TAI, carta de anuência…)</li><li>Igual para todos os níveis: o que é exigência vale para todo mundo</li></ul>
+      </div>
+      <div class="use ref">
+        <div class="ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg></div>
+        <h3>Parte 2 · Sugestões acadêmicas</h3>
+        <p>Metodologia, estatística e escrita, com base nas diretrizes EQUATOR, nas normas ABNT e na literatura metodológica. <b>Não são cobradas pelo CEP</b>: quem decide é o pesquisador, com o orientador.</p>
+        <ul><li><b>[SUGESTÃO]</b> dividida em Essencial e Para aprofundar</li><li>Calibrada pelo nível: o que se espera de um TCC não é o que se espera de uma tese</li><li>Erro é erro em qualquer nível; o que muda é a profundidade e o tom</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ PERFIS -->
+<section id="perfis">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Para quem</div>
+      <h2>Cada perfil começa por um lugar diferente.</h2>
+    </div>
+    <div class="audit">
+      <div class="a-card">
+        <span class="lbl t-opt">Aluno de graduação</span>
+        <h3>Ainda não sabe que documentos precisa</h3>
+        <p>O <b>planejamento</b> pergunta o essencial (menores? online? local de coleta?) e lista os documentos, quem assina cada um e a data-limite para submeter. Depois, o relatório abre com <b>"Comece por aqui"</b>: até cinco ações, em ordem, e uma legenda do que é bloqueante, pendência e sugestão.</p>
+      </div>
+      <div class="a-card">
+        <span class="lbl t-ess">Aluno de pós</span>
+        <h3>Projeto longo, prazo apertado</h3>
+        <p>Lê projetos de dissertação e tese inteiros. Calcula a <b>data para submeter</b> a partir do início da coleta no cronograma, com margem para uma pendência. Se você incluir o PDF "Informações Básicas" da Plataforma Brasil, confere se ele bate com o projeto. A cada rodada, mostra o que já foi resolvido.</p>
+      </div>
+      <div class="a-card">
+        <span class="lbl t-block">Orientador</span>
+        <h3>Precisa decidir rápido se pode submeter</h3>
+        <p>O <b>relatório do orientador</b> tem uma página: se o protocolo está pronto ou não, o que falta, quem assina cada documento e o prazo. Na graduação, lembra que é o orientador quem submete na Plataforma Brasil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ GUIA -->
+<section id="guia" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Guia</div>
+      <h2>Do zero à primeira revisão, em oito passos.</h2>
+      <p>Escolha abaixo o seu sistema e a IA que vai usar. O guia mostra só os comandos certos para a sua escolha. Em cada caixa escura, clique em <b>copiar</b> e cole no terminal.</p>
+    </div>
+
+    <div class="pickers">
+      <div><label>Sistema</label>
+        <div class="seg" role="group" aria-label="Sistema operacional"><button type="button" data-set="os" data-val="win">Windows</button><button type="button" data-set="os" data-val="mac">macOS</button><button type="button" data-set="os" data-val="linux">Linux</button></div></div>
+      <div><label>IA</label>
+        <div class="seg" role="group" aria-label="Assistente de IA"><button type="button" data-set="ai" data-val="claude">Claude Code</button><button type="button" data-set="ai" data-val="agy">Antigravity</button></div></div>
+    </div>
+
+    <div class="needs">
+      <div><b>Uma conta de IA</b><span class="ai-claude">Assinatura do Claude (Pro, Max ou institucional).</span><span class="ai-agy">Conta Google com acesso ao Antigravity.</span></div>
+      <div><b>Os documentos</b>Projeto, TCLE e demais termos, em .docx, .pdf ou .doc. Para o planejamento, nada.</div>
+      <div><b>Uns 20 minutos</b>Na primeira vez. Depois, a revisão leva poucos minutos.</div>
+      <div><b>Autorização</b>O texto vai para o serviço de IA. Para revisar o protocolo de outra pessoa, peça permissão antes.</div>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <h3>Abra o terminal</h3>
+        <div class="txt">
+          <p>O terminal é uma janela onde você digita comandos. Você vai usá-lo só para colar o que está nas caixas escuras deste guia.</p>
+          <p class="os-win">No Windows, aperte a tecla <kbd>⊞ Win</kbd>, digite <b>PowerShell</b> e abra o programa <b>Windows PowerShell</b>.</p>
+          <p class="os-mac">No Mac, aperte <kbd>⌘ Cmd</kbd> + <kbd>Espaço</kbd>, digite <b>Terminal</b> e aperte <kbd>Enter</kbd>.</p>
+          <p class="os-linux">No Linux, aperte <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> ou procure <b>Terminal</b> no menu de aplicativos.</p>
+          <div class="tip"><b>Para colar:</b> <span class="os-win">clique com o botão direito dentro da janela</span><span class="os-mac">use <kbd>⌘ Cmd</kbd> + <kbd>V</kbd></span><span class="os-linux">use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd></span>. Depois aperte <kbd>Enter</kbd> para executar.</div>
+        </div>
+      </li>
+
+      <li>
+        <h3>Instale o uv</h3>
+        <div class="txt">
+          <p>O <b>uv</b> é um programa gratuito que baixa, sozinho, as peças em Python que o tutor usa para ler os documentos e gerar os relatórios em PDF.</p>
+          <div class="code os-win"><button class="copy" type="button">copiar</button><pre>powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"</pre></div>
+          <div class="code os-unix"><button class="copy" type="button">copiar</button><pre>curl -LsSf https://astral.sh/uv/install.sh | sh</pre></div>
+          <div class="tip">Ao terminar, <b>feche o terminal e abra outro</b>. Isso vale para todos os passos de instalação.</div>
+        </div>
+      </li>
+
+      <li>
+        <h3>Instale o assistente de IA</h3>
+        <div class="txt">
+          <p>É o assistente que vai conduzir a revisão. O instalador não mostra progresso enquanto baixa; espere a linha de comando voltar.</p>
+          <div class="code ai-claude os-win"><button class="copy" type="button">copiar</button><pre>irm https://claude.ai/install.ps1 | iex</pre></div>
+          <div class="code ai-claude os-unix"><button class="copy" type="button">copiar</button><pre>curl -fsSL https://claude.ai/install.sh | bash</pre></div>
+          <div class="code ai-agy os-win"><button class="copy" type="button">copiar</button><pre>irm https://antigravity.google/cli/install.ps1 | iex</pre></div>
+          <div class="code ai-agy os-unix"><button class="copy" type="button">copiar</button><pre>curl -fsSL https://antigravity.google/cli/install.sh | bash</pre></div>
+          <p style="margin-top:12px">Abra um terminal novo e confira. Deve aparecer um número de versão:</p>
+          <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre>claude --version</pre></div>
+          <div class="code ai-agy"><button class="copy" type="button">copiar</button><pre>agy --version</pre></div>
+        </div>
+      </li>
+
+      <li>
+        <h3>Entre na sua conta</h3>
+        <div class="txt">
+          <p>Digite o comando abaixo. Na primeira vez, o navegador abre para você entrar na sua conta; volte ao terminal quando terminar.</p>
+          <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre>claude</pre></div>
+          <div class="code ai-agy"><button class="copy" type="button">copiar</button><pre>agy</pre></div>
+          <p class="ai-claude" style="margin-top:12px">Quando aparecer a pergunta sobre confiar na pasta, escolha <b>Yes</b>. Para sair do assistente, digite <code>/exit</code>.</p>
+          <p class="ai-agy" style="margin-top:12px">Para sair do assistente, aperte <kbd>Ctrl</kbd> + <kbd>C</kbd> duas vezes.</p>
+        </div>
+      </li>
+
+      <li>
+        <h3>Instale o tutor</h3>
+        <div class="txt">
+          <p class="ai-claude">Com o Claude Code aberto (passo 4), cole as duas linhas, <b>uma de cada vez</b>, apertando <kbd>Enter</kbd> depois de cada uma:</p>
+          <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre><span class="p">&gt; </span>/plugin marketplace add LaBiOmicS/cep-umc-tutor</pre></div>
+          <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre><span class="p">&gt; </span>/plugin install cep-umc-tutor@labiomics</pre></div>
+          <p class="ai-claude" style="margin-top:12px">Depois digite <code>/exit</code>. O tutor passa a funcionar na próxima vez que você abrir o Claude Code. Se você já usa outro plugin LaBiOmicS, o marketplace <code>labiomics</code> é o mesmo.</p>
+          <p class="ai-agy">Baixe o plugin em <a href="https://github.com/LaBiOmicS/cep-umc-tutor/archive/refs/tags/v0.2.0.zip">cep-umc-tutor-0.2.0.zip</a> e extraia o arquivo (clique direito → <b>Extrair tudo</b> no Windows; dois cliques no Mac). No terminal, fora do assistente, digite <code>agy plugin install </code> com um espaço no final, <b>arraste a pasta extraída para a janela</b> e aperte <kbd>Enter</kbd>. Depois ative o plugin:</p>
+          <div class="code ai-agy"><button class="copy" type="button">copiar</button><pre>agy plugin install <span class="ph os-win">C:\Users\Ana\Downloads\cep-umc-tutor-0.2.0</span><span class="ph os-mac">/Users/ana/Downloads/cep-umc-tutor-0.2.0</span><span class="ph os-linux">/home/ana/Downloads/cep-umc-tutor-0.2.0</span>
+agy plugin enable cep-umc-tutor</pre></div>
+        </div>
+      </li>
+
+      <li>
+        <h3>Separe os documentos numa pasta</h3>
+        <div class="txt">
+          <p>Crie uma pasta, por exemplo <b>tcc</b> dentro de <b>Documentos</b>, e dentro dela uma subpasta <b>protocolo</b> com os documentos que vão para a Plataforma Brasil: projeto, folha de rosto, TCLE, TALE, TAI, cartas, questionários. Use os <a href="https://www.umc.br/comite-de-etica-cep/">modelos oficiais do CEP-UMC</a>.</p>
+          <p>No terminal, digite <code>cd </code> (com espaço), <b>arraste a pasta tcc para a janela</b> e aperte <kbd>Enter</kbd>:</p>
+          <div class="code"><button class="copy" type="button">copiar</button><pre>cd <span class="ph os-win">C:\Users\Ana\Documents\tcc</span><span class="ph os-mac">/Users/ana/Documents/tcc</span><span class="ph os-linux">/home/ana/Documentos/tcc</span></pre></div>
+          <div class="tip">Ainda sem documentos? Pule para o passo 7 e peça o <b>planejamento</b>: o tutor diz o que preparar.</div>
+        </div>
+      </li>
+
+      <li>
+        <h3>Peça a revisão</h3>
+        <div class="txt">
+          <p>Ainda nessa pasta, abra o assistente e escreva o pedido com as suas palavras, ou use um dos <a href="#prompts">prompts prontos</a>.</p>
+          <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre>claude</pre></div>
+          <div class="code ai-agy"><button class="copy" type="button">copiar</button><pre>agy</pre></div>
+          <div class="code"><button class="copy" type="button">copiar</button><pre><span class="p">&gt; </span>Revise meu protocolo da pasta <span class="ph">protocolo/</span> antes de submeter ao CEP-UMC.</pre></div>
+          <div class="tip warn"><b>O assistente vai confirmar com você</b> o tipo de cada documento, as respostas da triagem (menores? online? material biológico?) e o <b>nível do trabalho</b> antes de avaliar. Confira: os documentos exigidos e o tom das sugestões dependem disso. Ele também vai pedir permissão para rodar programas (<code>uv run …</code>); escolha <b>Yes</b>.</div>
+        </div>
+      </li>
+
+      <li>
+        <h3>Leia o relatório e corrija</h3>
+        <div class="txt">
+          <p>Os arquivos ficam em <code>cep_tutor/&lt;projeto&gt;</code>. O aluno começa pelo <b>relatorio.pdf</b>, em "Comece por aqui". O orientador começa pelo <b>relatorio_orientador.pdf</b>.</p>
+          <p>Corrija e peça a revisão de novo. A partir da segunda rodada, o tutor confere o que já apontou e mostra o que foi resolvido. São <b>no máximo três rodadas</b>: depois disso, conclua com o orientador e submeta.</p>
+          <div class="tip">A IA pode errar. O relatório é um rascunho a conferir com o orientador; em caso de dúvida, consulte o CEP-UMC.</div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================================ PROMPTS -->
+<section id="prompts">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Prompts</div>
+      <h2>Copie, troque o que está sublinhado e envie.</h2>
+      <p>Os mesmos pedidos funcionam no Claude Code e no Antigravity.</p>
+    </div>
+    <div class="prompts">
+      <div class="pcard">
+        <div class="when">Começando</div>
+        <h3>Planejar a submissão <span class="badge">sem documentos</span></h3>
+        <p>Documentos a preparar, quem assina, data-limite e erros comuns.</p>
+        <div class="code"><button class="copy" type="button">copiar</button>
+          <pre>Vou fazer um <span class="ph">TCC de Psicologia</span> com <span class="ph">entrevistas gravadas com estudantes da UMC</span>. Quero começar a coleta em <span class="ph">junho de 2027</span>. Que documentos preciso enviar ao CEP-UMC e até quando devo submeter?</pre></div>
+      </div>
+      <div class="pcard">
+        <div class="when">Antes de submeter</div>
+        <h3>Revisão completa</h3>
+        <p>As duas partes do relatório e a página do orientador.</p>
+        <div class="code"><button class="copy" type="button">copiar</button>
+          <pre>Revise meu protocolo da pasta <span class="ph">protocolo/</span> antes de submeter ao CEP-UMC. É uma <span class="ph">dissertação de mestrado</span>.</pre></div>
+      </div>
+      <div class="pcard">
+        <div class="when">Só a parte ética</div>
+        <h3>Revisar só o que o CEP cobra</h3>
+        <p>Para quem já tem o projeto aprovado na banca e quer só a Parte 1.</p>
+        <div class="code"><button class="copy" type="button">copiar</button>
+          <pre>Revise só a parte ética e documental do protocolo em <span class="ph">protocolo/</span>, sem sugestões de metodologia.</pre></div>
+      </div>
+      <div class="pcard">
+        <div class="when">Dúvida pontual</div>
+        <h3>Consultar a base</h3>
+        <p>A resposta cita o requisito e a fonte.</p>
+        <div class="code"><button class="copy" type="button">copiar</button>
+          <pre>Preciso de <span class="ph">TALE</span> para <span class="ph">adolescentes de 16 anos</span>? Quem assina o <span class="ph">TAI</span>?</pre></div>
+      </div>
+      <div class="pcard">
+        <div class="when">Orientador</div>
+        <h3>Ver se pode submeter</h3>
+        <p>A página de uma folha, com a situação e as assinaturas.</p>
+        <div class="code"><button class="copy" type="button">copiar</button>
+          <pre>Sou o orientador. Revise o protocolo em <span class="ph">protocolo_ana/</span> e me diga se já pode ser submetido e o que falta assinar.</pre></div>
+      </div>
+      <div class="pcard">
+        <div class="when">Depois do parecer</div>
+        <h3>Carta-resposta a pendências</h3>
+        <p>Uma entrada por pendência, copiada literalmente, com o texto novo e onde mudou.</p>
+        <div class="code"><button class="copy" type="button">copiar</button>
+          <pre>Recebi o parecer <span class="ph">parecer.pdf</span> com pendências. Me ajude a montar a carta-resposta no modelo do CEP-UMC.</pre></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ COMO FUNCIONA -->
+<section id="como" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Como funciona</div>
+      <h2>Programas onde dá para contar, IA onde é preciso ler.</h2>
+      <p>Leitura dos documentos, triagem, sinais automáticos, severidade e montagem do relatório são programas determinísticos e testados. Os modelos de linguagem entram só para ler o protocolo e julgar, um revisor para cada parte, sem que um veja o trabalho do outro.</p>
+    </div>
+    <div class="pipeline">
+      <div class="step">
+        <h3>Ler e classificar</h3>
+        <p>Extrai o texto de .docx, .doc e .pdf, identifica cada documento e acha restos de modelo (trechos em vermelho, "XXX") e texto oculto.</p>
+      </div>
+      <div class="step">
+        <h3>Triagem</h3>
+        <p>Menores? Online? Material biológico? Local de coleta? Daí sai a lista de documentos esperados × recebidos e o nível do trabalho.</p>
+      </div>
+      <div class="step llm">
+        <h3>Revisor da Parte 1</h3>
+        <p>Lê tudo com a base do CEP-UMC, confirma ou descarta cada sinal automático e cita o trecho e o ID de cada requisito.</p>
+      </div>
+      <div class="step llm">
+        <h3>Revisor da Parte 2</h3>
+        <p>Lê o projeto e os instrumentos com a base acadêmica e o nível do trabalho. Não repete o que é da Parte 1.</p>
+      </div>
+      <div class="step">
+        <h3>Compilar</h3>
+        <p>Severidade tirada da base, Essencial × Para aprofundar por regra fixa, prazo, progresso e os dois relatórios.</p>
+      </div>
+    </div>
+    <div class="legend"><span><i></i>Programa determinístico</span><span><i class="l-llm"></i>Modelo de linguagem</span></div>
+  </div>
+</section>
+
+<!-- ================================================================ FINITA -->
+<section id="rodadas">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Revisão com fim</div>
+      <h2>Corrigir não abre uma lista nova a cada rodada.</h2>
+      <p>O pior que um tutor pode fazer é o ciclo "corrige, aparece mais coisa". Por isso a revisão tem um número fixo de rodadas, e cada parte do relatório tem um limite de itens.</p>
+    </div>
+    <div class="cal">
+      <div class="cal-card"><span class="lbl t-opt">Rodada 1</span><p><b>Revisão completa.</b> As duas partes, com tudo o que a base cobre.</p><p class="ex">Bloqueantes e pendências nunca são cortados.</p></div>
+      <div class="cal-card"><span class="lbl t-ess">Rodadas 2 e 3</span><p><b>Conferência.</b> O tutor verifica o que já apontou: resolvido, ainda pendente. Item novo só entra se for bloqueante ou pendência ética; nada de sugestões novas.</p><p class="ex">Rodar de novo sem mudar os documentos não conta rodada.</p></div>
+      <div class="cal-card"><span class="lbl t-block">Depois da 3ª</span><p><b>Ciclo encerrado.</b> Só a conferência da parte ética. O relatório recomenda concluir com o orientador e submeter.</p><p class="ex">O limite pode ser mudado, mas o padrão é três.</p></div>
+    </div>
+    <table class="comp" style="margin-top:28px">
+      <thead><tr><th>Bloco</th><th>Limite</th></tr></thead>
+      <tbody>
+        <tr><td>Essencial</td><td>5 na graduação · 6 na especialização · 8 no mestrado, doutorado e para docentes</td></tr>
+        <tr><td>Para aprofundar</td><td>5</td></tr>
+        <tr><td>Recomendações</td><td>8</td></tr>
+        <tr><td>Comece por aqui</td><td>5 ações</td></tr>
+        <tr><td>Pontos para conferir</td><td>10 (o resto fica em triagem.md)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================================================================ SAÍDAS -->
+<section id="saidas" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Saídas</div>
+      <h2>Um relatório para quem escreveu, uma página para quem orienta.</h2>
+    </div>
+    <div class="out">
+      <aside class="report">
+        <div class="rhead"><b>Relatório de pré-submissão</b><small>rodada 2 de 3</small></div>
+        <div class="tiers">
+          <div class="tier t-block"><b>1</b><span>bloqueante</span></div>
+          <div class="tier t-ess"><b>2</b><span>pendências</span></div>
+          <div class="tier t-opt"><b>3</b><span>sugestões</span></div>
+        </div>
+        <p style="margin-top:14px"><b>Comece por aqui</b></p>
+        <ol style="margin:6px 0 0;padding-left:20px;color:var(--ink-2)">
+          <li>Providenciar a folha de rosto</li>
+          <li>[BLOQUEANTE] Encaminhamento à UBS em caso de dano · <code>PROJ-R06</code></li>
+          <li>[PENDÊNCIA] Coleta antes da aprovação prevista · <code>PROJ-C13</code></li>
+        </ol>
+        <p style="margin-top:12px"><b>Desde a rodada anterior:</b> 3 resolvidos · 2 ainda pendentes · 0 novos</p>
+        <p style="margin-top:8px"><b>Prazo:</b> submeter até 10/01/2027 para coletar em 01/03/2027</p>
+        <div class="foot">Rascunho gerado com assistência de IA · não é parecer do CEP-UMC</div>
+      </aside>
+      <div>
+        <div class="file key"><code>relatorio.pdf</code><span>Comece por aqui, progresso, prazo, legenda, Parte 1 (CEP) e Parte 2 (sugestões).</span></div>
+        <div class="file key"><code>relatorio_orientador.pdf</code><span>Uma página: pronto ou não, o que falta, quem assina, prazo.</span></div>
+        <div class="file"><code>planejamento.pdf</code><span>Sem documentos ainda: o que preparar, quem assina e até quando submeter.</span></div>
+        <div class="file"><code>triagem.md</code><span>Respostas da triagem com as evidências, documentos esperados × recebidos e todos os sinais automáticos.</span></div>
+        <div class="file"><code>resumo.json</code><span>Tudo o que está no relatório, em formato estruturado.</span></div>
+        <div class="file"><code>historico/</code><span>Um resumo por versão dos documentos, usado para contar as rodadas.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Perguntas frequentes</div>
+      <h2>Se algo não funcionar.</h2>
+    </div>
+    <div class="faq">
+      <details><summary>O terminal diz que o comando não foi encontrado.</summary>
+        <div><p>Quase sempre basta <b>fechar o terminal e abrir um novo</b>. Se continuar, reinicie o computador e repita o passo de instalação.</p></div></details>
+      <details><summary>O assistente não reconhece o tutor.</summary>
+        <div><p>Feche o assistente e abra de novo: o plugin só é carregado numa sessão nova. Confira se ele aparece como ativado:</p>
+        <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre>claude plugin list</pre></div>
+        <div class="code ai-agy"><button class="copy" type="button">copiar</button><pre>agy plugin list</pre></div></div></details>
+      <details><summary>O tutor disse que eu preciso de um documento que não se aplica.</summary>
+        <div><p>A triagem é heurística. Diga ao assistente, por exemplo, "não há menores no estudo" ou "a coleta não é online": ele refaz a lista de documentos esperados.</p></div></details>
+      <details><summary>O nível do trabalho saiu errado.</summary>
+        <div><p>Sem indicação na capa, o tutor assume graduação. Diga o nível ("é uma tese de doutorado") e ele refaz a revisão com a calibração certa. A Parte 1 não muda com o nível; só a Parte 2.</p></div></details>
+      <details><summary>Já fiz três rodadas e ainda há pendências.</summary>
+        <div><p>É de propósito: depois da terceira, o tutor só confere a parte ética. Resolva os itens restantes com o orientador e, se a dúvida for sobre uma exigência, consulte o CEP-UMC (cep@umc.br). O tutor ainda ajuda com perguntas pontuais e com a carta-resposta.</p></div></details>
+      <details><summary>Meus documentos ficam guardados em algum lugar?</summary>
+        <div><p>Os arquivos gerados ficam só no seu computador, em <code>cep_tutor/</code>. O texto dos documentos é enviado ao serviço de IA que você usa (Claude ou Antigravity), nos termos da sua conta. Protocolos podem conter dados pessoais: para revisar o protocolo de outra pessoa, peça autorização antes.</p></div></details>
+      <details><summary>Os PDFs dos relatórios não aparecem.</summary>
+        <div><p>Eles dependem do <b>uv</b> (passo 2). Confirme que <code>uv --version</code> mostra uma versão e peça ao assistente para compilar de novo. Os arquivos <code>.md</code> trazem o mesmo conteúdo.</p></div></details>
+      <details><summary>Como atualizo o tutor?</summary>
+        <div>
+        <div class="code ai-claude"><button class="copy" type="button">copiar</button><pre>claude plugin marketplace update labiomics
+claude plugin update cep-umc-tutor@labiomics</pre></div>
+        <p class="ai-agy">Baixe a versão nova na página de <a href="https://github.com/LaBiOmicS/cep-umc-tutor/releases">releases</a> e repita o passo 5.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ AVANÇADO -->
+<section id="instalar" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Avançado</div>
+      <h2>Instalação a partir do código e uso sem o assistente.</h2>
+      <p>Opções de cada comando e a estrutura das bases estão no <a href="https://github.com/LaBiOmicS/cep-umc-tutor#readme">README</a>.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-tab="script">install.sh</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="agy">Antigravity</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="cli">Linha de comando</button>
+    </div>
+    <div class="panel on" id="tab-script"><div class="code"><button class="copy" type="button">copiar</button><pre><span class="c"># Claude Code e Antigravity, o que estiver instalado (macOS / Linux / WSL)</span>
+git clone https://github.com/LaBiOmicS/cep-umc-tutor.git
+cd cep-umc-tutor
+./install.sh</pre></div></div>
+    <div class="panel" id="tab-agy"><div class="code"><button class="copy" type="button">copiar</button><pre>agy plugin validate ./cep-umc-tutor --strict
+agy plugin install ./cep-umc-tutor
+agy plugin enable cep-umc-tutor</pre></div></div>
+    <div class="panel" id="tab-cli"><div class="code"><button class="copy" type="button">copiar</button><pre>S=skills/cep-tutor/scripts; OUT=cep_tutor/meu-projeto
+uv run $S/cep_tutor.py prepare --input protocolo/ --output-dir $OUT --nivel mestrado
+uv run $S/cep_tutor.py run     --output-dir $OUT --runner claude
+uv run $S/cep_tutor.py compile --output-dir $OUT
+uv run $S/cep_tutor.py planejar --output-dir cep_tutor/plano --nivel graduacao --coleta 2027-06-01 --q "Q7=sim"
+uv run $S/kb.py search "assentimento"</pre></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Uso responsável</div>
+      <h2>Apoio ao pesquisador, não um parecer.</h2>
+    </div>
+    <div class="resp">
+      <div><h3>Quem decide é o CEP</h3><p>O tutor aponta o que os documentos do CEP-UMC costumam cobrar. A severidade é uma classificação editorial, não um critério oficial do comitê, e nada aqui prevê aprovação.</p></div>
+      <div><h3>Quem orienta é o orientador</h3><p>As sugestões acadêmicas são alternativas para discutir, não correções. Escolhas metodológicas combinadas com o orientador são respeitadas.</p></div>
+      <div><h3>Dados de pesquisa são sensíveis</h3><p>Use o tutor com os seus próprios documentos ou com autorização. Textos ocultos e instruções dirigidas à IA dentro dos documentos são ignorados e aparecem como alerta de integridade.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b>cep-umc-tutor</b><br>
+      Prof. Dr. Fabiano Bezerra Menegidio · LaBiOmicS · Universidade de Mogi das Cruzes<br>
+      Projeto independente do laboratório; não é um canal oficial do CEP-UMC.
+    </div>
+    <div>
+      <a href="https://github.com/LaBiOmicS/cep-umc-tutor">GitHub</a> ·
+      <a href="https://github.com/LaBiOmicS/cep-umc-tutor/releases">Releases</a> ·
+      <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/CHANGELOG.md">Changelog</a> ·
+      <a href="https://www.umc.br/comite-de-etica-cep/">CEP-UMC</a><br>
+      Outros plugins: <a href="https://labiomics.github.io/academic-peer-review/">academic-peer-review</a> · <a href="https://labiomics.github.io/congress-abstract-review/">congress-abstract-review</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function store(key, value) { try { localStorage.setItem(key, value); } catch (e) {} }
+  function read(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+
+  // Duas escolhas independentes (sistema e IA), cada uma um atributo data-* em <html>.
+  var CHOICES = { os: ["win", "mac", "linux"], ai: ["claude", "agy"] };
+  function set(kind, val) {
+    if (CHOICES[kind].indexOf(val) < 0) val = CHOICES[kind][0];
+    root.setAttribute("data-" + kind, val);
+    document.querySelectorAll('[data-set="' + kind + '"]').forEach(function (b) {
+      b.setAttribute("aria-pressed", b.dataset.val === val ? "true" : "false");
+    });
+    store("cep-" + kind, val);
+  }
+  var ua = (navigator.userAgent || "").toLowerCase();
+  var browserOs = ua.indexOf("win") >= 0 ? "win" : (ua.indexOf("mac") >= 0 ? "mac" : (ua.indexOf("linux") >= 0 ? "linux" : "win"));
+  set("os", read("cep-os") || browserOs);
+  set("ai", read("cep-ai") || "claude");
+  document.querySelectorAll("[data-set]").forEach(function (b) {
+    b.addEventListener("click", function () { set(b.dataset.set, b.dataset.val); });
+  });
+
+  var theme = read("cep-theme");
+  if (theme) root.setAttribute("data-theme", theme);
+  document.getElementById("theme-btn").addEventListener("click", function () {
+    var dark = root.getAttribute("data-theme") === "dark" ||
+      (!root.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    var next = dark ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    store("cep-theme", next);
+  });
+
+  document.querySelectorAll(".tab").forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      document.querySelectorAll(".tab").forEach(function (t) { t.setAttribute("aria-selected", t === tab ? "true" : "false"); });
+      document.querySelectorAll(".panel").forEach(function (p) { p.classList.toggle("on", p.id === "tab-" + tab.dataset.tab); });
+    });
+  });
+
+  // Copia só o que está visível (variante de sistema e IA), sem o "> " nem comentários.
+  function visibleText(node) {
+    if (node.nodeType === 3) return node.textContent;
+    if (node.nodeType !== 1 || getComputedStyle(node).display === "none") return "";
+    if (node.classList.contains("p") || node.classList.contains("c")) return "";
+    var out = "";
+    node.childNodes.forEach(function (c) { out += visibleText(c); });
+    return out;
+  }
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var text = "";
+      btn.parentElement.querySelectorAll("pre").forEach(function (pre) { text += visibleText(pre); });
+      text = text.split("\n").map(function (l) { return l.trim(); }).filter(Boolean).join("\n");
+      var done = function () { btn.textContent = "✓"; setTimeout(function () { btn.textContent = "copiar"; }, 1400); };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
+    });
+  });
+})();
+</script>
+</body>
+</html>
