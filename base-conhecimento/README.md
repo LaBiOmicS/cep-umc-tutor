@@ -9,7 +9,7 @@ atualizado: 2026-11-25
 
 Base em Markdown construída a partir dos **12 documentos oficiais** da pasta `docs/` (modelos do CEP-UMC de fev/2022,
 Regimento Interno de 2025, Manual do Pesquisador da Plataforma Brasil e Cartilha de Direitos da CONEP). É a fonte da
-**Trilha A** do plugin `cep-umc-tutor` (ver `../README.pt-BR.md`), que ajuda pesquisadores a avaliar seus protocolos **antes**
+**Trilha A** do plugin `cep-umc-tutor` (ver `../README.md`), que ajuda pesquisadores a avaliar seus protocolos **antes**
 da submissão ao Comitê de Ética em Pesquisa da Universidade de Mogi das Cruzes. O código do plugin lê as tabelas de
 requisitos desta base pelo ID (`skills/cep-tutor/scripts/kb.py`): mantenha o formato `| ID | ... | [SEVERIDADE] |`.
 

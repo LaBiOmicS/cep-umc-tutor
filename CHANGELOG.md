@@ -40,7 +40,8 @@ Revisão sob o olhar de três perfis: aluno de graduação, aluno de pós e orie
   - prompts prontos, perfis, limites de rodadas, saídas e perguntas frequentes.
 
   Logo em `assets/`.
-- READMEs em inglês (`README.md`), português (`README.pt-BR.md`) e espanhol (`README.es.md`).
+- README em português (`README.md`, língua principal), com versões em inglês (`README.en.md`) e espanhol (`README.es.md`).
+  A página também abre em português; inglês e espanhol ficam no seletor.
 
 ### Alterado
 - Limite de texto por documento: de 60 mil para 250 mil caracteres (projetos de dissertação e tese).

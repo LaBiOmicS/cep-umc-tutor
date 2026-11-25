@@ -5,118 +5,114 @@
 [![Release](https://img.shields.io/github/v/release/LaBiOmicS/cep-umc-tutor)](https://github.com/LaBiOmicS/cep-umc-tutor/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org)
-[![Project page](https://img.shields.io/badge/docs-GitHub%20Pages-0b6e4f.svg)](https://labiomics.github.io/cep-umc-tutor/)
+[![Página do projeto](https://img.shields.io/badge/docs-GitHub%20Pages-0b6e4f.svg)](https://labiomics.github.io/cep-umc-tutor/)
 
-**English** · [Português](README.pt-BR.md) · [Español](README.es.md)
+**Português** · [English](README.en.md) · [Español](README.es.md)
 
 > [!WARNING]
-> **Beta.** The tutor can be wrong, both when reading the documents and in its findings. Check every result with your
-> supervisor. It **does not replace** the CEP-UMC review.
+> **Beta.** O tutor pode errar, tanto ao ler os documentos quanto nos apontamentos. Confira cada resultado com o
+> orientador. Ele **não substitui** a avaliação do CEP-UMC.
 
-A plugin for **Claude Code** and **Antigravity (`agy`)** that helps researchers, students and supervisors review a
-research protocol **before** submitting it, through Plataforma Brasil, to the **Research Ethics Committee of the
-University of Mogi das Cruzes (CEP-UMC)**, Brazil.
+Plugin para **Claude Code** e **Antigravity (`agy`)** que ajuda pesquisadores, alunos e orientadores a revisar um
+protocolo de pesquisa **antes** de submetê-lo ao **Comitê de Ética em Pesquisa da Universidade de Mogi das Cruzes
+(CEP-UMC)** pela Plataforma Brasil.
 
-The tutor's knowledge base, prompts and reports are in Portuguese, like the CEP-UMC documents and the protocols it
-reviews. This README and the [project page](https://labiomics.github.io/cep-umc-tutor/) are available in English and
-Spanish.
+A revisão tem **duas trilhas que nunca se misturam**:
 
-The review has **two tracks that never mix**:
-
-| | **Track A — Ethics and documents** | **Track B — Academic quality** |
+| | **Trilha A — Ética e documentos** | **Trilha B — Qualidade acadêmica** |
 |---|---|---|
-| What it checks | CEP-UMC ethics and document requirements | Methods, statistics and writing |
-| Nature | Requirement: the committee may issue a pending decision | **Suggestion**: not required by the committee |
-| Labels | [BLOQUEANTE] (blocking) · [PENDÊNCIA] (pending) · [RECOMENDAÇÃO] (recommendation) | [SUGESTÃO] (suggestion) · Essential / Going further |
-| Base | `base-conhecimento/` (CEP-UMC documents) | `base-academica/` (EQUATOR, ABNT, methods literature) |
-| Calibration | The same for everyone | By the **level** of the work: undergraduate (IC/TCC), specialization, master's, PhD, faculty |
+| O que avalia | Exigências éticas e documentais do CEP-UMC | Metodologia, estatística e escrita |
+| Natureza | Requisito: o CEP pode emitir pendência | **Sugestão**: não é cobrada pelo CEP |
+| Rótulos | [BLOQUEANTE] · [PENDÊNCIA] · [RECOMENDAÇÃO] | [SUGESTÃO] · Essencial / Para aprofundar |
+| Base | `base-conhecimento/` (documentos do CEP-UMC) | `base-academica/` (EQUATOR, ABNT, literatura metodológica) |
+| Calibração | Igual para todos | Pelo **nível** do trabalho: graduação (IC/TCC), especialização, mestrado, doutorado, docente |
 
-The boundary between the tracks comes from the CEP-UMC project template itself (PROJ-G05): the committee assesses
-methods only when they create an ethical bias. In those cases the issue goes to Track A.
+A fronteira entre as trilhas vem do próprio modelo de projeto do CEP-UMC (PROJ-G05): o CEP só avalia a metodologia
+quando ela gera viés ético. Nesses casos o problema vai para a Trilha A.
 
-**Step-by-step guide for non-programmers:** <https://labiomics.github.io/cep-umc-tutor/>
+**Guia passo a passo para quem não programa:** <https://labiomics.github.io/cep-umc-tutor/>
 
-Part of the LaBiOmicS/UMC plugin line, with
-[academic-peer-review](https://github.com/LaBiOmicS/academic-peer-review),
-[congress-abstract-review](https://github.com/LaBiOmicS/congress-abstract-review) and
+Faz parte da linha de plugins do LaBiOmicS/UMC, com o
+[academic-peer-review](https://github.com/LaBiOmicS/academic-peer-review), o
+[congress-abstract-review](https://github.com/LaBiOmicS/congress-abstract-review) e o
 [whoqol-toolkit](https://github.com/LaBiOmicS/whoqol-toolkit).
 
 ---
 
-## Contents
+## Sumário
 
-- [What the tutor does](#what-the-tutor-does)
-- [Flow](#flow)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Outputs](#outputs)
-- [Knowledge bases](#knowledge-bases)
-- [Security and confidentiality](#security-and-confidentiality)
-- [Limitations](#limitations)
-- [Development](#development)
-- [License and authorship](#license-and-authorship)
+- [O que o tutor faz](#o-que-o-tutor-faz)
+- [Fluxo](#fluxo)
+- [Instalação](#instalação)
+- [Uso](#uso)
+- [Saídas](#saídas)
+- [Bases de conhecimento](#bases-de-conhecimento)
+- [Segurança e confidencialidade](#segurança-e-confidencialidade)
+- [Limitações](#limitações)
+- [Desenvolvimento](#desenvolvimento)
+- [Licença e autoria](#licença-e-autoria)
 
-## What the tutor does
+## O que o tutor faz
 
-- **Full protocol review:**
-  - reads the documents (`.docx`, `.doc`, `.pdf`, `.md`, `.txt`; `.odt`, `.rtf` and `.html` via pandoc) and
-    identifies the type of each one;
-  - **screens** the study (minors? online? biological material? medical records? collection site? referral to a
-    service?) and builds the list of **expected × received documents**;
-  - runs **automatic signals**: "there are no risks", exclusion criteria that merely negate the inclusion criteria,
-    data collection before approval, "copy" in a paper consent form, template leftovers and red passages, title or
-    sample size differing between documents, file names Plataforma Brasil rejects…;
-  - two reviewers (Track A and Track B) assess the protocol, and the code assembles the report.
-- **Planning (no documents yet):** for those starting out. From a few questions (minors? online? collection site?…),
-  the level and the collection date, it lists the documents to prepare, who signs each one, the submission deadline
-  and the most common mistakes (`planejamento.md`).
-- **Knowledge-base questions:** "do I need an assent form (TALE)?", "who signs the site permit (TAI)?", "how long does
-  the committee take?". The answer cites the requirement and its source.
-- **Response letter to pending items:** one entry per pending item, quoted verbatim, with the new text and where it
-  changed.
+- **Revisão completa do protocolo:**
+  - lê os documentos (`.docx`, `.doc`, `.pdf`, `.md`, `.txt`; `.odt`, `.rtf` e `.html` via pandoc) e identifica o tipo
+    de cada um;
+  - faz a **triagem** do estudo (menores? online? material biológico? prontuários? local de coleta? encaminhamento a
+    serviço?) e monta a lista de **documentos esperados × recebidos**;
+  - roda **sinais automáticos**: "não há riscos", exclusão como antítese da inclusão, coleta antes da aprovação, "cópia"
+    num TCLE em papel, restos de modelo e trechos em vermelho, título ou amostra diferentes entre documentos, nomes de
+    arquivo recusados pela Plataforma…;
+  - dois revisores (Trilha A e Trilha B) avaliam o protocolo, e o código monta o relatório.
+- **Planejamento (sem documentos):** para quem está começando. A partir de poucas perguntas (menores? online? local
+  de coleta?…), o nível e a data da coleta, lista os documentos a preparar, quem assina cada um, a data-limite de
+  submissão e os erros mais comuns (`planejamento.md`).
+- **Consulta à base:** "preciso de TALE?", "quem assina o TAI?", "quanto tempo o CEP leva?". A resposta cita o
+  requisito e a fonte.
+- **Carta-resposta a pendências:** uma entrada por pendência, copiada literalmente, com o texto novo e o local da
+  alteração.
 
-### Which output for whom
+### Para quem é cada saída
 
-| Who | Where to look first |
+| Quem | Onde olhar primeiro |
 |---|---|
-| Undergraduate student | `planejamento.md` (before writing); then "Comece por aqui" (start here) in `relatorio.md`: up to 5 actions, in order |
-| Graduate student | `relatorio.md`: submission deadline computed from the timeline, Part 1 with IDs, Part 2 with up to 8 essential suggestions |
-| Supervisor | `relatorio_orientador.md`: one page with "is it ready?", what is missing, who signs what and the deadline |
+| Aluno de graduação | `planejamento.md` (antes de escrever); depois "Comece por aqui" no `relatorio.md`: até 5 ações, em ordem |
+| Aluno de pós | `relatorio.md`: prazo de submissão calculado pelo cronograma, Parte 1 com IDs, Parte 2 com até 8 sugestões essenciais |
+| Orientador | `relatorio_orientador.md`: uma página com "está pronto?", o que falta, quem assina o quê e o prazo |
 
-### The review ends
+### A avaliação é finita
 
-Fixing and running again does not open an endless list:
+Corrigir e rodar de novo não abre uma lista sem fim:
 
-- **up to 3 rounds** per protocol (`--max-rodadas`); a round is a different version of the documents;
-- from the **2nd round** on, the tutor **verifies** what it already pointed out (solved, still pending) and only adds a
-  new item if it is a blocking or pending ethics issue; in Track B, nothing new outside the common core;
-- after the 3rd, the cycle closes: only Track A verification, and the report recommends finishing with the supervisor
-  and submitting;
-- each block has a cap:
-  - Essential: 5 for undergraduates, 8 for graduate work;
-  - Going further: 5;
-  - recommendations: 8;
-  - points to check: 10;
-- each review gets at most 2 attempts.
+- **até 3 rodadas** por protocolo (`--max-rodadas`); uma rodada é uma versão diferente dos documentos;
+- da **2ª rodada** em diante, o tutor **verifica** o que já apontou (resolvido, ainda pendente) e só acrescenta item
+  novo se for bloqueante ou pendência ética; na Trilha B, nada novo fora do núcleo comum;
+- depois da 3ª, o ciclo se encerra: só a verificação da Trilha A, e o relatório recomenda concluir com o orientador e
+  submeter;
+- cada bloco tem teto:
+  - Essencial: 5 na graduação, 8 na pós;
+  - Para aprofundar: 5;
+  - recomendações: 8;
+  - pontos para conferir: 10;
+- cada revisão tem no máximo 2 tentativas.
 
-The tutor **does not issue an ethics opinion** and does not predict approval. Severity is an editorial classification,
-taken from the wording of the committee's documents, not an official criterion.
+O tutor **não emite parecer** e não prevê aprovação. A severidade é uma classificação editorial, tirada da redação dos
+documentos do CEP, e não um critério oficial.
 
-## Flow
+## Fluxo
 
 ```mermaid
 flowchart LR
-    D["Protocol documents"] --> P["1 · prepare<br/>extraction, document type,<br/>screening Q1–Q21, level,<br/>expected × received,<br/>automatic signals"]
-    P --> A["2 · Track A<br/>ethics and documents"]
-    P --> B["2 · Track B<br/>methods, statistics,<br/>writing"]
-    A --> C["3 · compile<br/>severity from the base,<br/>Essential × Going further,<br/>two-part report"]
+    D["Documentos do protocolo"] --> P["1 · prepare<br/>extração, tipo de documento,<br/>triagem Q1–Q21, nível,<br/>esperados × recebidos,<br/>sinais automáticos"]
+    P --> A["2 · Trilha A<br/>ética e documentos"]
+    P --> B["2 · Trilha B<br/>metodologia, estatística,<br/>escrita"]
+    A --> C["3 · compile<br/>severidade da base,<br/>Essencial × Aprofundar,<br/>relatório em duas partes"]
     B --> C
 ```
 
-Steps 1 and 3 are deterministic and covered by tests. Language models only come in at step 2: they read, judge and
-write. Severity, level classification and report assembly are done by the code.
+As etapas 1 e 3 são determinísticas e cobertas pelos testes. Os modelos de linguagem só entram na etapa 2: leem,
+julgam e escrevem. A severidade, a classificação por nível e a montagem do relatório são feitas pelo código.
 
-## Installation
+## Instalação
 
 ```bash
 git clone https://github.com/LaBiOmicS/cep-umc-tutor.git
@@ -124,143 +120,135 @@ cd cep-umc-tutor
 ./install.sh
 ```
 
-`install.sh`:
-- syncs the dependencies with `uv`;
-- registers the plugin in Claude Code through the `labiomics` marketplace (shared with the other LaBiOmicS plugins);
-- registers the plugin in Antigravity, when `agy` is installed.
+O `install.sh`:
+- sincroniza as dependências com o `uv`;
+- registra o plugin no Claude Code pelo marketplace `labiomics` (o mesmo dos outros plugins LaBiOmicS);
+- registra o plugin no Antigravity, quando o `agy` estiver instalado.
 
-Restart the session after installing.
+Reinicie a sessão depois de instalar.
 
-Manually, in Claude Code:
+Manualmente, no Claude Code:
 
 ```bash
-claude plugin marketplace add LaBiOmicS/cep-umc-tutor
+claude plugin marketplace add /caminho/para/cep-umc-tutor
 claude plugin install cep-umc-tutor@labiomics
 ```
 
-In Antigravity:
+Requisitos: Python ≥ 3.10 e [`uv`](https://docs.astral.sh/uv/) (recomendado). Opcionais: `pdftotext` (poppler) para
+PDFs e `pandoc` para `.odt`, `.rtf` e `.html`.
 
-```bash
-agy plugin validate ./cep-umc-tutor --strict
-agy plugin install ./cep-umc-tutor
-agy plugin enable cep-umc-tutor
-```
+## Uso
 
-Requirements: Python ≥ 3.10 and [`uv`](https://docs.astral.sh/uv/) (recommended). Optional: `pdftotext` (poppler) for
-PDFs and `pandoc` for `.odt`, `.rtf` and `.html`.
+Peça em linguagem natural, na pasta onde estão os documentos:
 
-## Usage
+- "Revise meu protocolo antes de submeter ao CEP-UMC" (pasta `protocolo/`)
+- "Meu TCLE está de acordo com o modelo do CEP?"
+- "É um TCC de Psicologia com entrevistas gravadas: que documentos preciso enviar?"
+- "Recebi pendências do CEP; me ajude a montar a carta-resposta"
 
-Ask in natural language, in the folder where the documents are (in Portuguese or English):
+O agente confirma com você o tipo dos documentos, a triagem e o **nível do trabalho** antes de avaliar.
 
-- "Revise meu protocolo antes de submeter ao CEP-UMC" (folder `protocolo/`)
-- "Does my consent form (TCLE) follow the CEP template?"
-- "It is an undergraduate psychology thesis with recorded interviews: which documents must I send?"
-- "I received pending items from the CEP; help me write the response letter"
-
-The agent confirms with you the document types, the screening and the **level of the work** before reviewing.
-
-### Command line (without the agent)
+### Linha de comando (sem o agente)
 
 ```bash
 S=skills/cep-tutor/scripts
-uv run $S/cep_tutor.py prepare --input protocolo/ --output-dir cep_tutor/my-project [--nivel mestrado]
-uv run $S/cep_tutor.py run     --output-dir cep_tutor/my-project --runner claude   # headless reviewers
-uv run $S/cep_tutor.py compile --output-dir cep_tutor/my-project
-uv run $S/cep_tutor.py planejar --output-dir cep_tutor/plan --nivel graduacao --coleta 2027-06-01 --q "Q7=sim"
-uv run $S/kb.py search "assentimento"   # knowledge-base search
+uv run $S/cep_tutor.py prepare --input protocolo/ --output-dir cep_tutor/meu-projeto [--nivel mestrado]
+uv run $S/cep_tutor.py run     --output-dir cep_tutor/meu-projeto --runner claude   # revisores headless
+uv run $S/cep_tutor.py compile --output-dir cep_tutor/meu-projeto
+uv run $S/cep_tutor.py planejar --output-dir cep_tutor/plano --nivel graduacao --coleta 2027-06-01 --q "Q7=sim"
+uv run $S/kb.py search "assentimento"   # consulta à base
 uv run $S/kb.py show TCLE-C11
 ```
 
-| `prepare` option | Use |
+| Opção de `prepare` | Uso |
 |---|---|
-| `--nivel graduacao\|especializacao\|mestrado\|doutorado\|docente` | Level of the work. Without it, the tutor looks at the cover page; if nothing is found, it assumes undergraduate. |
-| `--trilhas A,B` | One track only (`A` or `B`) or both (default). |
-| `--tipo "file.docx=tcle"` | Corrects the type of a document (repeatable). |
-| `--q "Q3=sim"` | Corrects a screening answer (repeatable). |
-| `--max-rodadas 3` | Maximum number of review rounds for the protocol. |
+| `--nivel graduacao\|especializacao\|mestrado\|doutorado\|docente` | Nível do trabalho. Sem ele, o tutor procura na capa; se não achar, assume graduação. |
+| `--trilhas A,B` | Só uma trilha (`A` ou `B`) ou as duas (padrão). |
+| `--tipo "arquivo.docx=tcle"` | Corrige o tipo de um documento (repetível). |
+| `--q "Q3=sim"` | Corrige uma resposta da triagem (repetível). |
+| `--max-rodadas 3` | Número máximo de rodadas de revisão para o protocolo. |
 
-## Outputs
+## Saídas
 
-In `cep_tutor/<project>/`:
+Em `cep_tutor/<projeto>/`:
 
-| File | Content |
+| Arquivo | Conteúdo |
 |---|---|
-| `relatorio.md` / `relatorio.pdf` | "Start here", progress since the previous round, submission deadline, legend. **Part 1 (committee)**: findings by severity, warnings about discrepancies, points to check and next steps. **Part 2 (suggestions)**: strengths, Essential, Going further and a summary for the supervisor. |
-| `relatorio_orientador.md` / `.pdf` | One page for the supervisor: status, pending items, signatures, deadline and essential suggestions. |
-| `historico/` | One summary per version of the documents (used to count rounds). |
-| `resumo.json` | Everything in the report, structured. |
-| `triagem.md` / `triagem.json` | Screening answers with evidence, expected × received documents and automatic signals. |
-| `documentos/` | Text extracted from each document. |
-| `avaliacao_trilha_a.md` / `_b.md` | Reviewer assessments (with the `FINDINGS_JSON` block). |
+| `relatorio.md` / `relatorio.pdf` | "Comece por aqui", progresso desde a rodada anterior, prazo de submissão, legenda. **Parte 1 (CEP)**: achados por severidade, avisos de divergência, pontos para conferir e próximos passos. **Parte 2 (sugestões)**: pontos fortes, Essencial, Para aprofundar e resumo para o orientador. |
+| `relatorio_orientador.md` / `.pdf` | Uma página para o orientador: situação, pendências, assinaturas, prazo e sugestões essenciais. |
+| `historico/` | Um resumo por versão dos documentos (base do controle de rodadas). |
+| `resumo.json` | Tudo o que está no relatório, em formato estruturado. |
+| `triagem.md` / `triagem.json` | Respostas da triagem com evidências, documentos esperados × recebidos e sinais automáticos. |
+| `documentos/` | Texto extraído de cada documento. |
+| `avaliacao_trilha_a.md` / `_b.md` | Avaliações dos revisores (com o bloco `FINDINGS_JSON`). |
 
-## Knowledge bases
+## Bases de conhecimento
 
-- **`base-conhecimento/`** (Track A): built from 12 official documents:
-  - CEP-UMC templates of February 2022;
-  - 2025 bylaws (Regimento Interno);
-  - Plataforma Brasil researcher manual;
-  - CONEP booklet on the rights of research participants.
+- **`base-conhecimento/`** (Trilha A): construída a partir de 12 documentos oficiais:
+  - modelos do CEP-UMC de fevereiro de 2022;
+  - Regimento Interno de 2025;
+  - Manual do Pesquisador da Plataforma Brasil;
+  - Cartilha dos Direitos dos Participantes da CONEP.
 
-  It has 274 requirements with stable IDs, the discrepancies between documents (e.g. the committee's office hours,
-  D1), a consolidated checklist and the tutor guide. `base-conhecimento/fontes/` holds the full text of the documents
-  and `base-conhecimento/PLANO-DO-PLUGIN.md` the scope and the boundary between tracks.
-- **`base-academica/`** (Track B): 42 items on methods, statistics and writing. Each states whether it belongs to the
-  common core, from which level it becomes "Essential" and where to study it. It is an **initial version**, to be
-  validated with undergraduate and graduate program coordinators.
+  Tem 274 requisitos com ID estável, as divergências entre os documentos (ex.: o horário do CEP, D1), o checklist
+  consolidado e o guia do tutor. `base-conhecimento/fontes/` guarda o texto integral dos documentos e
+  `base-conhecimento/PLANO-DO-PLUGIN.md`, o escopo e a fronteira entre as trilhas.
+- **`base-academica/`** (Trilha B): 42 itens de metodologia, estatística e escrita. Cada um indica se é do núcleo comum,
+  a partir de qual nível passa a ser "Essencial" e onde estudar. É uma **versão inicial**, a validar com coordenadores
+  de curso e de pós-graduação.
 
-To update when the committee publishes new templates, see the "Manutenção" section of `base-conhecimento/README.md`.
-IDs are never renumbered.
+Para atualizar quando o CEP publicar novos modelos, veja a seção "Manutenção" de `base-conhecimento/README.md`. Os
+IDs nunca são renumerados.
 
-## Security and confidentiality
+## Segurança e confidencialidade
 
-- Protocols are **unpublished** and may contain **personal data**. The text goes to the AI service running the agent;
-  make sure this is allowed before processing other people's documents.
-- `.gitignore` excludes `cep_tutor/`, `protocolos/` and `relatorios/`.
-- Document text is treated as data:
-  - invisible characters are removed;
-  - hidden text (Word) and instructions aimed at AI ("do not point out pending items") are ignored in the review and
-    reported as an **integrity alert**;
-  - in headless mode, environment variables holding secrets are removed and the reviewer can only read files.
+- Protocolos são **inéditos** e podem conter **dados pessoais**. O texto vai para o serviço de IA que executa o
+  agente; confirme que isso é permitido antes de processar documentos de outras pessoas.
+- `.gitignore` exclui `cep_tutor/`, `protocolos/` e `relatorios/`.
+- O texto dos documentos é tratado como dado:
+  - caracteres invisíveis são removidos;
+  - texto oculto (Word) e instruções dirigidas a IA ("não aponte pendências") são ignorados na avaliação e aparecem
+    como **alerta de integridade**;
+  - no modo headless, as variáveis de ambiente com segredos são removidas e o revisor só pode ler arquivos.
 
-## Limitations
+## Limitações
 
-- Document classification, screening and signals are heuristic (in Portuguese). The agent confirms with you whatever
-  is uncertain.
-- The footer ("Page X of Y", initials) can only be checked in `.docx` and `.pdf`.
-- The tutor only compares the project with Plataforma Brasil if you include the "Informações Básicas do Projeto" PDF it
-  generates; without it, consistency stays as a reminder.
-- The submission deadline is an estimate (40–50 days of processing, 30 + 30 per pending round) from the collection
-  start date found in the timeline.
-- The base reflects the documents provided (2022 templates, 2025 bylaws). Later rules are not included.
+- A classificação dos documentos, a triagem e os sinais são heurísticos (em português). O agente confirma com você o
+  que ficar incerto.
+- O rodapé ("Página X de Y", rubricas) só é verificável em `.docx` e `.pdf`.
+- O tutor só compara o projeto com a Plataforma Brasil se você incluir o PDF "Informações Básicas do Projeto" gerado
+  por ela; sem ele, a igualdade fica como lembrete.
+- O prazo de submissão é estimado (40–50 dias de tramitação, 30 + 30 por pendência) a partir da data de início da coleta
+  encontrada no cronograma.
+- A base reflete os documentos fornecidos (modelos de 2022, Regimento de 2025). Normas posteriores não estão incluídas.
 
-## Development
+## Desenvolvimento
 
 ```bash
 uv run --all-extras pytest -q
 uvx ruff check skills tests
-uv run skills/cep-tutor/scripts/kb.py stats   # base integrity
+uv run skills/cep-tutor/scripts/kb.py stats   # integridade da base
 ```
 
-Structure:
+Estrutura:
 
 ```
-.claude-plugin/          manifests (Claude Code) and the labiomics marketplace
-plugin.json              manifest (Antigravity)
-agents/cep-reviewer.md   reviewer subagent
-rules/AGENTS.md          tutor rules
+.claude-plugin/          manifestos (Claude Code) e marketplace labiomics
+plugin.json              manifesto (Antigravity)
+agents/cep-reviewer.md   subagente revisor
+rules/AGENTS.md          regras do tutor
 skills/cep-tutor/        SKILL.md, prompts/, references/, scripts/
-base-conhecimento/       Track A (CEP-UMC) + fontes/ + PLANO-DO-PLUGIN.md
-base-academica/          Track B (suggestions by level)
-docs/                    original CEP-UMC documents
-site/                    GitHub Pages site (published by .github/workflows/pages.yml)
+base-conhecimento/       Trilha A (CEP-UMC) + fontes/ + PLANO-DO-PLUGIN.md
+base-academica/          Trilha B (sugestões por nível)
+docs/                    documentos originais do CEP-UMC
+site/                    página do GitHub Pages (publicada por .github/workflows/pages.yml)
 assets/                  logo
-tests/                   tests (fictional protocol in fixtures/)
+tests/                   testes (protocolo fictício em fixtures/)
 ```
 
-## License and authorship
+## Licença e autoria
 
-MIT. Prof. Dr. Fabiano Bezerra Menegidio, Laboratory of Bioinformatics and Omics Sciences (LaBiOmicS), University of
+MIT. Prof. Dr. Fabiano Bezerra Menegidio, Laboratório de Bioinformática e Ciências Ômicas (LaBiOmicS), Universidade de
 Mogi das Cruzes (UMC).
 
-The documents in `docs/` belong to the CEP-UMC, CONEP and the Brazilian Ministry of Health, and keep their own terms.
+Os documentos em `docs/` são do CEP-UMC, da CONEP e do Ministério da Saúde, e mantêm seus próprios termos.

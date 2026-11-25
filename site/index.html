@@ -884,8 +884,8 @@ claude plugin update cep-umc-tutor@labiomics</pre></div>
     <div class="sec-head">
       <div class="eyebrow"><span lang="pt">Avançado</span><span lang="en">Advanced</span><span lang="es">Avanzado</span></div>
       <h2 lang="pt">Instalação a partir do código e uso headless.</h2><h2 lang="en">Install from source and headless use.</h2><h2 lang="es">Instalación desde el código y uso headless.</h2>
-      <p lang="pt">Opções de cada comando e a estrutura das bases estão no <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.pt-BR.md">README</a>.</p>
-      <p lang="en">Command options and the structure of the knowledge bases are in the <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.md">README</a>.</p>
+      <p lang="pt">Opções de cada comando e a estrutura das bases estão no <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.md">README</a>.</p>
+      <p lang="en">Command options and the structure of the knowledge bases are in the <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.en.md">README</a>.</p>
       <p lang="es">Las opciones de cada comando y la estructura de las bases están en el <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.es.md">README</a>.</p>
     </div>
     <div class="tabs" role="tablist">
@@ -937,7 +937,7 @@ uv run $S/cep_tutor.py planejar --output-dir cep_tutor/plan --nivel graduacao --
       <a href="https://github.com/LaBiOmicS/cep-umc-tutor">GitHub</a> ·
       <a href="https://github.com/LaBiOmicS/cep-umc-tutor/releases">Releases</a> ·
       <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/CHANGELOG.md">Changelog</a> ·
-      <a lang="pt" href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.pt-BR.md">Documentação</a><a lang="en" href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.md">Documentation</a><a lang="es" href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.es.md">Documentación</a> ·
+      <a lang="pt" href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.md">Documentação</a><a lang="en" href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.en.md">Documentation</a><a lang="es" href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/README.es.md">Documentación</a> ·
       <a href="https://github.com/LaBiOmicS/cep-umc-tutor/blob/main/LICENSE"><span lang="pt">Licença MIT</span><span lang="en">MIT License</span><span lang="es">Licencia MIT</span></a>
     </div>
   </div>
@@ -962,10 +962,9 @@ uv run $S/cep_tutor.py planejar --output-dir cep_tutor/plan --nivel graduacao --
     });
     store("cep-" + kind, val);
   }
-  var browserLang = (navigator.language || "").toLowerCase().slice(0, 2);
   var ua = (navigator.userAgent || "").toLowerCase();
   var browserOs = ua.indexOf("win") >= 0 ? "win" : (ua.indexOf("mac") >= 0 ? "mac" : (ua.indexOf("linux") >= 0 ? "linux" : "win"));
-  set("lang", read("cep-lang") || (HTML_LANG[browserLang] ? browserLang : "en"));
+  set("lang", read("cep-lang") || "pt");  // português é a língua principal; EN e ES ficam no seletor
   set("os", read("cep-os") || browserOs);
   set("ai", read("cep-ai") || "claude");
   document.querySelectorAll("[data-set]").forEach(function (b) {

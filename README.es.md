@@ -7,7 +7,7 @@
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org)
 [![Página del proyecto](https://img.shields.io/badge/docs-GitHub%20Pages-0b6e4f.svg)](https://labiomics.github.io/cep-umc-tutor/)
 
-[English](README.md) · [Português](README.pt-BR.md) · **Español**
+[Português](README.md) · [English](README.en.md) · **Español**
 
 > [!WARNING]
 > **Beta.** El tutor puede equivocarse, tanto al leer los documentos como en sus señalamientos. Verifique cada
